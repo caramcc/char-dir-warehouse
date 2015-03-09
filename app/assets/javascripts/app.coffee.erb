@@ -1,0 +1,17 @@
+warehouse = angular.module('warehouse',[
+])
+
+#= depend_on_asset index.html
+#= depend_on_asset new.html
+app.config([ '$routeProvider',
+  ($routeProvider)->
+    $routeProvider
+    .when('/',
+      templateUrl: "<%= asset_path('index.html') %>"
+      controller: 'SomeController'
+    )
+    .when('/character/new',
+      templateUrl: "<%= asset_path('new.html') %>"
+      controller: 'SomeOtherController'
+    )
+])
