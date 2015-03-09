@@ -1,9 +1,7 @@
-class UserController < ApplicationController
+class CharacterController < ApplicationController
 
   def index
-    @users = User.all
 
-    render :json => @users
   end
 
   def show
@@ -29,5 +27,6 @@ class UserController < ApplicationController
   def destroy
 
   end
+
 
 end

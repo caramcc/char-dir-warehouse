@@ -27,8 +27,8 @@ Rails.application.routes.draw do
   #   end
 
   Rails.application.routes.draw do
-    resources :users
-    resources :characters
+    resources :user
+    resources :character
   end
 
   # Example resource route with sub-resources:
