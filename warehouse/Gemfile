@@ -32,6 +32,17 @@ gem 'bower-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+
+# Heroku-specific (mostly)
+gem 'foreman'
+group :production, :staging do
+  gem 'rails_12factor'
+  gem 'rails_stdout_logging'
+  gem 'rails_serve_static_assets'
+end
+
+
+
 group :development, :test do
 
   # Access an IRB console on exception pages or by using <%= console %> in views
