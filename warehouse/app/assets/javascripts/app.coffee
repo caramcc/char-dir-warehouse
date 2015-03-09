@@ -1,0 +1,2 @@
+warehouse = angular.module('warehouse',[
+])
