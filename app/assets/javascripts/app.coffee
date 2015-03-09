@@ -1,2 +1,0 @@
-warehouse = angular.module('warehouse',[
-])
