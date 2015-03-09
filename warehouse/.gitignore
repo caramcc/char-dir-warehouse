@@ -12,5 +12,10 @@
 !/log/.keep
 /tmp
 
-# Ignore all idea files
-/.idea/*
+
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm:
+
+*.iml
+
+## Directory-based project format:
+.idea/
