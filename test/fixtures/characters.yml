@@ -9,8 +9,7 @@
 #                 :fc_last, :char_approved, :fc_approved
 
 arbor:
-  char_id: 1
-  owner_user_id: 1
+  owner_id: 1
   first_name: Arbor
   last_name: Halt
   bio_thread: link

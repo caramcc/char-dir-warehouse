@@ -4,4 +4,7 @@ class Character < ActiveRecord::Base
 
   belongs_to :user
 
+  validates :first_name, presence: true
+  validates_url_format_of :bio_thread, allow_nil: false, message: 'invalid url format'
+
 end

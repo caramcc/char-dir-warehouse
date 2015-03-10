@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150309215425) do
+ActiveRecord::Schema.define(version: 20150310190119) do
 
   create_table "characters", force: :cascade do |t|
     t.datetime "created_at",                null: false
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 20150309215425) do
     t.string   "first_name",    limit: 255
     t.string   "last_name",     limit: 255
     t.string   "bio_thread",    limit: 255
-    t.string   "age",           limit: 255
     t.string   "home_area",     limit: 255
     t.string   "gender",        limit: 255
     t.string   "fc_first",      limit: 255
@@ -27,6 +26,7 @@ ActiveRecord::Schema.define(version: 20150309215425) do
     t.boolean  "char_approved", limit: 1
     t.boolean  "fc_approved",   limit: 1
     t.integer  "owner_id",      limit: 4
+    t.integer  "age",           limit: 4
   end
 
   add_index "characters", ["owner_id"], name: "index_characters_on_owner_id", using: :btree
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150309215425) do
     t.string   "characters",   limit: 255
     t.string   "group",        limit: 255
     t.string   "salt",         limit: 255
+    t.string   "email",        limit: 255
   end
 
 end
