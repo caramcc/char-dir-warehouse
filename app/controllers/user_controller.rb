@@ -17,6 +17,12 @@ class UserController < ApplicationController
   end
 
   def edit
+    if User.can_edit?(params[:id])
+      # TODO: edit controller
+      true
+    else
+      render :status => :unauthorized
+    end
   end
 
   def create
