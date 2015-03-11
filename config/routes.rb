@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   # receive the form and create a user in our database using the data given to us by the user.
   get '/signup' => 'user#new'
   post '/user' => 'user#create'
+  post '/user/delete' => 'user#delete'
+
 
   get '/users' => 'user#index'
   get '/users/:id' => 'user#show'

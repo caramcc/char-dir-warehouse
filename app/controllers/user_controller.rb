@@ -4,8 +4,9 @@ class UserController < ApplicationController
     render :json => User.all
   end
 
-  def show(user_id)
-    render :json => User.find_by_id(user_id)
+  def show
+    user = User.find_by_id(params[:id])
+    render :json => user
   end
 
   def new
