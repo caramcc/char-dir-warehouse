@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150310190119) do
+ActiveRecord::Schema.define(version: 20150311041038) do
 
   create_table "characters", force: :cascade do |t|
     t.datetime "created_at",                null: false
@@ -32,15 +32,14 @@ ActiveRecord::Schema.define(version: 20150310190119) do
   add_index "characters", ["owner_id"], name: "index_characters_on_owner_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.string   "username",     limit: 255
-    t.string   "display_name", limit: 255
-    t.string   "password",     limit: 255
-    t.string   "characters",   limit: 255
-    t.string   "group",        limit: 255
-    t.string   "salt",         limit: 255
-    t.string   "email",        limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "username",        limit: 255
+    t.string   "display_name",    limit: 255
+    t.string   "characters",      limit: 255
+    t.string   "group",           limit: 255
+    t.string   "email",           limit: 255
+    t.string   "password_digest", limit: 255
   end
 
 end
