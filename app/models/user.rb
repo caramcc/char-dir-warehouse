@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  attr_accessor :username, :display_name, :email, :password_digest, :salt, :group
-  # has_many :characters
+  # attr_accessor :id, :username, :display_name, :email, :password_digest, :group
+  has_many :characters
   has_secure_password
 
 
@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
       user = User.find_by_email(email_or_username)
       user ||= User.find_by_username(email_or_username)
 
-      return user
+      user
     end
 
   #

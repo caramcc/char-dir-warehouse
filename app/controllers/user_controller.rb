@@ -9,6 +9,10 @@ class UserController < ApplicationController
   end
 
   def new
+    if session[:user_id]
+      puts session[:user_id]
+      redirect_to '/'
+    end
   end
 
   def edit
@@ -16,6 +20,7 @@ class UserController < ApplicationController
 
   def create
     user = User.new(user_params)
+
     if user.save
       session[:user_id] = user.id
       puts user
