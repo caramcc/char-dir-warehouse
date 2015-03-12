@@ -1,0 +1,12 @@
+<h1>Sign up!</h1>
+
+<%= form_for :user, url: '/user' do |f| %>
+
+    HGRPG Username: <%= f.text_field :username %>
+    Display Name: <%= f.text_field :display_name %>
+    Email: <%= f.text_field :email %>
+    Password: <%= f.password_field :password %>
+    Password Confirmation: <%= f.password_field :password_confirmation %>
+    <%= f.submit 'Submit' %>
+
+<% end %>

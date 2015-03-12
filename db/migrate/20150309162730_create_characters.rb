@@ -4,8 +4,6 @@ class CreateCharacters < ActiveRecord::Migration
 
       t.timestamps null: false
 
-      t.integer :char_id
-      t.integer :owner_user_id
       t.string  :first_name
       t.string  :last_name
       t.string  :bio_thread

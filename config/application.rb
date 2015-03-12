@@ -22,5 +22,16 @@ module Warehouse
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.filter_parameters << :password
+
+    config.staff_permissions = {
+        :account_edit => ['ADMIN', 'MODERATOR', 'LIBRARIAN'],
+        :account_delete => ['ADMIN'],
+        :account_ban => ['ADMIN'],
+        :character_edit => ['ADMIN', 'LIBRARIAN'],
+        :character_approve => ['ADMIN', 'LIBRARIAN'],
+        :fc_approve => ['ADMIN', 'LIBRARIAN']
+    }
   end
 end

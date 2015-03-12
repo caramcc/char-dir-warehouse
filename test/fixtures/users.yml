@@ -6,7 +6,6 @@
 #
 
 aya:
-  user_id: 1
   username: aya
   display_name: Aya
   password: hashed
@@ -14,7 +13,6 @@ aya:
   group: admin
 
 kay:
-  user_id: 2
   username: earthling
   display_name: Kay
   password: hashed
@@ -22,7 +20,6 @@ kay:
   group: librarian
 
 anyuser:
-  user_id: 3
   username: anyuser
   display_name: AnyUser
   password: hashed

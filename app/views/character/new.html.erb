@@ -1,0 +1,15 @@
+<h1>Create Character</h1>
+
+<%= form_for :character, url: '/character' do |f| %>
+
+    First Name: <%= f.text_field :first_name %>
+    Last Name: <%= f.text_field :last_name %>
+    Link to Bio: <%= f.text_field :bio_thread %>
+    Age: <%= f.text_field :age %>
+    Area: <%= f.text_field :home_area %>
+    Gender: <%= f.text_field :gender %>
+    Face Claim First Name: <%= f.text_field :fc_first %>
+    Face Claim Last Name: <%= f.text_field :fc_last %>
+    <%= f.submit 'Submit' %>
+
+<% end %>

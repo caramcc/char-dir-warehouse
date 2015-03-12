@@ -26,6 +26,29 @@ Rails.application.routes.draw do
   #     end
   #   end
 
+  # resources :user
+  # resources :character
+
+  # These routes will be for signup. The first renders a form in the browse, the second will
+  # receive the form and create a user in our database using the data given to us by the user.
+  get '/signup' => 'user#new'
+  post '/user' => 'user#create'
+  post '/user/delete' => 'user#delete'
+
+
+  get '/users' => 'user#index'
+  get '/users/:id' => 'user#show'
+
+  # these routes are for showing users a login form, logging them in, and logging them out.
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
+
+  get '/character/new' => 'character#new'
+  post '/character' => 'character#create'
+  get '/character/show/:id' => 'character#show'
+
   # Example resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales
