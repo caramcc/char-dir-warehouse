@@ -44,6 +44,11 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
+
+  get '/character/new' => 'character#new'
+  post '/character' => 'character#create'
+  get '/character/show/:id' => 'character#show'
+
   # Example resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales
