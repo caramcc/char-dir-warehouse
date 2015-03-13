@@ -1,3 +1,5 @@
+<div class="container">
+
 <h1>Viewing Character: <%= @char.first_name %> <%=  @char.last_name %></h1>
 
 <% unless @char.char_approved %>
@@ -14,4 +16,6 @@
 <% unless @char.fc_approved %>
     <div class="alert alert-warning" role="alert">This character's face claim is still pending approval.</div>
 <% end %>
-    Face Claim: <%= @char.fc_first %><br> <%= @char.fc_last %>
+    Face Claim: <%= @char.fc_first %> <%= @char.fc_last %>
+
+</div>
