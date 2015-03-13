@@ -9,6 +9,11 @@ class UserController < ApplicationController
     render :json => user
   end
 
+  def show_characters
+    user = User.find_by_id(params[:id])
+    render :json => user.characters
+  end
+
   def new
     if session[:user_id]
       puts session[:user_id]
