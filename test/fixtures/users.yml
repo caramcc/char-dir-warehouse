@@ -8,20 +8,17 @@
 aya:
   username: aya
   display_name: Aya
-  password: hashed
-  characters: json
-  group: admin
+#  characters: json
+  group: ADMIN
 
 kay:
   username: earthling
   display_name: Kay
-  password: hashed
   characters: json
-  group: librarian
+  group: LIBRARIAN
 
 anyuser:
   username: anyuser
   display_name: AnyUser
-  password: hashed
   characters: json
-  group: member
+  group: MEMBER

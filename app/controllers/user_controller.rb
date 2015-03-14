@@ -22,7 +22,8 @@ class UserController < ApplicationController
   end
 
   def edit
-    if User.can_edit?(params[:id])
+    user = User.find_by_id(params[:id])
+    if user.can_edit?
       # TODO: edit controller
       true
     else
