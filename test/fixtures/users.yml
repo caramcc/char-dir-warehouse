@@ -8,17 +8,17 @@
 aya:
   username: aya
   display_name: Aya
-#  characters: json
+  email: dominate.earth@gmail.com
   group: ADMIN
 
 kay:
   username: earthling
   display_name: Kay
-  characters: json
+  email: foo@bar.baz
   group: LIBRARIAN
 
 anyuser:
   username: anyuser
   display_name: AnyUser
-  characters: json
+  email: spam@eggs.py
   group: MEMBER

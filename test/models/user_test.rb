@@ -13,4 +13,16 @@ class UserTest < ActiveSupport::TestCase
     assert !@anyuser.admin_panel?
   end
 
+  test 'find by email or username' do
+    assert_equal @aya.id, User.find_by_email_or_username('aya').id
+    assert_equal @aya.id, User.find_by_email_or_username('dominate.earth@gmail.com').id
+    assert_nil User.find_by_email_or_username('asdf')
+  end
+
+  test 'can_edit_account? method' do
+    assert @anyuser.can_edit_account?(@anyuser)
+    assert @aya.can_edit_account?(@anyuser)
+    assert @aya.can_edit_account?(@aya)
+  end
+
 end

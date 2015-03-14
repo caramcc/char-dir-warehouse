@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
     Rails.application.config.staff_permissions[:admin_panel].include?(self.group)
   end
 
-  def can_edit?
-    session[:user_id] == self.id || Rails.application.config.staff_permissions[:account_edit].include?(self.group)
+  def can_edit_account?(edited_user)
+    self.id == edited_user.id || Rails.application.config.staff_permissions[:account_edit].include?(self.group)
   end
 
   class << self
