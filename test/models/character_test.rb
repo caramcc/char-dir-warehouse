@@ -8,4 +8,6 @@ class CharacterTest < ActiveSupport::TestCase
     assert_equal 30, @arbor[:age]
 
   end
+
+
 end

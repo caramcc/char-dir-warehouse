@@ -26,12 +26,13 @@ module Warehouse
     config.filter_parameters << :password
 
     config.staff_permissions = {
-        :account_edit => ['ADMIN', 'MODERATOR', 'LIBRARIAN'],
-        :account_delete => ['ADMIN'],
-        :account_ban => ['ADMIN'],
-        :character_edit => ['ADMIN', 'LIBRARIAN'],
-        :character_approve => ['ADMIN', 'LIBRARIAN'],
-        :fc_approve => ['ADMIN', 'LIBRARIAN']
+        :account_edit => %w(ADMIN MODERATOR LIBRARIAN),
+        :account_delete => %w(ADMIN),
+        :account_ban => %w(ADMIN MODERATOR),
+        :admin_panel => %w(ADMIN LIBRARIAN),
+        :character_edit => %w(ADMIN LIBRARIAN),
+        :character_approve => %w(ADMIN LIBRARIAN),
+        :fc_approve => %w(ADMIN LIBRARIAN)
     }
   end
 end

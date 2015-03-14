@@ -7,7 +7,14 @@ class CharacterController < ApplicationController
   end
 
   def show
-    render :json => Character.find_by_id(params[:id])
+
+    @char = Character.find_by_id(params[:id])
+    #
+    # unless @char.char_approved
+    #
+    # end
+    #
+    # render :json => @char
   end
 
   def new
@@ -24,7 +31,7 @@ class CharacterController < ApplicationController
     character = Character.new(character_params)
 
     character.user_id = session[:user_id]
-    character.char_approved, character.fc_approved = 'PENDING'
+    character.char_approved, character.fc_approved = false, false
 
     if character.save
       redirect_to "/character/show/#{character.id}"
@@ -41,8 +48,9 @@ class CharacterController < ApplicationController
 
   end
 
-  # attr_accessor :id, :owner_id, :first_name, :last_name, :bio_thread, :age, :home_area, :gender, :fc_first,
-  #               :fc_last, :char_approved, :fc_approved
+  def approve
+
+  end
 
   private
   def character_params

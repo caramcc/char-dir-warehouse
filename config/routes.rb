@@ -35,9 +35,13 @@ Rails.application.routes.draw do
   post '/user' => 'user#create'
   post '/user/delete' => 'user#delete'
 
+  get '/' => 'application#index'
+
 
   get '/users' => 'user#index'
-  get '/users/:id' => 'user#show'
+  get '/user/:id' => 'user#show'
+
+  get '/user/:id/characters' => 'user#characters'
 
   # these routes are for showing users a login form, logging them in, and logging them out.
   get '/login' => 'sessions#new'

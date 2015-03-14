@@ -8,20 +8,17 @@
 aya:
   username: aya
   display_name: Aya
-  password: hashed
-  characters: json
-  group: admin
+  email: dominate.earth@gmail.com
+  group: ADMIN
 
 kay:
   username: earthling
   display_name: Kay
-  password: hashed
-  characters: json
-  group: librarian
+  email: foo@bar.baz
+  group: LIBRARIAN
 
 anyuser:
   username: anyuser
   display_name: AnyUser
-  password: hashed
-  characters: json
-  group: member
+  email: spam@eggs.py
+  group: MEMBER

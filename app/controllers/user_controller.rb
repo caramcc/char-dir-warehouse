@@ -9,6 +9,19 @@ class UserController < ApplicationController
     render :json => user
   end
 
+  def show_characters
+    user = User.find_by_id(params[:id])
+    render :json => user.characters
+  end
+
+  def characters
+    @user = User.find_by_id(params[:id])
+    # @user.characters.each do |char|
+    #   puts char.char_approved
+    #   puts char.first_name
+    # end
+  end
+
   def new
     if session[:user_id]
       puts session[:user_id]
@@ -17,7 +30,9 @@ class UserController < ApplicationController
   end
 
   def edit
-    if User.can_edit?(params[:id])
+    logged_in_user = User.find_by_id(session[:user_id])
+    edited_user = User.find_by_id(params[:id])
+    if logged_in_user.can_edit?(edited_user)
       # TODO: edit controller
       true
     else

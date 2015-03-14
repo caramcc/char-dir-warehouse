@@ -1,15 +1,19 @@
-<h1>Create Character</h1>
+<div class="container">
+    <h1>Create Character</h1>
 
-<%= form_for :character, url: '/character' do |f| %>
+    <%= form_for :character, url: '/character' do |f| %>
 
-    First Name: <%= f.text_field :first_name %>
-    Last Name: <%= f.text_field :last_name %>
-    Link to Bio: <%= f.text_field :bio_thread %>
-    Age: <%= f.text_field :age %>
-    Area: <%= f.text_field :home_area %>
-    Gender: <%= f.text_field :gender %>
-    Face Claim First Name: <%= f.text_field :fc_first %>
-    Face Claim Last Name: <%= f.text_field :fc_last %>
-    <%= f.submit 'Submit' %>
+        <%= f.text_field :first_name, class: 'form-control', placeholder: 'First', autofocus: true  %>
+        <%= f.text_field :last_name, class: 'form-control', placeholder: 'Last' %>
+        <%= f.url_field :bio_thread, class: 'form-control', placeholder: 'Bio Link' %>
+        <%= f.number_field :age, class: 'form-control', placeholder: 'Age' %>
+        <%= f.text_field :home_area, class: 'form-control', placeholder: 'District/Area' %>
+        <%= f.text_field :gender, class: 'form-control', placeholder: 'Gender' %>
+        Face Claim:
+        <%= f.text_field :fc_first, class: 'form-control', placeholder: 'FC First Name' %>
+        <%= f.text_field :fc_last, class: 'form-control', placeholder: 'FC Last Name' %>
 
-<% end %>
+        <%= f.submit 'Submit', class: 'btn btn-default' %>
+
+    <% end %>
+</div>
