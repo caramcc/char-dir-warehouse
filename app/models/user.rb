@@ -10,6 +10,10 @@ class User < ActiveRecord::Base
     self.id == edited_user.id || Rails.application.config.staff_permissions[:account_edit].include?(self.group)
   end
 
+  def can_approve?
+    Rails.application.config.staff_permissions[:character_approve].include?(self.group)
+  end
+
   class << self
 
     def find_by_email_or_username(email_or_username)

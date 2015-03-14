@@ -25,4 +25,10 @@ class UserTest < ActiveSupport::TestCase
     assert @aya.can_edit_account?(@aya)
   end
 
+  test 'can_approve' do
+    assert @aya.can_approve?
+    assert @kay.can_approve?
+    assert !@anyuser.can_approve?
+  end
+
 end

@@ -2,12 +2,11 @@ require 'test_helper'
 
 class CharacterTest < ActiveSupport::TestCase
 
-  test 'fixtures' do
 
-    assert_equal 1, Character.count
-    assert_equal 30, @arbor[:age]
-
+  test 'character approval' do
+    assert !@dom.char_approved
+    @dom.approve
+    assert @dom.char_approved
   end
-
 
 end

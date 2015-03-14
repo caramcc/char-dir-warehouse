@@ -7,4 +7,9 @@ class Character < ActiveRecord::Base
   validates :first_name, presence: true
   validates_url_format_of :bio_thread, allow_nil: false, message: 'invalid url format'
 
+  def approve
+    self.char_approved = true
+    self.save
+  end
+
 end

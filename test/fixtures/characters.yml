@@ -21,3 +21,16 @@ arbor:
   char_approved: true
   fc_approved: true
 
+dom:
+  user_id: 2
+  first_name: Dom
+  last_name: Copperview
+  bio_thread: link
+  age: 42
+  home_area: Capitol
+  gender: f
+  fc_first: Anna
+  fc_last: Torv
+  char_approved: false
+  fc_approved: false
+
