@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   get '/users' => 'user#index'
   get '/user/:id' => 'user#show'
 
-  get '/user/:id/characters' => 'user#show_characters'
+  get '/user/:id/characters' => 'user#characters'
 
   # these routes are for showing users a login form, logging them in, and logging them out.
   get '/login' => 'sessions#new'
