@@ -1,0 +1,13 @@
+<div class="container">
+
+  <h1>The following Face Claims were marked approved:</h1>
+
+  <ul class="list-group">
+    <% @approved.each do |user, chars| %>
+        <% chars.each do |char| %>
+            <li class="list-group-item"> <%= char.fc_last.upcase %>, <%= char.fc_first %> plays <%= char.first_name %> <%= char.last_name %> [<%= user %>]</li>
+        <% end %>
+    <% end %>
+  </ul>
+
+</div>

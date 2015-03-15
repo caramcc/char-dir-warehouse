@@ -1,0 +1,28 @@
+<div class="container">
+
+  <% @fcs.each do |letter, chars| %>
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading" align="center"><%= letter %></div>
+      <table align="center" >
+        <% chars.each do |char| %>
+          <tr><td>
+            <!--TODO: Update Colors-->
+            <span
+            <% if char[:gender] == 'M' %>
+                    style="color:#33CCCC;"
+            <% elsif char[:gender] == 'F' %>
+                    style="color:lightpink;"
+            <% end %>>
+            <%= char[:fc_last].upcase %>,
+            <%= char[:fc_first].capitalize %></span> plays
+
+            <b><%= char[:first_name] %> <%= char[:last_name] %></b>
+            <a href="/user/<%= char[:user_id] %>">[ <%= char[:user_username] %> ]</a>
+          </td></tr>
+        <% end %>
+      </table>
+    </div>
+  <% end %>
+
+</div>

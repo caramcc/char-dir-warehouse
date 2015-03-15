@@ -7,6 +7,46 @@ class CharacterController < ApplicationController
   end
 
   def show
+    @display_names = {}
+    @chars = Character.order(:home_area)
+    @chars.each do |char|
+      if @display_names[char.user_id].nil?
+        @display_names[char.user_id] = User.find_by_id(char.user_id).display_name
+      end
+    end
+  end
+
+  def fcs
+    @fcs = {}
+    @no_fcs = []
+    Character.order(:fc_last).each do |char|
+
+      char_data = {
+          fc_first: char.fc_first,
+          fc_last: char.fc_last,
+          first_name: char.first_name,
+          last_name: char.last_name,
+          gender: char.gender,
+          id: char.id,
+          user_id: char.user_id,
+          user_username: User.find_by_id(char.user_id).username
+      }
+      if char.fc_last.nil? && char.fc_first.nil?
+      #   do nothing
+      elsif char.fc_last.nil?
+        char_data[:fc_last] = ' '
+      else
+
+        if @fcs.include? char.fc_last[0]
+          @fcs[char.fc_last[0]].push char_data
+        else
+          @fcs[char.fc_last[0]] = [char_data]
+        end
+      end
+    end
+  end
+
+  def show_one
 
     @char = Character.find_by_id(params[:id])
     @user = User.find_by_id(session[:user_id])
@@ -42,7 +82,7 @@ class CharacterController < ApplicationController
     character.char_approved, character.fc_approved = false, false
 
     if character.save
-      redirect_to "/character/show/#{character.id}"
+      redirect_to "/character/#{character.id}"
     else
       redirect_to '/signup'
     end
@@ -50,14 +90,20 @@ class CharacterController < ApplicationController
 
   def update
     old_char = Character.find_by_id(params[:character][:id])
+    fc_changed = old_char.fc_first != params[:character][:fc_first] || old_char.fc_last != params[:character][:fc_last]
 
     params[:character].each do |key, value|
       if old_char.respond_to?(key)
         old_char[key] = value
       end
     end
+
+    if fc_changed
+      old_char.fc_approved = false
+    end
+
     old_char.save
-    redirect_to "/character/show/#{old_char.id}"
+    redirect_to "/character/#{old_char.id}"
   end
 
   def destroy
@@ -82,6 +128,46 @@ class CharacterController < ApplicationController
 
   end
 
+  def approve_all_fcs
+    if User.find_by_id(session[:user_id]).can_approve?
+      chars = Character.where(fc_approved: false)
+      # @pending = [{
+      #                 character: character,
+      #                 user: user,
+      #                 fc_unique: oneof 'yes', 'no', 'su' ( 'no but same user',
+      #
+      #             }]
+      @pending = []
+
+      chars.each do |char|
+        user = User.find_by_id(char.user_id)
+
+        duplicates = Character.where(fc_first: char.fc_first, fc_last: char.fc_last)
+
+        fc_unique = 'no'
+        if duplicates.count > 1
+          duplicates.each do |dupe|
+
+            if dupe.nil? || dupe.blank?
+              fc_unique = 'yes'
+            elsif dupe.user_id == char.user_id || !dupe.fc_approved
+              fc_unique = 'su'
+            else
+              fc_unique = 'no'
+            end
+          end
+        else
+          fc_unique = 'yes'
+        end
+
+        @pending.push({ character: char, user: user, fc_unique: fc_unique })
+
+      end
+    else
+      render :file => 'public/403.html', status: :forbidden
+    end
+  end
+
   def approve
     if User.find_by_id(session[:user_id]).can_approve?
       @approved = {}
@@ -90,6 +176,28 @@ class CharacterController < ApplicationController
         char = Character.find_by_id(id)
 
         char.approve
+
+        user = User.find_by_id(char.user_id)
+
+        if @approved[user.display_name].nil?
+          @approved[user.display_name] = [char]
+        else
+          @approved[user.display_name].push(char)
+        end
+      end
+    else
+      render :file => 'public/403.html', status: :unauthorized
+    end
+  end
+
+  def approve_fcs
+    if User.find_by_id(session[:user_id]).can_approve?
+      @approved = {}
+      puts params
+      params[:fcs].each do |id|
+        char = Character.find_by_id(id)
+
+        char.approve_fc
 
         user = User.find_by_id(char.user_id)
 

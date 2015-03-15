@@ -1,0 +1,52 @@
+<div class="container">
+  <h1>Edit User: <%= @user.display_name %> [<%= @user.username %>]</h1>
+
+  <%= form_for :user, url: '/user/update' do |f| %>
+
+      <div class="col-lg-6">
+        <div class="input-group input-group">
+          <span class="input-group-addon" id="sizing-addon1">Display Name</span>
+          <%= f.text_field :display_name, class: 'form-control', placeholder: 'First', value: @user.display_name, autofocus: true  %>
+        </div>
+
+        <div class="input-group input-group">
+          <span class="input-group-addon" id="sizing-addon1">Email</span>
+          <%= f.email_field :email, class: 'form-control', placeholder: 'Last', value: @user.email %>
+        </div>
+        <% if @logged_in_user.can_promote? %>
+
+            <div class="input-group input-group">
+              <span class="input-group-addon" id="sizing-addon1">Group</span>
+              <%= f.text_field :group, class: 'form-control', placeholder: 'Group', value: @user.group %>
+            </div>
+
+        <% end %>
+
+        <% if @user.id == @logged_in_user.id %>
+          <div class="panel panel-default">
+            <div class="panel-heading">Update Password - not yet implemented</div>
+            <div class="panel-body">
+                <div class="input-group input-group">
+                  <span class="input-group-addon" id="sizing-addon1">Current Password</span>
+                  <%= f.password_field :old_password, class: 'form-control', placeholder: 'Current Password', disabled: true %>
+                </div>
+
+                <div class="input-group input-group">
+                  <span class="input-group-addon" id="sizing-addon1">New Password</span>
+                  <%= f.password_field :new_password, class: 'form-control', placeholder: 'New Password', disabled: true %>
+                </div>
+
+                <div class="input-group input-group">
+                  <span class="input-group-addon" id="sizing-addon1">Confirm New Password</span>
+                  <%= f.password_field :confirm_new_password, class: 'form-control', placeholder: 'Confirm New Password', disabled: true %>
+                </div>
+            </div>
+          </div>
+        <% end %>
+
+        <%= f.hidden_field :id, value: @user.id %>
+
+        <%= f.submit 'Submit', class: 'btn btn-primary' %>
+      </div>
+  <% end %>
+</div>
