@@ -6,8 +6,8 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <%
-     @uid = session[:user_id]
-     if @uid.nil? || User.find_by_id(@uid).nil?
+     @user = User.find_by_id(session[:user_id])
+     if @user.nil?
        @logged_in = false
      else
        @logged_in = true
@@ -32,14 +32,14 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Link</a></li>
+            <li><a href="/character/new">New Character</a></li>
+            <li><a href="/about">About</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">View <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
+                <li><a href="/characters">Characters</a></li>
+                <li><a href="/characters/fcs">Face Claims</a></li>
+                <li><a href="/users">Users</a></li>
                 <li class="divider"></li>
                 <li><a href="#">Separated link</a></li>
                 <li class="divider"></li>
@@ -54,14 +54,28 @@
             <button type="submit" class="btn btn-default">Submit</button>
           </form>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Link</a></li>
 
             <% if @logged_in %>
+                <% if @user.admin_panel? %>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin Panel <span class="caret"></span></a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="/characters/pending">Reaping Check stuff?</a></li>
+                        <li><a href="/characters/fcs/pending">idk</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/characters/pending">Pending Characters</a></li>
+                        <li><a href="/characters/fcs/pending">Pending FCs</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/users/banned">Ban List</a></li>
+                      </ul>
+                    </li>
+                <% end %>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= User.find_by_id(@uid).display_name %> <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= @user.display_name %> <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="/user/<%= @uid %>">Profile</a></li>
-                <li><a href="/user/<%= @uid %>/characters">Characters</a></li>
+                <li><a href="/user/<%= @user.id %>">Profile</a></li>
+                <li><a href="/user/<%= @user.id %>/characters">Characters</a></li>
                 <li><a href="#">Something else here</a></li>
                 <li class="divider"></li>
                 <li><a href="/logout">Logout</a></li>
@@ -88,6 +102,7 @@
     </nav>
 
     <%= yield %>
+  <br>
 </div>
 </body>
 </html>

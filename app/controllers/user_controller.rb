@@ -1,12 +1,19 @@
 class UserController < ApplicationController
 
   def index
-    render :json => User.all
+    @users = []
+    User.order(:username).each do |user|
+      unless user.nil?
+        @users.push user
+      end
+    end
+    # render :json => User.all
   end
 
   def show
-    user = User.find_by_id(params[:id])
-    render :json => user
+    @user = User.find_by_id(params[:id])
+    @viewing = User.find_by_id(session[:user_id])
+    # render :json => user
   end
 
   def show_characters
@@ -30,12 +37,9 @@ class UserController < ApplicationController
   end
 
   def edit
-    logged_in_user = User.find_by_id(session[:user_id])
-    edited_user = User.find_by_id(params[:id])
-    if logged_in_user.can_edit?(edited_user)
-      # TODO: edit controller
-      true
-    else
+    @logged_in_user = User.find_by_id(session[:user_id])
+    @user = User.find_by_id(params[:id])
+    unless @logged_in_user.can_edit?(@user)
       render :status => :unauthorized
     end
   end
@@ -43,9 +47,10 @@ class UserController < ApplicationController
   def create
     user = User.new(user_params)
 
+    user.group = 'MEMBER'
+
     if user.save
       session[:user_id] = user.id
-      puts user
       redirect_to '/users#show'
     else
       redirect_to '/signup'
@@ -53,6 +58,17 @@ class UserController < ApplicationController
   end
 
   def update
+    old_user = User.find_by_id(params[:user][:id])
+
+    params[:user].each do |key, value|
+      if old_user.respond_to?(key)
+        old_user[key] = value
+      end
+    end
+
+    old_user.save
+
+    redirect_to "/user/#{old_user.id}"
   end
 
   def destroy

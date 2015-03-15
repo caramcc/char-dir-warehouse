@@ -2,8 +2,13 @@ class User < ActiveRecord::Base
   has_many :characters
   has_secure_password
 
+  validates :email, :uniqueness => true
+  validates :username, :uniqueness => true
+  validates :display_name, :uniqueness => true
+
   def admin_panel?
-    Rails.application.config.staff_permissions[:admin_panel].include?(self.group)
+    # Needed before Rails.application.config loads...
+    %w(ADMIN LIBRARIAN MODERATOR).include?(self.group)
   end
 
   def can_edit?(char_or_user)
@@ -18,6 +23,11 @@ class User < ActiveRecord::Base
 
   def can_approve?
     Rails.application.config.staff_permissions[:character_approve].include?(self.group)
+  end
+  def can_promote?
+    # Rails.application.config.staff_permissions[:user_promote].include?(self.group)
+
+    %w(ADMIN LIBRARIAN MODERATOR).include?(self.group)
   end
 
   class << self

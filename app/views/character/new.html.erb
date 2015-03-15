@@ -1,19 +1,60 @@
-<div class="container">
+<div class="container col-lg-6">
     <h1>Create Character</h1>
 
     <%= form_for :character, url: '/character' do |f| %>
 
+      <div class="input-group input-group">
+        <span class="input-group-addon" id="sizing-addon1">First Name</span>
         <%= f.text_field :first_name, class: 'form-control', placeholder: 'First', autofocus: true  %>
-        <%= f.text_field :last_name, class: 'form-control', placeholder: 'Last' %>
-        <%= f.url_field :bio_thread, class: 'form-control', placeholder: 'Bio Link' %>
-        <%= f.number_field :age, class: 'form-control', placeholder: 'Age' %>
-        <%= f.text_field :home_area, class: 'form-control', placeholder: 'District/Area' %>
-        <%= f.text_field :gender, class: 'form-control', placeholder: 'Gender' %>
-        Face Claim:
-        <%= f.text_field :fc_first, class: 'form-control', placeholder: 'FC First Name' %>
-        <%= f.text_field :fc_last, class: 'form-control', placeholder: 'FC Last Name' %>
+      </div>
 
-        <%= f.submit 'Submit', class: 'btn btn-default' %>
+      <div class="input-group input-group">
+        <span class="input-group-addon" id="sizing-addon1">Last Name</span>
+        <%= f.text_field :last_name, class: 'form-control', placeholder: 'Last' %>
+      </div>
+
+      <div class="input-group input-group">
+        <span class="input-group-addon" id="sizing-addon1">Bio Link</span>
+        <%= f.url_field :bio_thread, class: 'form-control', placeholder: 'Bio Link' %>
+      </div>
+
+      <div class="input-group input-group">
+        <span class="input-group-addon" id="sizing-addon1">Age</span>
+        <%= f.number_field :age, class: 'form-control', placeholder: 'Age' %>
+      </div>
+
+      <div class="input-group input-group">
+        <span class="input-group-addon" id="sizing-addon1">District/Area</span>
+        <%= f.text_field :home_area, class: 'form-control', placeholder: 'District/Area' %>
+      </div>
+
+      <div class="input-group input-group">
+        <span class="input-group-addon" id="sizing-addon1">Special Types</span>
+        <%= f.text_field :special, class: 'form-control', placeholder: 'Peacekeeper, Mayor, or Avox?' %>
+      </div>
+
+      <div class="input-group input-group">
+        <span class="input-group-addon" id="sizing-addon1">Gender</span>
+        <%= f.text_field :gender, class: 'form-control', placeholder: 'Gender' %>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Face Claim (optional)</div>
+        <div class="panel-body">
+      <div class="input-group input-group">
+        <span class="input-group-addon" id="sizing-addon1">FC First Name</span>
+        <%= f.text_field :fc_first, class: 'form-control', placeholder: 'FC First Name' %>
+      </div>
+
+      <div class="input-group input-group">
+        <span class="input-group-addon" id="sizing-addon1">FC Last Name</span>
+        <%= f.text_field :fc_last, class: 'form-control', placeholder: 'FC Last Name' %>
+      </div>
+        </div>
+        </div>
+
+
+        <%= f.submit 'Submit', class: 'btn btn-primary' %>
 
     <% end %>
 </div>
