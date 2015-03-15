@@ -5,8 +5,9 @@ class UserController < ApplicationController
   end
 
   def show
-    user = User.find_by_id(params[:id])
-    render :json => user
+    @user = User.find_by_id(params[:id])
+    @viewing = User.find_by_id(session[:user_id])
+    # render :json => user
   end
 
   def show_characters

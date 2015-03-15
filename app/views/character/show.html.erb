@@ -1,24 +1,50 @@
 <div class="container">
 
-<h1>Viewing Character: <%= @char.first_name %> <%=  @char.last_name %>
-  <% if @user.can_edit?(@char) %>
-    <a href="/character/edit/<%= @char.id%>"><span class="glyphicon glyphicon-edit"></span></a>
-  <% end %>
-</h1>
-<!--TODO: Make this less ugly-->
-<% unless @char.char_approved %>
-    <div class="alert alert-warning" role="alert">This character is still pending approval.</div>
-<% end %>
-<% unless @char.fc_approved %>
-  <div class="alert alert-warning" role="alert">This character's face claim is still pending approval.</div>
-<% end %>
+  <h1>All Characters</h1>
 
-    First Name: <%= @char.first_name %><br>
-    Last Name: <%= @char.last_name %><br>
-    Age: <%= @char.age %><br>
-    Area: <%= @char.home_area %><br>
-    Gender: <%= @char.gender %><br>
-    Face Claim: <%= @char.fc_first %> <%= @char.fc_last %><br>
-    <a href="<%= @char.bio_thread %>" target="_blank">View on HGRPG</a><br>
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Approved Characters</div>
 
+    <!--TODO: Make the table actually sortable-->
+
+    <table class="table sortable-theme-bootstrap" data-sortable>
+      <th></th>
+      <th data-sorted="true" data-sorted-direction="descending">District/Area</th>
+      <th>Gender</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Owner</th>
+      <th>Age</th>
+      <th>Special</th>
+      <th>Face Claim</th>
+      <th>FC Valid?</th>
+      <th>View on HGRPG</th>
+
+      <% @chars.each do |char| %>
+        <tr>
+          <td><a href="/character/show/<%= char.id %>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></td>
+          <td><%= char.home_area %></td>
+          <td><%= char.gender %></td>
+          <td><%= char.first_name %></td>
+          <td><%= char.last_name %></td>
+          <td><a href="/user/<%= char.user_id%>"><%= @display_names[char.user_id] %></a></td>
+          <td><%= char.age %></td>
+          <td><%= char.special %></td>
+
+          <td><%= char.fc_first %> <%= char.fc_last %></td>
+
+          <td>
+            <% if char.fc_approved || char.fc_first.nil? %>
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            <% else %>
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            <% end %>
+          </td>
+
+          <td><a href="<%= char.bio_thread %>" target="_blank">[link]</a></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 </div>

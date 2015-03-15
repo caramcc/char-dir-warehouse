@@ -7,6 +7,16 @@ class CharacterController < ApplicationController
   end
 
   def show
+    @display_names = {}
+    @chars = Character.order(:home_area)
+    @chars.each do |char|
+      if @display_names[char.user_id].nil?
+        @display_names[char.user_id] = User.find_by_id(char.user_id).display_name
+      end
+    end
+  end
+
+  def show_one
 
     @char = Character.find_by_id(params[:id])
     @user = User.find_by_id(session[:user_id])
@@ -51,10 +61,16 @@ class CharacterController < ApplicationController
   def update
     old_char = Character.find_by_id(params[:character][:id])
 
+    fc_changed = old_char.fc_first != params[:character][:fc_first] || old_char.fc_last != params[:character][:fc_last]
+
     params[:character].each do |key, value|
       if old_char.respond_to?(key)
         old_char[key] = value
       end
+    end
+
+    if fc_changed
+      old_char.fc_approved = false
     end
 
     begin

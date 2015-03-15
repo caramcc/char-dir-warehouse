@@ -51,7 +51,8 @@ Rails.application.routes.draw do
 
   get '/character/new' => 'character#new'
   post '/character' => 'character#create'
-  get '/character/show/:id' => 'character#show'
+  get '/character/show/:id' => 'character#show_one'
+  get '/characters/show' => 'character#show'
   get '/character/edit/:id' => 'character#edit'
   post '/character/update' => 'character#update'
 

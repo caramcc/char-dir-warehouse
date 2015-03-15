@@ -5,12 +5,12 @@ class Character < ActiveRecord::Base
   belongs_to :user
 
   @allowed_areas = (1..13).to_a.concat %w(Capitol Wanderer)
-  @special_types = %w(Avox Peacekeeper Gamemaker Victor Mayor)
+  @special_types = %w(Avox Peacekeeper Gamemaker Victor Mayor Tribute)
 
   validates :first_name, presence: true
   validates :age, :numericality => {:only_integer => true, less_than: 130}
-  validates :home_area, inclusion: @allowed_areas
-  validates :special, inclusion: @special_types
+  # validates :home_area, inclusion: @allowed_areas
+  # validates :special, inclusion: @special_types
   validates_url_format_of :bio_thread, allow_nil: false, message: 'invalid url format'
 
   def approve
