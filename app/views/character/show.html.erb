@@ -1,6 +1,10 @@
 <div class="container">
 
-<h1>Viewing Character: <%= @char.first_name %> <%=  @char.last_name %></h1>
+<h1>Viewing Character: <%= @char.first_name %> <%=  @char.last_name %>
+  <% if @user.can_edit?(@char) %>
+    <a href="/character/edit/<%= @char.id%>"><span class="glyphicon glyphicon-edit"></span></a>
+  <% end %>
+</h1>
 <!--TODO: Make this less ugly-->
 <% unless @char.char_approved %>
     <div class="alert alert-warning" role="alert">This character is still pending approval.</div>
@@ -14,7 +18,7 @@
     Age: <%= @char.age %><br>
     Area: <%= @char.home_area %><br>
     Gender: <%= @char.gender %><br>
-    Face Claim: <%= @char.fc_first %> <%= @char.fc_last %>
+    Face Claim: <%= @char.fc_first %> <%= @char.fc_last %><br>
     <a href="<%= @char.bio_thread %>" target="_blank">View on HGRPG</a><br>
 
 </div>
