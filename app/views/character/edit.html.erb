@@ -42,6 +42,7 @@
       <div class="input-group input-group">
         <span class="input-group-addon" id="sizing-addon1">FC Last Name</span>
         <%= f.text_field :fc_last, class: 'form-control', placeholder: 'FC Last Name', value: @char.fc_last %>
+        <%= f.hidden_field :id, value: @char.id %>
       </div>
 
         <% if @user.can_approve? %>

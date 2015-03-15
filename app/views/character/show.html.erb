@@ -1,7 +1,7 @@
 <div class="container">
 
 <h1>Viewing Character: <%= @char.first_name %> <%=  @char.last_name %></h1>
-
+<!--TODO: Make this less ugly-->
 <% unless @char.char_approved %>
     <div class="alert alert-warning" role="alert">This character is still pending approval.</div>
 <% end %>

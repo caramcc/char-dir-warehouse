@@ -48,7 +48,15 @@ class CharacterController < ApplicationController
   end
 
   def update
+    old_char = Character.find_by_id(params[:character][:id])
 
+    params[:character].each do |key, value|
+      if old_char.respond_to?(key)
+        old_char[key] = value
+      end
+    end
+    old_char.save
+    redirect_to "/character/show/#{old_char.id}"
   end
 
   def destroy
