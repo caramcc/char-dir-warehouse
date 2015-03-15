@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   has_secure_password
 
   def admin_panel?
-    Rails.application.config.staff_permissions[:admin_panel].include?(self.group)
+    # Needed before Rails.application.config loads...
+    %w(ADMIN LIBRARIAN MODERATOR).include?(self.group)
   end
 
   def can_edit?(char_or_user)
