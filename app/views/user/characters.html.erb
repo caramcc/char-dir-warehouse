@@ -6,6 +6,8 @@
     <!-- Default panel contents -->
     <div class="panel-heading">Approved Characters</div>
 
+    <!--TODO: Make the table actually sortable-->
+
   <table class="table sortable-theme-bootstrap" data-sortable>
     <th>First Name</th>
     <th>Last Name</th>
@@ -22,8 +24,8 @@
             <tr>
               <td><%= char.first_name %></td>
               <td><%= char.last_name %></td>
-              <td><%= char.age %></td>
               <td><%= char.home_area %></td>
+              <td><%= char.age %></td>
               <td><%= char.gender %></td>
 
               <td><%= char.fc_first %> <%= char.fc_last %></td>
@@ -65,6 +67,7 @@
             <tr>
                 <td><%= char.first_name %></td>
                 <td><%= char.last_name %></td>
+              <td><%= char.home_area %></td>
                 <td><%= char.age %></td>
                 <td><%= char.home_area %></td>
                 <td><%= char.gender %></td>

@@ -48,8 +48,43 @@ class CharacterController < ApplicationController
 
   end
 
-  def approve
+  def approve_all_pending
+    if User.find_by_id(session[:user_id]).can_approve?
+      chars = Character.where('char_approved = false')
+      @pending = {}
+      chars.each do |char|
+        user = User.find_by_id(char.user_id).display_name
+        if @pending[user].nil?
+          @pending[user] = [char]
+        else
+          @pending[user].push(char)
+        end
+      end
+    else
+      render :file => 'public/403.html', status: :unauthorized
+    end
 
+  end
+
+  def approve
+    if User.find_by_id(session[:user_id]).can_approve?
+      @approved = {}
+      params.each do |id|
+        char = Character.find_by_id(id)
+
+        char.approve
+
+        user = User.find_by_id(char.user_id)
+
+        if @approved[user.display_name].nil?
+          @approved[user.display_name] = [char]
+        else
+          @approved[user.display_name].push(char)
+        end
+      end
+    else
+      render :file => 'public/403.html', status: :unauthorized
+    end
   end
 
   private

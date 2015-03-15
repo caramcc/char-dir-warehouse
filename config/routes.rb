@@ -53,6 +53,10 @@ Rails.application.routes.draw do
   post '/character' => 'character#create'
   get '/character/show/:id' => 'character#show'
 
+  get '/characters/pending' => 'character#approve_all_pending'
+  post '/characters/approve' => 'character#approve'
+  get '/characters/approve' => 'character#approve'
+
   # Example resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales

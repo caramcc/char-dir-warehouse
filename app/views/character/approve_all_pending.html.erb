@@ -1,0 +1,38 @@
+<div class="container">
+
+  <h1>Pending Characters</h1>
+
+  <form action="/characters/approve" method="POST" class="form-group">
+    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+      <table class="table sortable-theme-bootstrap" data-sortable>
+        <th>User</th>
+        <th>Name</th>
+        <th data-sorted="true" data-sorted-direction="descending">District/Area</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>View on HGRPG</th>
+        <th>Approve?</th>
+
+        <% @pending.each do |user, chars| %>
+          <% chars.each do |char| %>
+            <tr>
+              <td><%= user %></td>
+              <td><label for="<%= char.id %>"><%= char.first_name %> <%= char.last_name %></label></td>
+              <td><%= char.home_area %></td>
+              <td><%= char.age %></td>
+              <td><%= char.gender %></td>
+              <td><a href="<%= char.bio_thread %>" target="_blank">[link]</a></td>
+
+              <td><input type="checkbox" aria-label="..." id="<%= char.id %>"></td>
+
+              </tr>
+            <% end %>
+        <% end %>
+      </table>
+
+    </div>
+    <button type="submit" class="btn btn-primary">Approve</button>
+  </form>
+</div>
