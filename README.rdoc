@@ -1,28 +1,46 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+=== Odds and Ends
 
-Things you may want to cover:
+* Ruby version `2.0.0`
 
-* Ruby version
+* Rails version `4.2.0`
 
-* System dependencies
+* Access to a unix shell is assumed
 
-* Configuration
+=== Getting the Application Running Locally
 
-* Database creation
+1. (OS X only) Download and install Homebrew
 
-* Database initialization
+1. Install MySQL `brew install mysql`
 
-* How to run the test suite
+1. Check out the repository: `git clone git@github.com:caramcc/char-dir-warehouse.git`
 
-* Services (job queues, cache servers, search engines, etc.)
+Also, make sure you're developing on a new branch rather than on `develop` or `master`. Branch naming convention should be `{feature or defect}/{username}/{description}`, e.g., `feature/caramcc/build-json-api`
 
-* Deployment instructions
+1. Start your MySQL server: `mysql.server start`
 
-* ...
+1. Migrate and seed the databases: `rake db:migrate && rake db:seed`
+
+1. Start the application server: `rails s`
+
+1. Navigate to http://localhost:3000/ to access the app.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+=== TODO
+
+* Validations for Character model
+
+* Testing the controllers
+
+* Build out a JSON API (consider building frontend in a JS framework?)
+
+* Census and Reaping and stats
+
+* more useful 'look at dis info' pages
+
+* populate front page with anything
+
+* implement search (see: nav bar)
+
+* make nav bar not suck also
