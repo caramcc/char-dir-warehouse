@@ -40,6 +40,8 @@ Rails.application.routes.draw do
 
   get '/users' => 'user#index'
   get '/user/:id' => 'user#show'
+  get '/user/edit/:id' => 'user#edit'
+  post '/user/update' => 'user#update'
 
   get '/user/:id/characters' => 'user#characters'
 
@@ -51,14 +53,16 @@ Rails.application.routes.draw do
 
   get '/character/new' => 'character#new'
   post '/character' => 'character#create'
-  get '/character/show/:id' => 'character#show_one'
-  get '/characters/show' => 'character#show'
+  get '/character/:id' => 'character#show_one'
+  get '/characters' => 'character#show'
   get '/character/edit/:id' => 'character#edit'
   post '/character/update' => 'character#update'
 
   get '/characters/pending' => 'character#approve_all_pending'
   post '/characters/approve' => 'character#approve'
   get '/characters/approve' => 'character#approve'
+
+  get '/about' => 'application#about'
 
   # Example resource route with sub-resources:
   #   resources :products do

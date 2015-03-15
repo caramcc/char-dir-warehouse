@@ -29,6 +29,7 @@ module Warehouse
         :account_edit => %w(ADMIN MODERATOR LIBRARIAN),
         :account_delete => %w(ADMIN),
         :account_ban => %w(ADMIN MODERATOR),
+        :account_promote => %w(ADMIN),
         :admin_panel => %w(ADMIN LIBRARIAN),
         :character_edit => %w(ADMIN LIBRARIAN),
         :character_approve => %w(ADMIN LIBRARIAN MODERATOR),

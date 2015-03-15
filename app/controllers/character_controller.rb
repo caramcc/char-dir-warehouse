@@ -52,7 +52,7 @@ class CharacterController < ApplicationController
     character.char_approved, character.fc_approved = false, false
 
     if character.save
-      redirect_to "/character/show/#{character.id}"
+      redirect_to "/character/#{character.id}"
     else
       redirect_to '/signup'
     end
@@ -60,7 +60,6 @@ class CharacterController < ApplicationController
 
   def update
     old_char = Character.find_by_id(params[:character][:id])
-
     fc_changed = old_char.fc_first != params[:character][:fc_first] || old_char.fc_last != params[:character][:fc_last]
 
     params[:character].each do |key, value|
@@ -73,13 +72,8 @@ class CharacterController < ApplicationController
       old_char.fc_approved = false
     end
 
-    begin
-      old_char.save
-    rescue StandardError => e
-      puts e
-    end
-
-    redirect_to "/character/show/#{old_char.id}"
+    old_char.save
+    redirect_to "/character/#{old_char.id}"
   end
 
   def destroy

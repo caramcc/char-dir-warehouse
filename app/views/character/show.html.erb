@@ -4,11 +4,11 @@
 
   <div class="panel panel-default">
     <!-- Default panel contents -->
-    <div class="panel-heading">Approved Characters</div>
+    <!--<div class="panel-heading">Approved Characters</div>-->
 
     <!--TODO: Make the table actually sortable-->
 
-    <table class="table sortable-theme-bootstrap" data-sortable>
+    <table class="table sortable-theme-bootstrap table-hover" data-sortable>
       <th></th>
       <th data-sorted="true" data-sorted-direction="descending">District/Area</th>
       <th>Gender</th>
@@ -22,8 +22,8 @@
       <th>View on HGRPG</th>
 
       <% @chars.each do |char| %>
-        <tr>
-          <td><a href="/character/show/<%= char.id %>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></td>
+        <tr class="<%= char.char_approved ? '' : 'warning'%>">
+          <td><a href="/character/<%= char.id %>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></td>
           <td><%= char.home_area %></td>
           <td><%= char.gender %></td>
           <td><%= char.first_name %></td>

@@ -24,6 +24,11 @@ class User < ActiveRecord::Base
   def can_approve?
     Rails.application.config.staff_permissions[:character_approve].include?(self.group)
   end
+  def can_promote?
+    # Rails.application.config.staff_permissions[:user_promote].include?(self.group)
+
+    %w(ADMIN LIBRARIAN MODERATOR).include?(self.group)
+  end
 
   class << self
 

@@ -1,0 +1,26 @@
+<div class="container">
+
+  <h1>Users
+  </h1>
+  <div class="col-lg-6">
+    <table class="table table-hover">
+      <th>User</th>
+      <th>Rank</th>
+      <th>Email</th>
+      <th>Registered</th>
+      <th>Characters</th>
+      <th>View Characters</th>
+      <% @users.each do |user| %>
+        <tr>
+          <td><a href="/user/show/<%= user.id%>"><%= user.display_name %></a></td>
+          <td><%= user.group.capitalize %></td>
+          <td><%= user.email %></td>
+          <td><%= user.created_at.strftime('%-d %B %Y, %-l:%M%P') %></td>
+          <td><%= user.characters.count %></td>
+          <td><a href="/user/<%= user.id %>/characters"><span class="glyphicon glyphicon-link"></span></a></td>
+
+        </tr>
+      <% end %>
+      </table>
+  </div>
+</div>
