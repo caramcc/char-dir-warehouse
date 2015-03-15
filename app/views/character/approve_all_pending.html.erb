@@ -25,7 +25,7 @@
               <td><%= char.gender %></td>
               <td><a href="<%= char.bio_thread %>" target="_blank">[link]</a></td>
 
-              <td><input type="checkbox" aria-label="..." id="<%= char.id %>"></td>
+              <td><input type="checkbox" name="chr[]" id="<%= char.id %>" value="<%= char.id %>"></td>
 
               </tr>
             <% end %>

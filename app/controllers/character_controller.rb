@@ -69,7 +69,8 @@ class CharacterController < ApplicationController
   def approve
     if User.find_by_id(session[:user_id]).can_approve?
       @approved = {}
-      params.each do |id|
+      puts params
+      params[:chr].each do |id|
         char = Character.find_by_id(id)
 
         char.approve
