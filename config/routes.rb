@@ -52,6 +52,8 @@ Rails.application.routes.draw do
   get '/character/new' => 'character#new'
   post '/character' => 'character#create'
   get '/character/show/:id' => 'character#show'
+  get '/character/edit/:id' => 'character#edit'
+  post '/character/update' => 'character#update'
 
   get '/characters/pending' => 'character#approve_all_pending'
   post '/characters/approve' => 'character#approve'
