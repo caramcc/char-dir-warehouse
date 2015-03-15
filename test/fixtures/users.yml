@@ -6,18 +6,21 @@
 #
 
 aya:
+  id: 1
   username: aya
   display_name: Aya
   email: dominate.earth@gmail.com
   group: ADMIN
 
 kay:
+  id: 2
   username: earthling
   display_name: Kay
   email: foo@bar.baz
   group: LIBRARIAN
 
 anyuser:
+  id: 3
   username: anyuser
   display_name: AnyUser
   email: spam@eggs.py

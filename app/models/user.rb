@@ -6,8 +6,18 @@ class User < ActiveRecord::Base
     Rails.application.config.staff_permissions[:admin_panel].include?(self.group)
   end
 
-  def can_edit_account?(edited_user)
-    self.id == edited_user.id || Rails.application.config.staff_permissions[:account_edit].include?(self.group)
+  def can_edit?(char_or_user)
+    if char_or_user.is_a?(Character)
+      self.id == char_or_user.user_id || Rails.application.config.staff_permissions[:character_edit].include?(self.group)
+    elsif char_or_user.is_a?(User)
+      self.id == char_or_user.id || Rails.application.config.staff_permissions[:account_edit].include?(self.group)
+    else
+      raise ArgumentError "The provided parameter #{char_or_user} is not a Character or User."
+    end
+  end
+
+  def can_approve?
+    Rails.application.config.staff_permissions[:character_approve].include?(self.group)
   end
 
   class << self

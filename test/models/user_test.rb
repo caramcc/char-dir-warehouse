@@ -19,10 +19,19 @@ class UserTest < ActiveSupport::TestCase
     assert_nil User.find_by_email_or_username('asdf')
   end
 
-  test 'can_edit_account? method' do
-    assert @anyuser.can_edit_account?(@anyuser)
-    assert @aya.can_edit_account?(@anyuser)
-    assert @aya.can_edit_account?(@aya)
+  test 'can_edit? method' do
+    assert @anyuser.can_edit?(@anyuser)
+    assert @aya.can_edit?(@anyuser)
+    assert @aya.can_edit?(@aya)
+    assert @aya.can_edit?(@arbor)
+    assert !@anyuser.can_edit?(@arbor)
+    assert @anyuser.can_edit?(@bartholomew)
+  end
+
+  test 'can_approve' do
+    assert @aya.can_approve?
+    assert @kay.can_approve?
+    assert !@anyuser.can_approve?
   end
 
 end

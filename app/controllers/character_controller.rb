@@ -9,6 +9,7 @@ class CharacterController < ApplicationController
   def show
 
     @char = Character.find_by_id(params[:id])
+    @user = User.find_by_id(session[:user_id])
     #
     # unless @char.char_approved
     #
@@ -24,6 +25,13 @@ class CharacterController < ApplicationController
   end
 
   def edit
+    @char = Character.find_by_id(params[:id])
+    if User.find_by_id(session[:user_id]).can_edit?(@char)
+      @user = User.find_by_id(@char.user_id)
+    else
+      render file: 'public/403.html', status: :forbidden
+    end
+
 
   end
 
@@ -41,15 +49,59 @@ class CharacterController < ApplicationController
   end
 
   def update
+    old_char = Character.find_by_id(params[:character][:id])
 
+    params[:character].each do |key, value|
+      if old_char.respond_to?(key)
+        old_char[key] = value
+      end
+    end
+    old_char.save
+    redirect_to "/character/show/#{old_char.id}"
   end
 
   def destroy
 
   end
 
-  def approve
+  def approve_all_pending
+    if User.find_by_id(session[:user_id]).can_approve?
+      chars = Character.where('char_approved = false')
+      @pending = {}
+      chars.each do |char|
+        user = User.find_by_id(char.user_id).display_name
+        if @pending[user].nil?
+          @pending[user] = [char]
+        else
+          @pending[user].push(char)
+        end
+      end
+    else
+      render :file => 'public/403.html', status: :forbidden
+    end
 
+  end
+
+  def approve
+    if User.find_by_id(session[:user_id]).can_approve?
+      @approved = {}
+      puts params
+      params[:chr].each do |id|
+        char = Character.find_by_id(id)
+
+        char.approve
+
+        user = User.find_by_id(char.user_id)
+
+        if @approved[user.display_name].nil?
+          @approved[user.display_name] = [char]
+        else
+          @approved[user.display_name].push(char)
+        end
+      end
+    else
+      render :file => 'public/403.html', status: :unauthorized
+    end
   end
 
   private
