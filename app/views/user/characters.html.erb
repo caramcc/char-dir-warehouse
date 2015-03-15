@@ -1,0 +1,94 @@
+<div class="container">
+
+  <h1><%= @user.display_name %>'s Characters</h1>
+
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Approved Characters</div>
+
+    <!--TODO: Make the table actually sortable-->
+
+  <table class="table sortable-theme-bootstrap" data-sortable>
+    <th></th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th data-sorted="true" data-sorted-direction="descending">District/Area</th>
+    <th>Age</th>
+    <th>Gender</th>
+    <th>Face Claim</th>
+    <th>FC Valid?</th>
+    <th>View on HGRPG</th>
+
+      <% @user.characters.each do |char| %>
+
+          <% if char.char_approved %>
+            <tr>
+              <td><a href="/character/show/<%= char.id %>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+              <td><%= char.first_name %></td>
+              <td><%= char.last_name %></td>
+              <td><%= char.home_area %></td>
+              <td><%= char.age %></td>
+              <td><%= char.gender %></td>
+
+              <td><%= char.fc_first %> <%= char.fc_last %></td>
+
+              <td>
+                <% if char.fc_approved %>
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                <% else %>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                <% end %>
+              </td>
+
+              <td><a href="<%= char.bio_thread %>" target="_blank">[link]</a></td>
+            </tr>
+        <% end %>
+      <% end %>
+  </table>
+
+    </div>
+
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Pending Characters</div>
+
+  <table class="table sortable-theme-bootstrap" data-sortable>
+    <th></th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th data-sorted="true" data-sorted-direction="descending">District/Area</th>
+    <th>Age</th>
+    <th>Gender</th>
+    <th>Face Claim</th>
+    <th>FC Valid?</th>
+    <th>View on HGRPG</th>
+
+    <% @user.characters.each do |char| %>
+
+        <% unless char.char_approved %>
+
+            <tr>
+              <td><a href="/character/show/<%= char.id %>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+              <td><%= char.first_name %></td>
+              <td><%= char.last_name %></td>
+              <td><%= char.home_area %></td>
+              <td><%= char.age %></td>
+              <td><%= char.gender %></td>
+
+              <td><%= char.fc_first %> <%= char.fc_last %></td>
+
+              <td>
+                <% if char.fc_approved %>
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                <% else %>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                <% end %>
+              </td>
+
+              <td><a href="<%= char.bio_thread %>" target="_blank">[link]</a></td>
+            </tr>
+        <% end %>
+    <% end %>
+  </table>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="container">
+    <%= form_for :user, url: '/user', class: 'form-group' do |f| %>
+
+        <h2 class="form-signin-heading">Register</h2>
+
+        <%= f.text_field :username, class: 'form-control', placeholder: 'HGRPG Username', autofocus: true %>
+        <%= f.text_field :display_name, class: 'form-control', placeholder: 'Display Name' %>
+        <%= f.email_field :email, class: 'form-control', placeholder: 'Email' %>
+        <%= f.password_field :password, class: 'form-control', placeholder: 'Password' %>
+        <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Confirm Password' %>
+        <%= f.submit 'Register', class: 'btn btn-default' %>
+
+    <% end %>
+</div>

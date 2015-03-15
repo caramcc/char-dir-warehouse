@@ -1,0 +1,13 @@
+<div class="container">
+
+  <h1>The following characters were marked approved:</h1>
+
+  <ul class="list-group">
+  <% @approved.each do |user, chars| %>
+    <% chars.each do |char| %>
+      <li class="list-group-item"><%= char.first_name %> <%= char.last_name %> [<%= user %>]</li>
+    <% end %>
+  <% end %>
+  </ul>
+
+</div>

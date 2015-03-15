@@ -1,0 +1,48 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+
+#  attr_accessor :char_id, :owner_user_id, :first_name, :last_name, :bio_thread, :age, :home_area, :gender, :fc_first,
+#                 :fc_last, :char_approved, :fc_approved
+
+arbor:
+  user_id: 1
+  first_name: Arbor
+  last_name: Halt
+  bio_thread: link
+  age: 30
+  home_area: 12
+  gender: m
+  fc_first: Matt
+  fc_last: Berninger
+  char_approved: true
+  fc_approved: true
+
+dom:
+  user_id: 1
+  first_name: Dom
+  last_name: Copperview
+  bio_thread: link
+  age: 42
+  home_area: Capitol
+  gender: f
+  fc_first: Anna
+  fc_last: Torv
+  char_approved: false
+  fc_approved: false
+
+bartholomew:
+  user_id: 3
+  first_name: Bartholomew
+  last_name: Of Sandwich
+  bio_thread: link
+  age: 69
+  home_area: Underland
+  gender: m
+  fc_first:
+  fc_last:
+  char_approved: true
+  fc_approved: false

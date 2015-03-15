@@ -20,13 +20,19 @@ module Warehouse
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    # add bower and bootstrap to asset pipeline
-    config.assets.paths << Rails.root.join('vendor','assets','bower_components')
-    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components','bootstrap-sass-official','assets','fonts')
-
-    config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff)$)
-
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.filter_parameters << :password
+
+    config.staff_permissions = {
+        :account_edit => %w(ADMIN MODERATOR LIBRARIAN),
+        :account_delete => %w(ADMIN),
+        :account_ban => %w(ADMIN MODERATOR),
+        :admin_panel => %w(ADMIN LIBRARIAN),
+        :character_edit => %w(ADMIN LIBRARIAN),
+        :character_approve => %w(ADMIN LIBRARIAN MODERATOR),
+        :fc_approve => %w(ADMIN LIBRARIAN)
+    }
   end
 end
