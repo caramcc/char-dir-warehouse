@@ -2,6 +2,10 @@ class User < ActiveRecord::Base
   has_many :characters
   has_secure_password
 
+  validates :email, :uniqueness => true
+  validates :username, :uniqueness => true
+  validates :display_name, :uniqueness => true
+
   def admin_panel?
     # Needed before Rails.application.config loads...
     %w(ADMIN LIBRARIAN MODERATOR).include?(self.group)

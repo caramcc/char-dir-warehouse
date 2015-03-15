@@ -56,7 +56,13 @@ class CharacterController < ApplicationController
         old_char[key] = value
       end
     end
-    old_char.save
+
+    begin
+      old_char.save
+    rescue StandardError => e
+      puts e
+    end
+
     redirect_to "/character/show/#{old_char.id}"
   end
 
