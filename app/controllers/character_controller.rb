@@ -128,6 +128,46 @@ class CharacterController < ApplicationController
 
   end
 
+  def approve_all_fcs
+    if User.find_by_id(session[:user_id]).can_approve?
+      chars = Character.where(fc_approved: false)
+      # @pending = [{
+      #                 character: character,
+      #                 user: user,
+      #                 fc_unique: oneof 'yes', 'no', 'su' ( 'no but same user',
+      #
+      #             }]
+      @pending = []
+
+      chars.each do |char|
+        user = User.find_by_id(char.user_id)
+
+        duplicates = Character.where(fc_first: char.fc_first, fc_last: char.fc_last)
+
+        fc_unique = 'no'
+        if duplicates.count > 1
+          duplicates.each do |dupe|
+
+            if dupe.nil? || dupe.blank?
+              fc_unique = 'yes'
+            elsif dupe.user_id == char.user_id || !dupe.fc_approved
+              fc_unique = 'su'
+            else
+              fc_unique = 'no'
+            end
+          end
+        else
+          fc_unique = 'yes'
+        end
+
+        @pending.push({ character: char, user: user, fc_unique: fc_unique })
+
+      end
+    else
+      render :file => 'public/403.html', status: :forbidden
+    end
+  end
+
   def approve
     if User.find_by_id(session[:user_id]).can_approve?
       @approved = {}
@@ -136,6 +176,28 @@ class CharacterController < ApplicationController
         char = Character.find_by_id(id)
 
         char.approve
+
+        user = User.find_by_id(char.user_id)
+
+        if @approved[user.display_name].nil?
+          @approved[user.display_name] = [char]
+        else
+          @approved[user.display_name].push(char)
+        end
+      end
+    else
+      render :file => 'public/403.html', status: :unauthorized
+    end
+  end
+
+  def approve_fcs
+    if User.find_by_id(session[:user_id]).can_approve?
+      @approved = {}
+      puts params
+      params[:fcs].each do |id|
+        char = Character.find_by_id(id)
+
+        char.approve_fc
 
         user = User.find_by_id(char.user_id)
 

@@ -1,0 +1,44 @@
+<div class="container">
+
+  <h1>Pending FCs</h1>
+
+  <form action="/characters/fcs/approve" method="POST" class="form-group">
+    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <table class="table sortable-theme-bootstrap" data-sortable>
+        <th>User</th>
+        <th>Name</th>
+        <th>Character Approved?</th>
+        <th>Face Claim</th>
+        <th>FC Unique?</th>
+        <th>View on HGRPG</th>
+        <th>Approve?</th>
+
+        <% @pending.each do |char| %>
+          <tr>
+            <td><a href="/user/<%= char[:user].id %>"><%= char[:user].display_name %></a></td>
+            <td><label for="<%= char[:character].id %>"><%= char[:character].first_name %> <%= char[:character].last_name %></label></td>
+            <td><span class="glyphicon glyphicon-<%= char[:character].char_approved ? 'ok' :'remove' %>"></span></td>
+            <td><%= char[:character].fc_first %> <%= char[:character].fc_last %></td>
+            <td>
+              <% if char[:fc_unique] == 'yes' %>
+                <span class="glyphicon glyphicon-ok"></span>
+              <% elsif char[:fc_unique] == 'no' %>
+                  <div class="danger"><span class="glyphicon glyphicon-remove"></span></div>
+              <% else %>
+                  <div class="warning"><span class="glyphicon glyphicon-warning-sign"></span></div>
+            <% end %>
+            </td>
+            <td><a href="<%= char[:character].bio_thread %>" target="_blank">[link]</a></td>
+
+            <td><input type="checkbox" name="fcs[]" id="<%= char[:character].id %>" value="<%= char[:character].id %>"></td>
+
+          </tr>
+        <% end %>
+      </table>
+
+    </div>
+    <button type="submit" class="btn btn-primary">Approve</button>
+  </form>
+</div>

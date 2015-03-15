@@ -18,4 +18,9 @@ class Character < ActiveRecord::Base
     self.save
   end
 
+  def approve_fc
+    self.fc_approved = true
+    self.save
+  end
+
 end
