@@ -50,3 +50,7 @@ group :development, :test do
   gem 'webrick'
 end
 
+group :production do
+  gem 'pg'
+end
+
