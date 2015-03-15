@@ -5,17 +5,16 @@
 <% unless @char.char_approved %>
     <div class="alert alert-warning" role="alert">This character is still pending approval.</div>
 <% end %>
+<% unless @char.fc_approved %>
+  <div class="alert alert-warning" role="alert">This character's face claim is still pending approval.</div>
+<% end %>
 
     First Name: <%= @char.first_name %><br>
     Last Name: <%= @char.last_name %><br>
-     <a href="<%= @char.bio_thread %>" target="_blank">View on HGRPG</a><br>
     Age: <%= @char.age %><br>
     Area: <%= @char.home_area %><br>
     Gender: <%= @char.gender %><br>
-
-<% unless @char.fc_approved %>
-    <div class="alert alert-warning" role="alert">This character's face claim is still pending approval.</div>
-<% end %>
     Face Claim: <%= @char.fc_first %> <%= @char.fc_last %>
+    <a href="<%= @char.bio_thread %>" target="_blank">View on HGRPG</a><br>
 
 </div>

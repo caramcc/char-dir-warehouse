@@ -24,6 +24,13 @@ class CharacterController < ApplicationController
   end
 
   def edit
+    if User.find_by_id(session[:user_id]).can_edit_character?
+      @char = Character.find_by_id(params[:id])
+      @user = User.find_by_id(@char.user_id)
+    else
+      render file: 'public/403.html', status: :forbidden
+    end
+
 
   end
 
@@ -61,7 +68,7 @@ class CharacterController < ApplicationController
         end
       end
     else
-      render :file => 'public/403.html', status: :unauthorized
+      render :file => 'public/403.html', status: :forbidden
     end
 
   end

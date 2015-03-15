@@ -22,7 +22,7 @@ arbor:
   fc_approved: true
 
 dom:
-  user_id: 2
+  user_id: 1
   first_name: Dom
   last_name: Copperview
   bio_thread: link
@@ -34,3 +34,15 @@ dom:
   char_approved: false
   fc_approved: false
 
+bartholomew:
+  user_id: 3
+  first_name: Bartholomew
+  last_name: Of Sandwich
+  bio_thread: link
+  age: 69
+  home_area: Underland
+  gender: m
+  fc_first:
+  fc_last:
+  char_approved: true
+  fc_approved: false

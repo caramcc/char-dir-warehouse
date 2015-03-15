@@ -9,6 +9,7 @@
     <!--TODO: Make the table actually sortable-->
 
   <table class="table sortable-theme-bootstrap" data-sortable>
+    <th></th>
     <th>First Name</th>
     <th>Last Name</th>
     <th data-sorted="true" data-sorted-direction="descending">District/Area</th>
@@ -22,6 +23,7 @@
 
           <% if char.char_approved %>
             <tr>
+              <td><a href="/character/show/<%= char.id %>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
               <td><%= char.first_name %></td>
               <td><%= char.last_name %></td>
               <td><%= char.home_area %></td>
