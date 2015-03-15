@@ -1,6 +1,6 @@
-== README
+# README
 
-=== Odds and Ends
+## Odds and Ends
 
 * Ruby version `2.0.0`
 
@@ -8,7 +8,7 @@
 
 * Access to a unix shell is assumed
 
-=== Getting the Application Running Locally
+## Getting the Application Running Locally
 
 1. (OS X only) Download and install Homebrew
 
@@ -27,7 +27,7 @@ Also, make sure you're developing on a new branch rather than on `develop` or `m
 1. Navigate to http://localhost:3000/ to access the app.
 
 
-=== TODO
+## TODO
 
 * Validations for Character model
 
