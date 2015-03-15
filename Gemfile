@@ -50,3 +50,8 @@ group :development, :test do
   gem 'webrick'
 end
 
+group :production do
+  # nop use postgres
+  gem 'pg'
+end
+

@@ -10,7 +10,7 @@
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 #
 default: &default
-  adapter: mysql2
+  adapter: post
   encoding: utf8
   pool: 5
   username: root
@@ -48,7 +48,10 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
   database: warehouse_production
+  pool: 5
   username: warehouse
   password: <%= ENV['WAREHOUSE_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
