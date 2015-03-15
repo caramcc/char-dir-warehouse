@@ -51,6 +51,7 @@ group :development, :test do
 end
 
 group :production do
+  # nop use postgres
   gem 'pg'
 end
 
