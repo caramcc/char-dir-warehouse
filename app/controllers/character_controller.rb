@@ -16,6 +16,36 @@ class CharacterController < ApplicationController
     end
   end
 
+  def fcs
+    @fcs = {}
+    @no_fcs = []
+    Character.order(:fc_last).each do |char|
+
+      char_data = {
+          fc_first: char.fc_first,
+          fc_last: char.fc_last,
+          first_name: char.first_name,
+          last_name: char.last_name,
+          gender: char.gender,
+          id: char.id,
+          user_id: char.user_id,
+          user_username: User.find_by_id(char.user_id).username
+      }
+      if char.fc_last.nil? && char.fc_first.nil?
+      #   do nothing
+      elsif char.fc_last.nil?
+        char_data[:fc_last] = ' '
+      else
+
+        if @fcs.include? char.fc_last[0]
+          @fcs[char.fc_last[0]].push char_data
+        else
+          @fcs[char.fc_last[0]] = [char_data]
+        end
+      end
+    end
+  end
+
   def show_one
 
     @char = Character.find_by_id(params[:id])
