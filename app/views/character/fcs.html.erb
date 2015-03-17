@@ -9,9 +9,9 @@
           <tr><td>
             <!--TODO: Update Colors-->
             <span
-            <% if char[:gender] == 'M' %>
+            <% if char[:gender][0].upcase == 'M' %>
                     style="color:#33CCCC;"
-            <% elsif char[:gender] == 'F' %>
+            <% elsif char[:gender][0].upcase == 'F' %>
                     style="color:lightpink;"
             <% end %>>
             <%= char[:fc_last].upcase %>,
