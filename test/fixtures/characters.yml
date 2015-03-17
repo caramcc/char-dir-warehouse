@@ -51,7 +51,7 @@ bartholomew:
   fc_approved: false
 
 katniss:
-  user_id: 4
+  user_id: 1
   first_name: Katniss
   last_name: Everdeen
   bio_thread: link
@@ -66,7 +66,7 @@ katniss:
 
 # she will be little 4eva
 saffron:
-  user_id: 5
+  user_id: 4
   first_name: Saffron
   last_name: Lowe
   bio_thread: link
@@ -80,7 +80,7 @@ saffron:
   fc_approved: true
 
 child:
-  user_id: 5
+  user_id: 1
   first_name: A Small
   last_name: Child
   bio_thread: link
@@ -94,7 +94,7 @@ child:
   fc_approved: true
 
 capitolite:
-  user_id: 5
+  user_id: 1
   first_name: Of-Age
   last_name: Capitolite
   bio_thread: link

@@ -35,7 +35,9 @@ class User < ActiveRecord::Base
   #   how many characters can this member enter into the reaping?
     non_reapables = 0
     self.characters.each do |char|
-      char.is_reapable?
+      unless char.is_reapable?
+        non_reapables += 1
+      end
     end
 
     10 + (non_reapables * 3)
