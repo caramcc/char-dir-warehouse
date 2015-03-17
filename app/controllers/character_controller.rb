@@ -31,6 +31,11 @@ class CharacterController < ApplicationController
           user_id: char.user_id,
           user_username: User.find_by_id(char.user_id).username
       }
+
+      if char.gender.blank?
+        char_data[:gender] = '????'
+      end
+
       if char.fc_last.blank? && char.fc_first.blank?
        @no_fcs.push char_data
       else
