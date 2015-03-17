@@ -27,6 +27,13 @@ Also, make sure you're developing on a new branch rather than on `develop` or `m
 1. Navigate to http://localhost:3000/ to access the app.
 
 
+## Deploying
+
+* Deploys to Heroku automatically when commits are made to `master `
+
+* Can be manually pushed up to Heroku from the command line: `git push heroku master`
+
+
 ## TODO
 
 * Validations for Character model
@@ -43,4 +50,4 @@ Also, make sure you're developing on a new branch rather than on `develop` or `m
 
 * implement search (see: nav bar)
 
-* make nav bar not suck also
+* make nav bar not suck also (although rn it sucks less)
