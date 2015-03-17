@@ -31,17 +31,19 @@ class CharacterController < ApplicationController
           user_id: char.user_id,
           user_username: User.find_by_id(char.user_id).username
       }
-      if char.fc_last.nil? && char.fc_first.nil?
-      #   do nothing
-      elsif char.fc_last.nil?
-        char_data[:fc_last] = ' '
+      if char.fc_last.blank? && char.fc_first.blank?
+       @no_fcs.push char_data
       else
+        if char.fc_last.blank?
+          char_data[:fc_last] = ' '
+        end
 
         if @fcs.include? char.fc_last[0]
           @fcs[char.fc_last[0]].push char_data
         else
           @fcs[char.fc_last[0]] = [char_data]
         end
+
       end
     end
   end
