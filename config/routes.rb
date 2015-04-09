@@ -66,6 +66,9 @@ Rails.application.routes.draw do
   get '/characters/fcs/pending' => 'character#approve_all_fcs'
   post '/characters/fcs/approve' => 'character#approve_fcs'
 
+
+  get '/checks/reaping/:id' => 'reaping#check'
+
   get '/about' => 'application#about'
 
   # Example resource route with sub-resources:

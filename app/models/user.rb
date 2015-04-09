@@ -31,6 +31,10 @@ class User < ActiveRecord::Base
     %w(ADMIN LIBRARIAN MODERATOR).include?(self.group)
   end
 
+  def reaping_checks?
+    %w(ADMIN LIBRARIAN).include?(self.group)
+  end
+
   def reaping_tickets
   #   how many characters can this member enter into the reaping?
     non_reapables = 0
