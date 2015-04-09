@@ -67,7 +67,12 @@ Rails.application.routes.draw do
   post '/characters/fcs/approve' => 'character#approve_fcs'
 
 
-  get '/checks/reaping/:id' => 'reaping#check'
+  get '/checks/reaping' => 'reaping_checks#index'
+  get '/checks/reaping/:id' => 'reaping_checks#show_by_id'
+
+  get '/checks/new/reaping/' => 'reaping_checks#new'
+  # get '/checks/create/reaping/' => 'reaping_checks#create'
+  post '/checks/create/reaping/' => 'reaping_checks#create'
 
   get '/about' => 'application#about'
 

@@ -1,0 +1,27 @@
+<div class="container col-lg-6">
+  <h1>Create Reaping Check</h1>
+
+  <%= form_for :reaping_checks, url: '/checks/create/reaping' do |f| %>
+
+    <div class="input-group input-group">
+      <span class="input-group-addon" id="sizing-addon1">Opens on</span>
+      <%= f.datetime_select :opens_on, class: 'form-control', placeholder: 'Opens on', autofocus: true  %>
+    </div>
+
+    <div class="input-group input-group">
+      <span class="input-group-addon" id="sizing-addon1">Closes on</span>
+      <%= f.datetime_select :closes_on, class: 'form-control', placeholder: 'Closes on', autofocus: true  %>
+    </div>
+
+    <div class="input-group input-group">
+      <span class="input-group-addon" id="sizing-addon1">Games</span>
+      <%= f.number_field :games, class: 'form-control', placeholder: 'Games' %>
+    </div>
+
+
+
+
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
+
+  <% end %>
+</div>

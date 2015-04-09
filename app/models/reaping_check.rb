@@ -3,6 +3,19 @@ class ReapingCheck < ActiveRecord::Base
   has_many :characters
 
   def is_active?
-    Time.now.to_i > self.opens_on && Time.now.to_i < closes_on
+    Time.now.to_i > self.opens_on.to_i && Time.now.to_i < self.closes_on.to_i
   end
+
+  def can_open_new?
+    all_checks = ReapingCheck.all
+    all_checks.each do |check|
+      if check.is_active? || (check[:opens_on].to_i > self.opens_on.to_i && check[:closes_on].to_i < self.opens_on.to_i)
+        # can only have one check open at a time
+        return false
+      end
+    end
+
+    true
+  end
+
 end

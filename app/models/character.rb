@@ -3,6 +3,8 @@ class Character < ActiveRecord::Base
   #               :fc_last, :char_approved, :fc_approved
 
   belongs_to :user
+  has_and_belongs_to_many :reaping_checks
+  # has_and_belongs_to_many :activity_checks
 
   @allowed_areas = (1..13).to_a.concat %w(Capitol Wanderer)
   @special_types = %w(Avox Peacekeeper Gamemaker Victor Mayor Tribute)
