@@ -243,7 +243,7 @@ class CharacterController < ApplicationController
             operator: '<',
             field: 'updated_at'
         },
-        'fisrt' => {
+        'first' => {
             operator: 'LIKE',
             field: 'first_name'
         },
