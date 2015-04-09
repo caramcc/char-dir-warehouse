@@ -70,6 +70,9 @@ Rails.application.routes.draw do
   get '/checks/reaping' => 'reaping_checks#index'
   get '/checks/reaping/:games' => 'reaping_checks#show_by_games'
 
+  get '/checks/reaping/:games/add/:user_id' => 'reaping_checks#add_characters'
+  post '/checks/reaping/:games/add' => 'reaping_checks#add_characters'
+
   get '/checks/new/reaping/' => 'reaping_checks#new'
   # get '/checks/create/reaping/' => 'reaping_checks#create'
   post '/checks/create/reaping/' => 'reaping_checks#create'

@@ -9,10 +9,17 @@ class ReapingChecksController < ApplicationController
 
     rc = ReapingCheck.new(reaping_check_params)
 
+    if rc.games.nil?
+      rc.games = ReapingCheck.last.games + 1
+    end
+
+    rc.opens_on ||= Time.now
+    rc.closes_on ||= 30.days.from_now
+
     if rc.can_open_new? && rc.save
       redirect_to "/checks/reaping/#{rc.games}"
     else
-      render :status => :unauthorized
+      redirect_to '/checks/reaping'
     end
   end
 
@@ -24,6 +31,19 @@ class ReapingChecksController < ApplicationController
   end
 
   def show
+
+  end
+
+  def add_characters
+    @logged_in_user = User.find_by_id(session[:user_id])
+    @check = ReapingCheck.find_by_games(params[:games])
+    @user = User.find_by_id(params[:user_id])
+    unless @logged_in_user.can_edit?(@user)
+      render :status => :unauthorized
+    end
+    @characters = @user.characters
+
+    # render json: @characters
 
   end
 

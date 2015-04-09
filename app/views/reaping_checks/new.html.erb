@@ -4,13 +4,13 @@
   <%= form_for :reaping_checks, url: '/checks/create/reaping' do |f| %>
 
     <div class="input-group input-group">
-      <span class="input-group-addon" id="sizing-addon1">Opens on</span>
-      <%= f.datetime_select :opens_on, class: 'form-control', placeholder: 'Opens on', autofocus: true  %>
+      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+      <%= f.text_field :opens_on, id: 'datetimepicker1', class: 'form-control', placeholder: 'Opens on' %>
     </div>
 
     <div class="input-group input-group">
-      <span class="input-group-addon" id="sizing-addon1">Closes on</span>
-      <%= f.datetime_select :closes_on, class: 'form-control', placeholder: 'Closes on', autofocus: true  %>
+      <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-calendar"></span></span>
+      <%= f.text_field :closes_on, id: 'datetimepicker2', class: 'form-control', placeholder: 'Closes on' %>
     </div>
 
     <div class="input-group input-group">
@@ -19,9 +19,18 @@
     </div>
 
 
+    <script type="text/javascript">
+      $(function () {
+        $('#datetimepicker1').datetimepicker();
+      });
+      $(function () {
+        $('#datetimepicker2').datetimepicker();
+      });
+    </script>
 
 
     <%= f.submit 'Submit', class: 'btn btn-primary' %>
 
   <% end %>
 </div>
+
