@@ -1,8 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 open:
-  opens_on: Time.now.to_i - 1000
-  closes_on: Time.now.to_i + 1000
+  opens_on:
+  closes_on:
 
 two:
   opens_on: 2015-03-18
