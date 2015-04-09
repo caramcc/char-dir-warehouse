@@ -74,6 +74,90 @@ class UserController < ApplicationController
   def destroy
   end
 
+  # API Routes
+
+  def get_all
+    render json: User.all, status: 200
+  end
+
+  def get_by_id
+
+    user = User.find_by_id(params[:id])
+    user ||= User.find_by_username(params[:id])
+    user ||= User.find_by_display_name(params[:id])
+
+    if user.nil?
+      render json: '{}', status: 204
+    end
+
+    chars = []
+      user.characters.each do |ch|
+        chars.push ch.attributes
+      end
+    user = user.attributes
+    user['characters'] = chars
+    user.delete('password_digest')
+
+    render json: user, status: 200
+  end
+
+  def find
+    # acceptable params:
+    # joined_before
+    # joined_after
+    # chars_gt - not supported
+    # chars_lt - not supported
+    # group
+    # ao => 'and/or' (default and)
+    params[:ao] == 'or' ? ao = 'or' : ao = 'and'
+    accepted_params = {
+        'joined_before' => {
+            operator: '>',
+            field: 'created_at'
+        },
+        'joined_after' => {
+            operator: '<',
+            field: 'created_at'
+        },
+        # 'chars_gt' => {
+        #     operator: '>',
+        #     field: 'characters.length'
+        # },
+        # 'chars_lt' => {
+        #     operator: '<',
+        #     field: ''
+        # },
+        'group' => {
+            operator: 'LIKE',
+            field: 'group'
+        }
+    }
+
+    query = ''
+    params.each do |key, value|
+      if accepted_params.has_key?(key)
+        if query == ''
+          query = "`#{accepted_params[key][:field]}` #{accepted_params[key][:operator]} '#{params[key]}'"
+        else
+          query = "#{query} #{ao} `#{accepted_params[key][:field]}` #{accepted_params[key][:operator]} '#{params[key]}'"
+        end
+        puts "added to query: #{query}"
+      else
+        puts accepted_params.has_key?(key)
+        puts key
+        puts value
+      end
+    end
+
+    puts query
+    user = User.where(query)
+    # user = User.where("group" => params[:group].upcase, "created_at.to_i BEFORE" => params[:joined_since])
+
+    render json: user, status: 200
+
+  end
+
+
   private
   def user_params
     params.require(:user).permit(:username, :display_name, :email, :password, :password_confirmation)

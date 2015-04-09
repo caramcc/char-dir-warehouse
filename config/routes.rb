@@ -68,6 +68,13 @@ Rails.application.routes.draw do
 
   get '/about' => 'application#about'
 
+  # API Routes
+
+  get '/api/user' => 'user#get_all'
+  get '/api/user/:id' => 'user#get_by_id'
+  get '/api/find/user/' => 'user#find'
+
+
   # Example resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales

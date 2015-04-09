@@ -57,12 +57,7 @@ class CharacterController < ApplicationController
 
     @char = Character.find_by_id(params[:id])
     @user = User.find_by_id(session[:user_id])
-    #
-    # unless @char.char_approved
-    #
-    # end
-    #
-    # render :json => @char
+
   end
 
   def new
@@ -217,6 +212,14 @@ class CharacterController < ApplicationController
     else
       render :file => 'public/403.html', status: :unauthorized
     end
+  end
+
+  # API methods
+
+  def api_characrer
+
+
+    render :json => @char
   end
 
   private
