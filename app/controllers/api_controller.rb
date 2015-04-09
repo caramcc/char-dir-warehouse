@@ -207,19 +207,19 @@ class ApiController < ApplicationController
 
     user_query = User.where("`username` LIKE '%#{name}%' OR `display_name` LIKE '%#{name}%'")
 
-    results = []
-
-    query.each do |res|
-      results.push res
-    end
-
+    user_results = []
     # TODO get user characters?
     user_query.each do |res|
       result = res.attributes
       result.delete 'password_digest'
       result.delete 'email'
-      results.push result
+      user_results.push result
     end
+
+    results = {
+        :characters => query.to_a,
+        :users => user_results
+    }
 
 
     render json: results, status: 200
