@@ -27,6 +27,10 @@ class ReapingChecksController < ApplicationController
 
   end
 
+  def show_by_games
+    @check = ReapingCheck.find_by_games(params[:games])
+  end
+
   def update
 
   end
