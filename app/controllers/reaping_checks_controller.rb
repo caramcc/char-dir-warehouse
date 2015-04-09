@@ -24,7 +24,7 @@ class ReapingChecksController < ApplicationController
   end
 
   def index
-    @checks = ReapingCheck.all
+    @checks = ReapingCheck.order(:games => :desc)
     @checks.each do |check|
       check.characters
     end
