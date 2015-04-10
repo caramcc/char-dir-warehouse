@@ -8,13 +8,15 @@
     <!--<p><a href="/about#reaping-limit">Read more about this policy here.</a></p>-->
 
     <form action="/checks/reaping/<%= @check.games %>/add" method="POST" class="form-group">
-      <script>
-        $(':checkbox').change(function(e){
+      <script type="text/javascript">
+        $(document).ready(function() {
+          $(':checkbox').change(function(e){
 
-          if ($(':checkbox:checked').length > '<%= @user.reaping_tickets %>') {
-            $(this).prop('checked', false)
-          }
-        })
+            if ($(':checkbox:checked').length > '<%= @user.reaping_tickets %>') {
+              $(this).prop('checked', false)
+            }
+          });
+        });
       </script>
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
       <input name="user_id" type="hidden" value="<%= @user.id %>" />
