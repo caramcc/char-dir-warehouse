@@ -28,7 +28,7 @@
           <td><%= char.gender %></td>
           <td><%= char.first_name %></td>
           <td><%= char.last_name %></td>
-          <td><a href="/user/<%= char.user_id%>"><%= @display_names[char.user_id] %></a></td>
+          <td><a href="/user/<%= char.user_id%>"><%= User.find_by_id(char.user_id).display_name %></a></td>
           <td><%= char.age %></td>
           <td><%= char.special %></td>
 

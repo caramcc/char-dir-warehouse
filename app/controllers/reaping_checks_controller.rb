@@ -42,13 +42,52 @@ class ReapingChecksController < ApplicationController
       render :status => :unauthorized
     end
     @characters = @user.characters
+  end
 
-    # render json: @characters
+  def add
+    @logged_in_user = User.find_by_id(session[:user_id])
+    @check = ReapingCheck.find_by_games(params[:games])
+    user = User.find_by_id(params[:user_id])
+    if params[:chk]
+      if params[:chk].length <= user.reaping_tickets
 
+        removed = []
+        user.characters.each do |chr|
+          unless params[:chk].include?(chr) && chr.reaping_checks.exists?(@check)
+            removed.push chr
+          end
+        end
+
+        removed.each do |del|
+          del.reaping_checks.delete(@check)
+          del.save
+        end
+
+        params[:chk].each do |id|
+          char = Character.find_by_id(id)
+
+          unless char.reaping_checks.exists?(@check)
+            char.reaping_checks << @check
+          end
+          char.save
+        end
+
+        redirect_to "/checks/reaping/#{@check.games}"
+      else
+        render :file => 'public/403.html', status: :unauthorized
+      end
+    else
+      user.characters.each do |chr|
+        chr.reaping_checks.delete(@check)
+        chr.save
+      end
+        redirect_to "/checks/reaping/#{@check.games}"
+    end
   end
 
   def show_by_games
     @check = ReapingCheck.find_by_games(params[:games])
+    # render json: @check.characters
   end
 
   def update

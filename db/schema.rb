@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409193135) do
+ActiveRecord::Schema.define(version: 20150409232740) do
 
   create_table "characters", force: :cascade do |t|
     t.datetime "created_at",                   null: false
@@ -32,6 +32,11 @@ ActiveRecord::Schema.define(version: 20150409193135) do
   end
 
   add_index "characters", ["reaping_check_id"], name: "index_characters_on_reaping_check_id", using: :btree
+
+  create_table "characters_reaping_checks", force: :cascade do |t|
+    t.integer "character_id",     limit: 4
+    t.integer "reaping_check_id", limit: 4
+  end
 
   create_table "reaping_checks", force: :cascade do |t|
     t.datetime "opens_on"

@@ -1,94 +1,117 @@
 <div class="container">
 
-  <h1>Add <%= @user.display_name %>'s Characters to <%= @check.games.ordinalize%> Games Reaping Check</h1>
+  <% if @check.is_active? %>
+    <h1>Add <%= @user.display_name %>'s Characters to <%= @check.games.ordinalize%> Games Reaping Check</h1>
 
-  <div class="panel panel-default">
-    <!-- Default panel contents -->
-    <div class="panel-heading">Eligible Characters</div>
+    <!--<p>You are allowed to enter <b><%= @user.reaping_tickets %></b> characters total.</p>-->
+    <!--<p>You may enter <span id="available-characters"></span> more characters.</p>-->
+    <!--<p><a href="/about#reaping-limit">Read more about this policy here.</a></p>-->
 
-    <!--TODO: Make the table actually sortable-->
+    <form action="/checks/reaping/<%= @check.games %>/add" method="POST" class="form-group">
+      <script>
+        $(':checkbox').change(function(e){
 
-    <table class="table sortable-theme-bootstrap" data-sortable>
-      <th></th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th data-sorted="true" data-sorted-direction="descending">District/Area</th>
-      <th>Age</th>
-      <th>Gender</th>
-      <th>Face Claim</th>
-      <th>FC Valid?</th>
-      <th>View on HGRPG</th>
+          if ($(':checkbox:checked').length > '<%= @user.reaping_tickets %>') {
+            $(this).prop('checked', false)
+          }
+        })
+      </script>
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+      <input name="user_id" type="hidden" value="<%= @user.id %>" />
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Eligible Characters</div>
 
-      <% @characters.each do |char| %>
+        <!--TODO: Make the table actually sortable-->
 
-        <% if char.is_reapable? %>
-          <tr>
-            <td><a href="/character/<%= char.id %>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></td>
-            <td><%= char.first_name %></td>
-            <td><%= char.last_name %></td>
-            <td><%= char.home_area %></td>
-            <td><%= char.age %></td>
-            <td><%= char.gender %></td>
+          <table class="table sortable-theme-bootstrap" data-sortable>
+            <th></th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th data-sorted="true" data-sorted-direction="descending">District/Area</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Face Claim</th>
+            <th>FC Valid?</th>
+            <th>View on HGRPG</th>
+            <th>Add to Reaping Check</th>
 
-            <td><%= char.fc_first %> <%= char.fc_last %></td>
+            <% @user.characters.each do |char| %>
 
-            <td>
-              <% if char.fc_approved %>
-                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-              <% else %>
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              <% if char.is_reapable? %>
+                <tr>
+                  <td><a href="/character/<%= char.id %>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></td>
+                  <td><%= char.first_name %></td>
+                  <td><%= char.last_name %></td>
+                  <td><%= char.home_area %></td>
+                  <td><%= char.age %></td>
+                  <td><%= char.gender %></td>
+
+                  <td><%= char.fc_first %> <%= char.fc_last %></td>
+
+                  <td>
+                    <% if char.fc_approved %>
+                      <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    <% else %>
+                      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    <% end %>
+                  </td>
+
+                  <td><a href="<%= char.bio_thread %>" target="_blank">[link]</a></td>
+                  <td><input type="checkbox" name="chk[]" id="<%= char.id %>" <%= char.reaping_checks.exists?(@check) ? 'checked' : '' %> value="<%= char.id %>"></td>
+                </tr>
               <% end %>
-            </td>
+            <% end %>
+          </table>
+      </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+    </form>
 
-            <td><a href="<%= char.bio_thread %>" target="_blank">[link]</a></td>
-          </tr>
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Ineligible Characters</div>
+
+      <table class="table sortable-theme-bootstrap" data-sortable>
+        <th></th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th data-sorted="true" data-sorted-direction="descending">District/Area</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Face Claim</th>
+        <th>FC Valid?</th>
+        <th>View on HGRPG</th>
+
+        <% @user.characters.each do |char| %>
+
+          <% unless char.is_reapable? %>
+
+            <tr>
+              <td><a href="/character/<%= char.id %>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></td>
+              <td><%= char.first_name %></td>
+              <td><%= char.last_name %></td>
+              <td><%= char.home_area %></td>
+              <td><%= char.age %></td>
+              <td><%= char.gender %></td>
+
+              <td><%= char.fc_first %> <%= char.fc_last %></td>
+
+              <td>
+                <% if char.fc_approved %>
+                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                <% else %>
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                <% end %>
+              </td>
+
+              <td><a href="<%= char.bio_thread %>" target="_blank">[link]</a></td>
+            </tr>
+          <% end %>
         <% end %>
-      <% end %>
-    </table>
-
-  </div>
-
-  <div class="panel panel-default">
-    <!-- Default panel contents -->
-    <div class="panel-heading">Ineligible Characters</div>
-
-    <table class="table sortable-theme-bootstrap" data-sortable>
-      <th></th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th data-sorted="true" data-sorted-direction="descending">District/Area</th>
-      <th>Age</th>
-      <th>Gender</th>
-      <th>Face Claim</th>
-      <th>FC Valid?</th>
-      <th>View on HGRPG</th>
-
-      <% @user.characters.each do |char| %>
-
-        <% unless char.is_reapable? %>
-
-          <tr>
-            <td><a href="/character/<%= char.id %>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></td>
-            <td><%= char.first_name %></td>
-            <td><%= char.last_name %></td>
-            <td><%= char.home_area %></td>
-            <td><%= char.age %></td>
-            <td><%= char.gender %></td>
-
-            <td><%= char.fc_first %> <%= char.fc_last %></td>
-
-            <td>
-              <% if char.fc_approved %>
-                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-              <% else %>
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-              <% end %>
-            </td>
-
-            <td><a href="<%= char.bio_thread %>" target="_blank">[link]</a></td>
-          </tr>
-        <% end %>
-      <% end %>
-    </table>
-  </div>
+      </table>
+    </div>
+  <% else %>
+    <h1>Whoops</h1>
+    <p>The <%= @check.games.ordinalize%> Games Reaping Check is closed.</p>
+  <% end %>
 </div>
