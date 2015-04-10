@@ -34,4 +34,10 @@ class UserTest < ActiveSupport::TestCase
     assert !@anyuser.can_approve?
   end
 
+  test 'reaping_tickets' do
+    assert_equal 22, @aya.reaping_tickets
+    assert_equal 10, @kay.reaping_tickets
+    assert_equal 13, @anyuser.reaping_tickets
+  end
+
 end

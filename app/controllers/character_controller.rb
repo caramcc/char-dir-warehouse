@@ -57,12 +57,7 @@ class CharacterController < ApplicationController
 
     @char = Character.find_by_id(params[:id])
     @user = User.find_by_id(session[:user_id])
-    #
-    # unless @char.char_approved
-    #
-    # end
-    #
-    # render :json => @char
+
   end
 
   def new
@@ -86,7 +81,14 @@ class CharacterController < ApplicationController
     character = Character.new(character_params)
 
     character.user_id = session[:user_id]
-    character.char_approved, character.fc_approved = false, false
+    character.char_approved = false
+
+    if character.fc_first.blank? && character.fc_last.blank?
+      character.fc_approved = true
+    else
+      character.fc_approved = false
+    end
+
 
     if character.save
       redirect_to "/character/#{character.id}"
@@ -107,6 +109,10 @@ class CharacterController < ApplicationController
 
     if fc_changed
       old_char.fc_approved = false
+    end
+
+    if old_char.fc_first.blank? && old_char.fc_last.blank?
+      old_char.fc_approved = true
     end
 
     old_char.save
@@ -218,6 +224,7 @@ class CharacterController < ApplicationController
       render :file => 'public/403.html', status: :unauthorized
     end
   end
+
 
   private
   def character_params

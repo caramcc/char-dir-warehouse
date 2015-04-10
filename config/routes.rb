@@ -66,7 +66,31 @@ Rails.application.routes.draw do
   get '/characters/fcs/pending' => 'character#approve_all_fcs'
   post '/characters/fcs/approve' => 'character#approve_fcs'
 
+
+  get '/checks/reaping' => 'reaping_checks#index'
+  get '/checks/reaping/:games' => 'reaping_checks#show_by_games'
+
+  get '/checks/reaping/:games/add/:user_id' => 'reaping_checks#add_characters'
+  post '/checks/reaping/:games/add' => 'reaping_checks#add'
+
+  get '/checks/new/reaping/' => 'reaping_checks#new'
+  # get '/checks/create/reaping/' => 'reaping_checks#create'
+  post '/checks/create/reaping/' => 'reaping_checks#create'
+
   get '/about' => 'application#about'
+
+  # API Routes
+
+  get '/api/user' => 'api#user_get_all'
+  get '/api/user/:id' => 'api#user_get_by_id'
+  get '/api/find/user/' => 'api#user_find'
+
+  get '/api/character' => 'api#character_get_all'
+  get '/api/character/:id' => 'api#character_get_by_id'
+  get '/api/find/character/' => 'api#character_find'
+
+  get '/api/find/' => 'api#generic_find_by_name'
+
 
   # Example resource route with sub-resources:
   #   resources :products do

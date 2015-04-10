@@ -31,6 +31,10 @@ gem 'bcrypt', '~> 3.1.7'
 # Validations
 gem 'validates_url_format_of'
 
+# datetime picker
+gem 'momentjs-rails', '>= 2.8.1'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

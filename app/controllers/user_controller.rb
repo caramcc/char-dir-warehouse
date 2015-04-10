@@ -74,6 +74,10 @@ class UserController < ApplicationController
   def destroy
   end
 
+  # API Routes
+
+
+
   private
   def user_params
     params.require(:user).permit(:username, :display_name, :email, :password, :password_confirmation)
