@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+open:
+  opens_on:
+  closes_on:
+
+two:
+  opens_on: 2015-03-18
+  closes_on: 2015-03-18

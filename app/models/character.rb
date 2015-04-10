@@ -3,6 +3,8 @@ class Character < ActiveRecord::Base
   #               :fc_last, :char_approved, :fc_approved
 
   belongs_to :user
+  has_and_belongs_to_many :reaping_checks
+  # has_and_belongs_to_many :activity_checks
 
   @allowed_areas = (1..13).to_a.concat %w(Capitol Wanderer)
   @special_types = %w(Avox Peacekeeper Gamemaker Victor Mayor Tribute)
@@ -21,6 +23,12 @@ class Character < ActiveRecord::Base
   def approve_fc
     self.fc_approved = true
     self.save
+  end
+
+  def is_reapable?
+    unreapable_specials = %w(Peacekeeper Victor Mayor)
+    ('1'..'12').include?(self.home_area) && !unreapable_specials.include?(self.special) && (12..18).include?(self.age) &&
+        self.char_approved
   end
 
 end

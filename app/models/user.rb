@@ -24,10 +24,27 @@ class User < ActiveRecord::Base
   def can_approve?
     Rails.application.config.staff_permissions[:character_approve].include?(self.group)
   end
+
   def can_promote?
     # Rails.application.config.staff_permissions[:user_promote].include?(self.group)
 
     %w(ADMIN LIBRARIAN MODERATOR).include?(self.group)
+  end
+
+  def reaping_checks?
+    %w(ADMIN LIBRARIAN).include?(self.group)
+  end
+
+  def reaping_tickets
+  #   how many characters can this member enter into the reaping?
+    non_reapables = 0
+    self.characters.each do |char|
+      unless char.is_reapable?
+        non_reapables += 1
+      end
+    end
+
+    10 + (non_reapables * 3)
   end
 
   class << self
