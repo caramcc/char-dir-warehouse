@@ -1,0 +1,2 @@
+class ActivityCheckController < ApplicationController
+end

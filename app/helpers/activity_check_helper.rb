@@ -1,0 +1,2 @@
+module ActivityCheckHelper
+end
