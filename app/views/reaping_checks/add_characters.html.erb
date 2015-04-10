@@ -1,23 +1,25 @@
 <div class="container">
 
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(':checkbox').change(function(e){
+
+        $("#available-characters").text('<%= @user.reaping_tickets %>' - $(':checkbox:checked').length)
+        if ($(':checkbox:checked').length > '<%= @user.reaping_tickets %>') {
+          $(this).prop('checked', false)
+        }
+      });
+    });
+  </script>
+
   <% if @check.is_active? %>
     <h1>Add <%= @user.display_name %>'s Characters to <%= @check.games.ordinalize%> Games Reaping Check</h1>
 
-    <!--<p>You are allowed to enter <b><%= @user.reaping_tickets %></b> characters total.</p>-->
-    <!--<p>You may enter <span id="available-characters"></span> more characters.</p>-->
-    <!--<p><a href="/about#reaping-limit">Read more about this policy here.</a></p>-->
+    <p>You are allowed to enter <b><%= @user.reaping_tickets %></b> characters total.</p>
+    <p>You may enter <b><span id="available-characters"></span></b> more characters.</p>
+    <p><a href="/about#reaping-limit">Read more about this policy here.</a></p>
 
     <form action="/checks/reaping/<%= @check.games %>/add" method="POST" class="form-group">
-      <script type="text/javascript">
-        $(document).ready(function() {
-          $(':checkbox').change(function(e){
-
-            if ($(':checkbox:checked').length > '<%= @user.reaping_tickets %>') {
-              $(this).prop('checked', false)
-            }
-          });
-        });
-      </script>
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
       <input name="user_id" type="hidden" value="<%= @user.id %>" />
       <div class="panel panel-default">
