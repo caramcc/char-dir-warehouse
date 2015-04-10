@@ -77,6 +77,16 @@ Rails.application.routes.draw do
   # get '/checks/create/reaping/' => 'reaping_checks#create'
   post '/checks/create/reaping/' => 'reaping_checks#create'
 
+  get '/checks/activity' => 'activity_check#index'
+  get '/checks/activity/:games' => 'activity_check#show_by_games'
+
+  get '/checks/activity/:games/add/:user_id' => 'activity_check#add_characters'
+  post '/checks/reaping/:games/add' => 'activity_check#add'
+
+  get '/checks/new/activity/' => 'activity_check#new'
+  # get '/checks/create/reaping/' => 'reaping_checks#create'
+  post '/checks/create/activity/' => 'activity_check#create'
+
   get '/about' => 'application#about'
 
   # API Routes

@@ -1,0 +1,50 @@
+<div class="container">
+
+  <h1><%= @check.games.ordinalize %> Games Activity Check: Characters</h1>
+
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <!--<div class="panel-heading">Approved Characters</div>-->
+
+    <!--TODO: Make the table actually sortable-->
+
+    <table class="table sortable-theme-bootstrap table-hover" data-sortable>
+      <th></th>
+      <th data-sorted="true" data-sorted-direction="descending">District/Area</th>
+      <th>Gender</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Owner</th>
+      <th>Age</th>
+      <th>Special</th>
+      <th>Face Claim</th>
+      <th>FC Valid?</th>
+      <th>View on HGRPG</th>
+
+      <% @check.characters.each do |char| %>
+        <tr>
+          <td><a href="/character/<%= char.id %>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></td>
+          <td><%= char.home_area %></td>
+          <td><%= char.gender %></td>
+          <td><%= char.first_name %></td>
+          <td><%= char.last_name %></td>
+          <td><a href="/user/<%= char.user_id%>"><%= User.find_by_id(char.user_id).display_name %></a></td>
+          <td><%= char.age %></td>
+          <td><%= char.special %></td>
+
+          <td><%= char.fc_first %> <%= char.fc_last %></td>
+
+          <td>
+            <% if char.fc_approved %>
+              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            <% else %>
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            <% end %>
+          </td>
+
+          <td><a href="<%= char.bio_thread %>" target="_blank">[link]</a></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

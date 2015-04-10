@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150410225326) do
+ActiveRecord::Schema.define(version: 20150410233121) do
 
   create_table "activity_checks", force: :cascade do |t|
     t.datetime "opens_on"
@@ -19,6 +19,11 @@ ActiveRecord::Schema.define(version: 20150410225326) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.integer  "games",      limit: 4
+  end
+
+  create_table "activity_checks_characters", force: :cascade do |t|
+    t.integer "character_id",      limit: 4
+    t.integer "activity_check_id", limit: 4
   end
 
   create_table "characters", force: :cascade do |t|
