@@ -13,7 +13,32 @@ class UserController < ApplicationController
   def show
     @user = User.find_by_id(params[:id])
     @viewing = User.find_by_id(session[:user_id])
-    # render :json => user
+
+    @latest_checks = {}
+    rc = ReapingCheck.last
+    ac = ActivityCheck.last
+    if rc.is_active?
+      @latest_checks[:reaping] = {
+          active: true,
+          games: rc.games
+      }
+    else
+      @latest_checks[:reaping] = {
+          active: false
+      }
+    end
+
+    if ac.is_active?
+      @latest_checks[:activity] = {
+          active: true,
+          games: ac.games
+      }
+    else
+      @latest_checks[:activity] = {
+          active: false
+      }
+    end
+
   end
 
   def show_characters
