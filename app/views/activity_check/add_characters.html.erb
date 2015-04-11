@@ -3,16 +3,8 @@
   <% if @check.is_active? %>
     <script type="text/javascript">
       $(document).ready(function() {
-        $('#selecctall').click(function(event) {  //on click
-          if(this.checked) { // check select status
-            $(':checkbox').each(function() { //loop through each checkbox
-              this.checked = true;  //select all checkboxes with class "checkbox1"
-            });
-          }else{
-            $(':checkbox').each(function() { //loop through each checkbox
-              this.checked = false; //deselect all checkboxes with class "checkbox1"
-            });
-          }
+        $("#checkAll").click(function () {
+          $('input:checkbox').not(this).prop('checked', this.checked);
         });
 
       });
@@ -38,7 +30,7 @@
           <th>Face Claim</th>
           <th>FC Valid?</th>
           <th>View on HGRPG</th>
-          <th>Add to Activity Check<span id="selectall"><span class="glyphicon glyphicon-check" aria-hidden="true"></span></span></th>
+          <th><label for="checkAll">Add to Activity Check</label> <input type="checkbox" id="checkAll"></th>
 
           <% @user.characters.each do |char| %>
 
