@@ -1,0 +1,22 @@
+<div class="container">
+
+  <div class="alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    You are about to delete <b><%= @char.first_name %> <%=  @char.last_name %>.</b>
+    This action <b>cannot</b> be undone!
+  </div>
+
+  <div class="well-lg col-lg-6">
+    <form action="/character/delete/" method="POST" class="form-group">
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+      <input name="id" type="hidden" value="<%= @char.id %>" />
+      <p>If you are sure you want to delete <%= @char.first_name %> <%=  @char.last_name %>, please enter <%= @char.first_name %> in the box below:</p>
+      <input name="confirmation" class="form-control" type="text" placeholder="<%= @char.first_name %>">
+
+      <button type="submit" class="btn btn-danger">Permanently Delete</button>
+    </form>
+  </div>
+
+
+
+</div>

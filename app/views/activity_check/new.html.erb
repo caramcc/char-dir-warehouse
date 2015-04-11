@@ -1,0 +1,36 @@
+<div class="container col-lg-6">
+  <h1>Create Activity Check</h1>
+
+  <%= form_for :activity_check, url: '/checks/create/activity' do |f| %>
+
+    <div class="input-group input-group">
+      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+      <%= f.text_field :opens_on, id: 'datetimepicker1', class: 'form-control', placeholder: 'Opens on (UTC)' %>
+    </div>
+
+    <div class="input-group input-group">
+      <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-calendar"></span></span>
+      <%= f.text_field :closes_on, id: 'datetimepicker2', class: 'form-control', placeholder: 'Closes on (UTC)' %>
+    </div>
+
+    <div class="input-group input-group">
+      <span class="input-group-addon" id="sizing-addon1">Games</span>
+      <%= f.number_field :games, class: 'form-control', placeholder: 'Games' %>
+    </div>
+
+
+    <script type="text/javascript">
+      $(function () {
+        $('#datetimepicker1').datetimepicker();
+      });
+      $(function () {
+        $('#datetimepicker2').datetimepicker();
+      });
+    </script>
+
+
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
+
+  <% end %>
+</div>
+

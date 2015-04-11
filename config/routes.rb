@@ -31,53 +31,65 @@ Rails.application.routes.draw do
 
   # These routes will be for signup. The first renders a form in the browse, the second will
   # receive the form and create a user in our database using the data given to us by the user.
+
+  # Housekeeping / General
+  get '/' => 'application#index'
+  get '/about' => 'application#about'
+  get '/tos' => 'application#eula'
+  get '/privacy' => 'application#privacy'
+
+  # User
   get '/signup' => 'user#new'
   post '/user' => 'user#create'
   post '/user/delete' => 'user#delete'
-
-  get '/' => 'application#index'
-
-
-  get '/users' => 'user#index'
   get '/user/:id' => 'user#show'
   get '/user/edit/:id' => 'user#edit'
   post '/user/update' => 'user#update'
-
   get '/user/:id/characters' => 'user#characters'
 
-  # these routes are for showing users a login form, logging them in, and logging them out.
+  get '/users' => 'user#index'
+  get '/user' => 'user#index' # may as well alias this (shouldn't conflict with POST route for /user)
+
+  # Sessions
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
 
+  # Character (single)
   get '/character/new' => 'character#new'
   post '/character' => 'character#create'
   get '/character/:id' => 'character#show_one'
-  get '/characters' => 'character#show'
-  get '/characters/fcs' => 'character#fcs'
   get '/character/edit/:id' => 'character#edit'
   post '/character/update' => 'character#update'
+  get '/character/delete/:id' => 'character#delete'
+  post '/character/delete' => 'character#destroy'
 
+  # Characters (all/plural)
+  get '/characters' => 'character#show'
+  get '/characters/fcs' => 'character#fcs'
   get '/characters/pending' => 'character#approve_all_pending'
   post '/characters/approve' => 'character#approve'
   get '/characters/approve' => 'character#approve'
-
   get '/characters/fcs/pending' => 'character#approve_all_fcs'
   post '/characters/fcs/approve' => 'character#approve_fcs'
 
+  # Checks - reaping
+  get '/checks/reaping' => 'reaping_check#index'
+  get '/checks/reaping/:games' => 'reaping_check#show_by_games'
+  get '/checks/reaping/:games/add/:user_id' => 'reaping_check#add_characters'
+  post '/checks/reaping/:games/add' => 'reaping_check#add'
+  get '/checks/new/reaping/' => 'reaping_check#new'
+  post '/checks/create/reaping/' => 'reaping_check#create'
 
-  get '/checks/reaping' => 'reaping_checks#index'
-  get '/checks/reaping/:games' => 'reaping_checks#show_by_games'
+  # Checks - activity
+  get '/checks/activity' => 'activity_check#index'
+  get '/checks/activity/:games' => 'activity_check#show_by_games'
+  get '/checks/activity/:games/add/:user_id' => 'activity_check#add_characters'
+  post '/checks/activity/:games/add' => 'activity_check#add'
+  get '/checks/new/activity/' => 'activity_check#new'
+  post '/checks/create/activity/' => 'activity_check#create'
 
-  get '/checks/reaping/:games/add/:user_id' => 'reaping_checks#add_characters'
-  post '/checks/reaping/:games/add' => 'reaping_checks#add'
-
-  get '/checks/new/reaping/' => 'reaping_checks#new'
-  # get '/checks/create/reaping/' => 'reaping_checks#create'
-  post '/checks/create/reaping/' => 'reaping_checks#create'
-
-  get '/about' => 'application#about'
 
   # API Routes
 

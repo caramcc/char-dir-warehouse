@@ -1,0 +1,67 @@
+<div class="container">
+
+  <% if @check.is_active? %>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#checkAll").click(function () {
+          $('input:checkbox').not(this).prop('checked', this.checked);
+        });
+
+      });
+    </script>
+    <h1>Add <%= @user.display_name %>'s Characters to <%= @check.games.ordinalize%> Games Activity Check</h1>
+
+    <form action="/checks/activity/<%= @check.games %>/add" method="POST" class="form-group">
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+      <input name="user_id" type="hidden" value="<%= @user.id %>" />
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Eligible Characters</div>
+
+        <!--TODO: Make the table actually sortable-->
+
+        <table class="table sortable-theme-bootstrap" data-sortable>
+          <th></th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th data-sorted="true" data-sorted-direction="descending">District/Area</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Face Claim</th>
+          <th>FC Valid?</th>
+          <th>View on HGRPG</th>
+          <th><label for="checkAll">Add to Activity Check</label> <input type="checkbox" id="checkAll"></th>
+
+          <% @user.characters.each do |char| %>
+
+              <tr>
+                <td><a href="/character/<%= char.id %>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></td>
+                <td><%= char.first_name %></td>
+                <td><%= char.last_name %></td>
+                <td><%= char.home_area %></td>
+                <td><%= char.age %></td>
+                <td><%= char.gender %></td>
+
+                <td><%= char.fc_first %> <%= char.fc_last %></td>
+
+                <td>
+                  <% if char.fc_approved %>
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                  <% else %>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                  <% end %>
+                </td>
+
+                <td><a href="<%= char.bio_thread %>" target="_blank">[link]</a></td>
+                <td><input type="checkbox" name="chk[]" id="<%= char.id %>" <%= char.activity_checks.exists?(@check) ? 'checked' : '' %> value="<%= char.id %>"></td>
+              </tr>
+          <% end %>
+        </table>
+      </div>
+      <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+  <% else %>
+    <h1>Whoops</h1>
+    <p>The <%= @check.games.ordinalize%> Games Reaping Check is closed.</p>
+  <% end %>
+</div>
