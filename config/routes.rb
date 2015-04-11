@@ -67,15 +67,15 @@ Rails.application.routes.draw do
   post '/characters/fcs/approve' => 'character#approve_fcs'
 
 
-  get '/checks/reaping' => 'reaping_checks#index'
-  get '/checks/reaping/:games' => 'reaping_checks#show_by_games'
+  get '/checks/reaping' => 'reaping_check#index'
+  get '/checks/reaping/:games' => 'reaping_check#show_by_games'
 
-  get '/checks/reaping/:games/add/:user_id' => 'reaping_checks#add_characters'
-  post '/checks/reaping/:games/add' => 'reaping_checks#add'
+  get '/checks/reaping/:games/add/:user_id' => 'reaping_check#add_characters'
+  post '/checks/reaping/:games/add' => 'reaping_check#add'
 
-  get '/checks/new/reaping/' => 'reaping_checks#new'
-  # get '/checks/create/reaping/' => 'reaping_checks#create'
-  post '/checks/create/reaping/' => 'reaping_checks#create'
+  get '/checks/new/reaping/' => 'reaping_check#new'
+  # get '/checks/create/reaping/' => 'reaping_check#create'
+  post '/checks/create/reaping/' => 'reaping_check#create'
 
   get '/checks/activity' => 'activity_check#index'
   get '/checks/activity/:games' => 'activity_check#show_by_games'
@@ -84,7 +84,7 @@ Rails.application.routes.draw do
   post '/checks/activity/:games/add' => 'activity_check#add'
 
   get '/checks/new/activity/' => 'activity_check#new'
-  # get '/checks/create/reaping/' => 'reaping_checks#create'
+  # get '/checks/create/reaping/' => 'reaping_check#create'
   post '/checks/create/activity/' => 'activity_check#create'
 
   get '/about' => 'application#about'

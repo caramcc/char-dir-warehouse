@@ -1,4 +1,4 @@
-class ReapingChecksController < ApplicationController
+class ReapingCheckController < ApplicationController
 
 
   def create
@@ -104,7 +104,7 @@ class ReapingChecksController < ApplicationController
 
   private
   def reaping_check_params
-    params.require(:reaping_checks).permit(:opens_on, :closes_on, :games)
+    params.require(:reaping_check).permit(:opens_on, :closes_on, :games)
   end
 
 end
