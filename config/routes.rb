@@ -87,7 +87,11 @@ Rails.application.routes.draw do
   # get '/checks/create/reaping/' => 'reaping_check#create'
   post '/checks/create/activity/' => 'activity_check#create'
 
+  # Housekeeping
+
   get '/about' => 'application#about'
+  get '/tos' => 'application#eula'
+  get '/privacy' => 'application#privacy'
 
   # API Routes
 
