@@ -57,6 +57,32 @@ class CharacterController < ApplicationController
 
     @char = Character.find_by_id(params[:id])
     @user = User.find_by_id(session[:user_id])
+    @latest_checks = {}
+    rc = ReapingCheck.last
+    ac = ActivityCheck.last
+    if rc.is_active?
+      @latest_checks[:reaping] = {
+          active: true,
+          char_in: @char.reaping_checks.exists?(rc),
+          games: rc.games
+      }
+    else
+      @latest_checks[:reaping] = {
+          active: false
+      }
+    end
+
+    if ac.is_active?
+      @latest_checks[:activity] = {
+          active: true,
+          char_in: @char.activity_checks.exists?(ac),
+          games: ac.games
+      }
+    else
+      @latest_checks[:activity] = {
+          active: false
+      }
+    end
 
   end
 

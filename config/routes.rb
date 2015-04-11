@@ -81,7 +81,7 @@ Rails.application.routes.draw do
   get '/checks/activity/:games' => 'activity_check#show_by_games'
 
   get '/checks/activity/:games/add/:user_id' => 'activity_check#add_characters'
-  post '/checks/reaping/:games/add' => 'activity_check#add'
+  post '/checks/activity/:games/add' => 'activity_check#add'
 
   get '/checks/new/activity/' => 'activity_check#new'
   # get '/checks/create/reaping/' => 'reaping_checks#create'

@@ -53,7 +53,7 @@
                 </td>
 
                 <td><a href="<%= char.bio_thread %>" target="_blank">[link]</a></td>
-                <td><input type="checkbox" name="chk[]" id="<%= char.id %>" <%= char.reaping_checks.exists?(@check) ? 'checked' : '' %> value="<%= char.id %>"></td>
+                <td><input type="checkbox" name="chk[]" id="<%= char.id %>" <%= char.activity_checks.exists?(@check) ? 'checked' : '' %> value="<%= char.id %>"></td>
               </tr>
           <% end %>
         </table>

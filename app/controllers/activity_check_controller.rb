@@ -73,14 +73,13 @@ class ActivityCheckController < ApplicationController
         char.save
       end
 
-      redirect_to "/checks/reaping/#{@check.games}"
     else
       user.characters.each do |chr|
         chr.activity_checks.delete(@check)
         chr.save
       end
-      redirect_to "/checks/reaping/#{@check.games}"
     end
+    redirect_to "/checks/activity/#{@check.games}"
   end
 
   def show_by_games
