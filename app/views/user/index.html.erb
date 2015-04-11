@@ -5,7 +5,7 @@
       <table class="table sortable-theme-bootstrap table-hover">
         <th>User</th>
         <th>Rank</th>
-        <th>Email</th>
+        <!--<th>Email</th>-->
         <th>Registered</th>
         <th>Characters</th>
         <th>View Characters</th>
@@ -13,7 +13,7 @@
           <tr>
             <td><a href="/user/<%= user.id%>"><%= user.display_name %></a></td>
             <td><%= user.group.capitalize %></td>
-            <td><%= user.email %></td>
+            <!--<td><%= user.email %></td>-->
             <td><%= user.created_at.strftime('%-d %B %Y, %-l:%M%P') %></td>
             <td><%= user.characters.count %></td>
             <td><a href="/user/<%= user.id %>/characters"><span class="glyphicon glyphicon-link"></span></a></td>

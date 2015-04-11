@@ -1,5 +1,7 @@
 class ApiController < ApplicationController
 
+  before_filter :authorize
+
   def character_get_all
     render json: Character.all, status: 200
   end

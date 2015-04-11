@@ -127,6 +127,10 @@ class CharacterController < ApplicationController
     old_char = Character.find_by_id(params[:character][:id])
     fc_changed = old_char.fc_first != params[:character][:fc_first] || old_char.fc_last != params[:character][:fc_last]
 
+    if old_char.in_reaping? && params[:character][:gender] == 'Other'
+      old_char.remove_from_reaping
+    end
+
     params[:character].each do |key, value|
       if old_char.respond_to?(key)
         old_char[key] = value
