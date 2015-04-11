@@ -1,0 +1,29 @@
+<div class="container">
+
+  <h1>Activity Checks</h1>
+
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <!--<div class="panel-heading">Approved Characters</div>-->
+
+    <!--TODO: Make the table actually sortable-->
+
+    <table class="table sortable-theme-bootstrap table-hover" data-sortable>
+      <th></th>
+      <th data-sorted="true" data-sorted-direction="descending">Games</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Characters Entered</th>
+
+      <% @checks.each do |check| %>
+        <tr class="<%= check.is_active? ? 'success' : ''%>">
+          <td><a href="/checks/activity/<%= check.games %>"><span class="glyphicon glyphicon-th" aria-hidden="true"></span></a></td>
+          <td><%= check.games %></td>
+          <td><%= check.opens_on %></td>
+          <td><%= check.closes_on %></td>
+          <td><%= check.characters.size %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

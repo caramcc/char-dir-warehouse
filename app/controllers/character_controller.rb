@@ -57,6 +57,32 @@ class CharacterController < ApplicationController
 
     @char = Character.find_by_id(params[:id])
     @user = User.find_by_id(session[:user_id])
+    @latest_checks = {}
+    rc = ReapingCheck.last
+    ac = ActivityCheck.last
+    if rc.is_active?
+      @latest_checks[:reaping] = {
+          active: true,
+          char_in: @char.reaping_checks.exists?(rc),
+          games: rc.games
+      }
+    else
+      @latest_checks[:reaping] = {
+          active: false
+      }
+    end
+
+    if ac.is_active?
+      @latest_checks[:activity] = {
+          active: true,
+          char_in: @char.activity_checks.exists?(ac),
+          games: ac.games
+      }
+    else
+      @latest_checks[:activity] = {
+          active: false
+      }
+    end
 
   end
 
@@ -119,9 +145,6 @@ class CharacterController < ApplicationController
     redirect_to "/character/#{old_char.id}"
   end
 
-  def destroy
-
-  end
 
   def approve_all_pending
     if User.find_by_id(session[:user_id]).can_approve?
@@ -222,6 +245,25 @@ class CharacterController < ApplicationController
       end
     else
       render :file => 'public/403.html', status: :unauthorized
+    end
+  end
+
+  def delete
+    @char = Character.find_by_id(params[:id])
+    @viewing_user = User.find_by_id(session[:user_id])
+    unless @viewing_user.can_edit?(@char)
+      render file: 'public/403.html', status: :forbidden
+    end
+  end
+
+  def destroy
+    @char = Character.find_by_id(params[:id])
+    user = @char.user_id
+    if User.find_by_id(session[:user_id]).can_edit?(@char) && params[:confirmation] == @char.first_name
+      @char.destroy!
+      redirect_to "/user/#{user}"
+    else
+      render file: 'public/403.html', status: :forbidden
     end
   end
 
