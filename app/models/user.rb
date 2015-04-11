@@ -40,7 +40,9 @@ class User < ActiveRecord::Base
     non_reapables = 0
     self.characters.each do |char|
       unless char.is_reapable?
-        non_reapables += 1
+        if char.char_approved
+          non_reapables += 1
+        end
       end
     end
 
