@@ -2,6 +2,7 @@ class ActivityCheckController < ApplicationController
 
   def create
     @logged_in_user = User.find_by_id(session[:user_id])
+    @logged_in_user ||= User.new
     unless @logged_in_user.reaping_checks?
       render :status => :unauthorized
     end
@@ -33,12 +34,20 @@ class ActivityCheckController < ApplicationController
     @checks = ActivityCheck.order(:games => :desc)
   end
 
+  def checks
+    @checks = {
+        activity: ActivityCheck.last,
+        reaping: ReapingCheck.last
+    }
+  end
+
   def show
 
   end
 
   def add_characters
     @logged_in_user = User.find_by_id(session[:user_id])
+    @logged_in_user ||= User.new
     @check = ActivityCheck.find_by_games(params[:games])
     @user = User.find_by_id(params[:user_id])
     unless @logged_in_user.can_edit?(@user)
@@ -49,6 +58,7 @@ class ActivityCheckController < ApplicationController
 
   def add
     @logged_in_user = User.find_by_id(session[:user_id])
+    @logged_in_user ||= User.new
     @check = ActivityCheck.find_by_games(params[:games])
     user = User.find_by_id(params[:user_id])
     if params[:chk]

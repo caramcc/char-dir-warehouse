@@ -28,30 +28,65 @@
         <%= f.text_field :home_area, class: 'form-control', placeholder: 'District/Area' %>
       </div>
 
-      <div class="input-group input-group">
-        <span class="input-group-addon" id="sizing-addon1">Special Types</span>
-        <%= f.text_field :special, class: 'form-control', placeholder: 'Peacekeeper, Mayor, or Avox?' %>
+      <div class="panel panel-default">
+        <div class="panel-heading">Gender</div>
+        <div class="panel-body">
+          <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-primary">
+              <%= f.radio_button :gender, 'Male', class: 'form-control' %>  Male
+            </label>
+            <label class="btn btn-primary">
+              <%= f.radio_button :gender, 'Female', class: 'form-control' %> Female
+            </label>
+            <label class="btn btn-primary">
+              <%= f.radio_button :gender, 'Other', class: 'form-control' %> Other Genders
+            </label>
+          </div>
+          <a href="/about#other-genders"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
+        </div>
       </div>
 
-      <div class="input-group input-group">
-        <span class="input-group-addon" id="sizing-addon1">Gender</span>
-        <%= f.text_field :gender, class: 'form-control', placeholder: 'Gender' %>
+    <div class="panel panel-default">
+      <div class="panel-heading">Special Types (optional)</div>
+      <div class="panel-body">
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-primary">
+            <%= f.radio_button :special, 'Peacekeeper', class: 'form-control' %>  Peacekeeper
+          </label>
+          <label class="btn btn-primary">
+            <%= f.radio_button :special, 'Avox', class: 'form-control' %> Avox
+          </label>
+          <label class="btn btn-primary">
+            <%= f.radio_button :special, 'Mayor', class: 'form-control' %> Mayor
+          </label>
+          <label class="btn btn-primary">
+            <%= f.radio_button :special, 'Victor', class: 'form-control' %> Gamemaker
+          </label>
+          <label class="btn btn-primary">
+            <%= f.radio_button :special, 'Gamemaker', class: 'form-control' %> Victor
+          </label>
+          <label class="btn btn-primary">
+            <%= f.radio_button :special, '', class: 'form-control' %> N/A
+          </label>
+        </div>
+        <a href="/about#special-types"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
       </div>
+    </div>
 
       <div class="panel panel-default">
         <div class="panel-heading">Face Claim (optional)</div>
-        <div class="panel-body">
-      <div class="input-group input-group">
-        <span class="input-group-addon" id="sizing-addon1">FC First Name</span>
-        <%= f.text_field :fc_first, class: 'form-control', placeholder: 'FC First Name' %>
-      </div>
+          <div class="panel-body">
+            <div class="input-group input-group">
+              <span class="input-group-addon" id="sizing-addon1">FC First Name</span>
+              <%= f.text_field :fc_first, class: 'form-control', placeholder: 'FC First Name' %>
+            </div>
 
-      <div class="input-group input-group">
-        <span class="input-group-addon" id="sizing-addon1">FC Last Name</span>
-        <%= f.text_field :fc_last, class: 'form-control', placeholder: 'FC Last Name' %>
+            <div class="input-group input-group">
+              <span class="input-group-addon" id="sizing-addon1">FC Last Name</span>
+              <%= f.text_field :fc_last, class: 'form-control', placeholder: 'FC Last Name' %>
+            </div>
+        </div>
       </div>
-        </div>
-        </div>
 
 
         <%= f.submit 'Submit', class: 'btn btn-primary' %>

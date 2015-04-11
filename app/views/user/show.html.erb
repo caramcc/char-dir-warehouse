@@ -17,4 +17,22 @@
         View Characters <span class="glyphicon glyphicon-share" aria-hidden="true"></span> </a>
     </ul>
   </div>
+
+  <% if @latest_checks[:reaping][:active] %>
+    <div class="alert alert-info" role="alert">
+      The <%= @latest_checks[:reaping][:games].ordinalize %> Games Reaping Check is currently active.
+      <a href="/checks/reaping/<%= @latest_checks[:reaping][:games] %>/add/<%= @user.id %> " class="alert-link">
+        Manage your reaping check <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      </a>
+    </div>
+  <% end %>
+  <% if @latest_checks[:activity][:active] %>
+    <div class="alert alert-info" role="alert">
+      The <%= @latest_checks[:activity][:games].ordinalize %> Games Activity Check is currently active.
+      <a href="/checks/activity/<%= @latest_checks[:activity][:games] %>/add/<%= @user.id %> " class="alert-link">
+        Manage your activity check <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      </a>
+    </div>
+  <% end %>
+
 </div>

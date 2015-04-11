@@ -74,6 +74,9 @@ Rails.application.routes.draw do
   get '/characters/fcs/pending' => 'character#approve_all_fcs'
   post '/characters/fcs/approve' => 'character#approve_fcs'
 
+  # Checks
+  get '/checks/' => 'activity_check#checks'
+
   # Checks - reaping
   get '/checks/reaping' => 'reaping_check#index'
   get '/checks/reaping/:games' => 'reaping_check#show_by_games'
