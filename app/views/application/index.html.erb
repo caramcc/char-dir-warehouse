@@ -15,20 +15,33 @@
 <div class="container">
   <!-- Example row of columns -->
   <div class="row">
+    <% if current_user %>
+      <div class="col-md-4">
+        <h2>Active Checks</h2>
+        <p>View information about any ongoing activity and reaping checks. Be sure to enter your characters in the check before the deadlines! </p>
+        <p><a class="btn btn-default" href="/checks" role="button">View Checks &raquo;</a></p>
+      </div>
+      <div class="col-md-4">
+        <h2><%= current_user.display_name %>'s Characters</h2>
+        <p>Take a look at all the characters you've added to the Warehouse so far. </p>
+        <p><a class="btn btn-default" href="/user/<%= current_user.id %>/characters" role="button">Check it out, Broseph &raquo;</a></p>
+      </div>
+    <% else %>
+      <div class="col-md-4">
+        <h2>Sign Up</h2>
+        <p>Register for a Warehouse account to add your characters. </p>
+        <p><a class="btn btn-default" href="/signup" role="button">Register &raquo;</a></p>
+      </div>
+      <div class="col-md-4">
+        <h2>About</h2>
+        <p>Read some information about the Warehouse, including Frequently Asked Questions and plans for future improvements to the site! </p>
+        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+      </div>
+    <% end %>
     <div class="col-md-4">
-      <h2>New Character</h2>
-      <p>Register a new character and stuff. You still have to make your character on the actual site. </p>
-      <p><a class="btn btn-default" href="/character/new" role="button">New Character &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-      <h2>Heading</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-      <h2>Heading</h2>
-      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+      <h2>Hunger Games RPG</h2>
+      <p>Back to the mothership!</p>
+      <p><a class="btn btn-default" href="http://hungergamesrpg.com/" target="_blank" role="button">Visit HGRPG &raquo;</a></p>
     </div>
   </div>
 </div>

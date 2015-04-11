@@ -30,6 +30,10 @@ class ActivityCheckController < ApplicationController
     end
   end
 
+  def index
+    @checks = ActivityCheck.order(:games => :desc)
+  end
+
   def checks
     @checks = {
         activity: ActivityCheck.last,
