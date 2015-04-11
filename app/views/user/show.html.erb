@@ -1,33 +1,20 @@
 <div class="container">
 
-  <h1>Viewing Profile: <%= @user.display_name %> [<%=  @user.username %>]
-    <% if @viewing.can_edit?(@user) %>
-        <a href="/user/edit/<%= @user.id%>"><span class="glyphicon glyphicon-edit"></span></a>
-    <% end %>
-  </h1>
-  <div class="col-lg-6">
-    <table class="table table-hover">
-      <tr>
-        <td class="col-md-3 strong">Email</td>
-        <td><%= @user.email %></td>
-      </tr>
-      <tr>
-        <td class="col-md-3 strong">Rank</td>
-        <td><%= @user.group.capitalize %></td>
-      </tr>
-      <tr>
-        <td class="col-md-3">Date Registered</td>
-        <td><%= @user.created_at.strftime('%-d %B %Y, %-l:%M%P') %></td>
-      </tr>
-      <tr>
-        <td class="col-md-3">Characters</td>
-        <td><%= @user.characters.count %></td>
-      </tr>
-      <tr>
-        <td class="col-md-3">View Characters</td>
-        <td><a href="/user/<%= @user.id %>/characters"><span class="glyphicon glyphicon-link"></span></a></td>
-      </tr>
-    </table>
-
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h1 class="list-group-item-heading">
+        <%= @user.display_name %> [<%=  @user.username %>]
+        <% if @viewing.can_edit?(@user) %>
+          <a href="/user/edit/<%= @user.id%>"> <span class="badge pull-right">edit <span class="glyphicon glyphicon-edit"></span></span></a>
+        <% end %>
+      </h1>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item"><b>Rank:</b> <%= @user.group.capitalize %></li>
+      <li class="list-group-item"><b>Date Registered:</b> <%= @user.created_at.strftime('%-d %B %Y, %-l:%M%P') %></li>
+      <li class="list-group-item"><b>Characters:</b> <%= @user.characters.count %></li>
+      <a href="/user/<%= @user.id %>" class="list-group-item list-group-item-info" target="_blank">
+        View Characters <span class="glyphicon glyphicon-share" aria-hidden="true"></span> </a>
+    </ul>
   </div>
 </div>
