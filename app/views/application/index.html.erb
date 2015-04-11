@@ -1,9 +1,14 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
   <div class="container">
+
     <h1>Warehouse</h1>
-    <p>A brief content description should go here probably.</p>
-    <p><a class="btn btn-primary btn-lg" href="#" role="button">¯\_(ツ)_/¯ &raquo;</a></p>
+    <p>A character and activity management system for HGRPG.</p>
+    <% if current_user %>
+      <p><a class="btn btn-primary btn-lg" href="/character/new" role="button">New Character &raquo;</a></p>
+    <% else %>
+      <p><a class="btn btn-primary btn-lg" href="/login" role="button">Login &raquo;</a></p>
+    <% end %>
   </div>
 </div>
 

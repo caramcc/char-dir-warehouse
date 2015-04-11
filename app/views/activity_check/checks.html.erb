@@ -1,0 +1,65 @@
+<div class="container">
+
+  <h1>Active Checks</h1>
+
+     <!--Default panel contents -->
+    <% if @checks[:activity].is_active? %>
+      <div class="panel panel-default">
+    <div class="panel-heading">Activity Check</div>
+
+    <!--TODO: Make the table actually sortable-->
+
+      <table class="table sortable-theme-bootstrap table-hover" data-sortable>
+        <th></th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Characters Entered</th>
+        <% if current_user %> <th>Add Your Characters</th> <% end %>
+
+        <% check = @checks[:activity] %>
+          <tr>
+            <td><a href="/checks/activity/<%= check.games %>"><span class="glyphicon glyphicon-th" aria-hidden="true"></span></a></td>
+            <td><%= check.opens_on %></td>
+            <td><%= check.closes_on %></td>
+            <td><%= check.characters.size %></td>
+            <% if current_user %>
+              <td><a href='/checks/activity/#{check.games}/add/#{current_user.id}'>
+                <span class='glyphicon glyphicon-plus-sign' aria-hidden='true'></span>
+              </a></td>
+            <% end %>
+
+          </tr>
+      </table>
+    </div>
+    <% end %>
+
+    <% if @checks[:reaping].is_active? %>
+    <div class="panel panel-default">
+    <div class="panel-heading">Reaping Check</div>
+
+    <!--TODO: Make the table actually sortable-->
+
+      <table class="table sortable-theme-bootstrap table-hover" data-sortable>
+        <th></th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Characters Entered</th>
+        <% if current_user %> <th>Add Your Characters</th> <% end %>
+
+        <% check = @checks[:reaping] %>
+          <tr>
+            <td><a href="/checks/reaping/<%= check.games %>"><span class="glyphicon glyphicon-th" aria-hidden="true"></span></a></td>
+            <td><%= check.opens_on %></td>
+            <td><%= check.closes_on %></td>
+            <td><%= check.characters.size %></td>
+            <% if current_user %>
+              <td><a href='/checks/reaping/#{check.games}/add/#{current_user.id}'>
+                <span class='glyphicon glyphicon-plus-sign' aria-hidden='true'></span>
+                </a></td>
+            <% end %>
+
+          </tr>
+      </table>
+      </div>
+    <% end %>
+  </div>
