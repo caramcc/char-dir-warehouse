@@ -13,6 +13,7 @@ class UserController < ApplicationController
   def show
     @user = User.find_by_id(params[:id])
     @viewing = User.find_by_id(session[:user_id])
+    @viewing ||= User.new
 
     @latest_checks = {}
     rc = ReapingCheck.last
@@ -63,6 +64,7 @@ class UserController < ApplicationController
 
   def edit
     @logged_in_user = User.find_by_id(session[:user_id])
+    @logged_in_user ||= User.new
     @user = User.find_by_id(params[:id])
     unless @logged_in_user.can_edit?(@user)
       render :status => :unauthorized
