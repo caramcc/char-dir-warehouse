@@ -9,8 +9,18 @@ class ActivityCheckController < ApplicationController
     ac = ActivityCheck.new(activity_check_params)
 
     ac.games ||= ActivityCheck.last.games + 1
-    ac.opens_on ||= Time.now
-    ac.closes_on ||= 30.days.from_now
+
+    if ac.opens_on.nil?
+      ac.opens_on.to_time
+    else
+      ac.opens_on = Time.now
+    end
+
+    if ac.closes_on.nil?
+      ac.closes_on.to_time
+    else
+      ac.closes_on = 30.days.from_now
+    end
 
     if ac.can_open_new? && ac.save
       redirect_to "/checks/activity/#{ac.games}"

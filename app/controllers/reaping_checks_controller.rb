@@ -9,12 +9,19 @@ class ReapingChecksController < ApplicationController
 
     rc = ReapingCheck.new(reaping_check_params)
 
-    if rc.games.nil?
-      rc.games = ReapingCheck.last.games + 1
+    rc.games ||= ReapingCheck.last.games + 1
+
+    if rc.opens_on.nil?
+      rc.opens_on.to_time
+    else
+      rc.opens_on = Time.now
     end
 
-    rc.opens_on ||= Time.now
-    rc.closes_on ||= 30.days.from_now
+    if rc.closes_on.nil?
+      rc.closes_on.to_time
+    else
+      rc.closes_on = 30.days.from_now
+    end
 
     if rc.can_open_new? && rc.save
       redirect_to "/checks/reaping/#{rc.games}"
