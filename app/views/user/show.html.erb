@@ -13,7 +13,7 @@
       <li class="list-group-item"><b>Rank:</b> <%= @user.group.capitalize %></li>
       <li class="list-group-item"><b>Date Registered:</b> <%= @user.created_at.strftime('%-d %B %Y, %-l:%M%P') %></li>
       <li class="list-group-item"><b>Characters:</b> <%= @user.characters.count %></li>
-      <a href="/user/<%= @user.id %>" class="list-group-item list-group-item-info" target="_blank">
+      <a href="/user/<%= @user.id %>/characters" class="list-group-item list-group-item-info" target="_blank">
         View Characters <span class="glyphicon glyphicon-share" aria-hidden="true"></span> </a>
     </ul>
   </div>

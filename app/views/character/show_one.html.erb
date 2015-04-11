@@ -7,6 +7,7 @@
         <small><a href="/user/<%= @char.user_id %>" class="panel-title">[ <%= User.find_by_id(@char.user_id).display_name.downcase %> ]</a></small>
         <% if @user.can_edit?(@char) %>
           <a href="/character/edit/<%= @char.id%>"> <span class="badge pull-right">edit <span class="glyphicon glyphicon-edit"></span></span></a>
+          <a href="/character/delete/<%= @char.id%>"> <span class="badge pull-right">delete <span class="glyphicon glyphicon-trash"></span></span></a>
         <% end %>
       </h1>
     </div>
@@ -53,7 +54,7 @@
         <div class="alert alert-warning" role="alert">
           <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
           This character is <b>not</b> in the <%= @latest_checks[:reaping][:games].ordinalize %> Games Reaping Check.
-          <a href="/checks/reaping/<%= @latest_checks[:activity][:games] %>/add/<%= @user.id %> " class="alert-link">
+          <a href="/checks/reaping/<%= @latest_checks[:reaping][:games] %>/add/<%= @user.id %> " class="alert-link">
             Update your reaping check <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
           </a>
         </div>
