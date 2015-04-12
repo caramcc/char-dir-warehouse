@@ -18,26 +18,38 @@ class UserController < ApplicationController
     @latest_checks = {}
     rc = ReapingCheck.last
     ac = ActivityCheck.last
-    if rc.is_active?
-      @latest_checks[:reaping] = {
-          active: true,
-          games: rc.games
-      }
-    else
+    if rc.nil?
       @latest_checks[:reaping] = {
           active: false
       }
+    else
+      if rc.is_active?
+        @latest_checks[:reaping] = {
+            active: true,
+            games: rc.games
+        }
+      else
+        @latest_checks[:reaping] = {
+            active: false
+        }
+      end
     end
 
-    if ac.is_active?
-      @latest_checks[:activity] = {
-          active: true,
-          games: ac.games
-      }
-    else
+    if ac.nil?
       @latest_checks[:activity] = {
           active: false
       }
+    else
+      if ac.is_active?
+        @latest_checks[:activity] = {
+            active: true,
+            games: ac.games
+        }
+      else
+        @latest_checks[:activity] = {
+            active: false
+        }
+      end
     end
 
   end
