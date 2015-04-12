@@ -55,12 +55,14 @@ class CharacterController < ApplicationController
 
   def show_one
 
-    @char = Character.find_by_id(params[:id])
-    @user = User.find_by_id(session[:user_id])
+    @char = Character.joins(:user).find_by(id: params[:id])
+    udn = User.find_by_id(session[:user_id]).display_name
     @latest_checks = {}
     rc = ReapingCheck.last
     ac = ActivityCheck.last
-    # TODO fix for no checks
+    rc ||= ReapingCheck.new
+    ac ||= ActivityCheck.new
+
     if rc.is_active?
       @latest_checks[:reaping] = {
           active: true,
@@ -84,6 +86,8 @@ class CharacterController < ApplicationController
           active: false
       }
     end
+
+    @latest_checks[:udn] = udn
 
   end
 
