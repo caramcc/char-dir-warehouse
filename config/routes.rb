@@ -93,6 +93,9 @@ Rails.application.routes.draw do
   get '/checks/new/activity/' => 'activity_check#new'
   post '/checks/create/activity/' => 'activity_check#create'
 
+  # Search
+  get '/search' => 'search#search'
+
 
   # API Routes
 
