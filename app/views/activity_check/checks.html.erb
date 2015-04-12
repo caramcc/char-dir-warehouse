@@ -23,7 +23,7 @@
             <td><%= check.closes_on %></td>
             <td><%= check.characters.size %></td>
             <% if current_user %>
-              <td><a href='/checks/activity/#{check.games}/add/#{current_user.id}'>
+              <td><a href='/checks/activity/<%= check.games%>/add/<%= current_user.id %>'>
                 <span class='glyphicon glyphicon-plus-sign' aria-hidden='true'></span>
               </a></td>
             <% end %>
@@ -53,7 +53,7 @@
             <td><%= check.closes_on %></td>
             <td><%= check.characters.size %></td>
             <% if current_user %>
-              <td><a href='/checks/reaping/#{check.games}/add/#{current_user.id}'>
+              <td><a href='/checks/reaping/<%= check.games%>/add/<%= current_user.id %>'>
                 <span class='glyphicon glyphicon-plus-sign' aria-hidden='true'></span>
                 </a></td>
             <% end %>

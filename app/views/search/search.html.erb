@@ -1,0 +1,27 @@
+<div class="container">
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Character Results</div>
+    <ul class="list-group">
+      <% @results[:characters].each do |char| %>
+        <a href="/character/<%= char.id %>" class="list-group-item"><%= char.first_name %> <%= char.last_name %> - <%= char.pretty_area %></a>
+      <% end %>
+      <% if @results[:characters].length == 0 %>
+        <li class="list-group-item">No results found</li>
+      <% end %>    </ul>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Member Results</div>
+    <ul class="list-group">
+      <% @results[:users].each do |user| %>
+        <a href="/user/<%= user.id %>" class="list-group-item"><%= user.display_name %> [<%= user.username %>]</a>
+      <% end %>
+      <% if @results[:users].length == 0 %>
+        <li class="list-group-item">No results found</li>
+      <% end %>
+    </ul>
+  </div>
+
+
+</div>
