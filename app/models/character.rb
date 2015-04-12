@@ -31,6 +31,10 @@ class Character < ActiveRecord::Base
         self.char_approved && self.gender != 'Other'
   end
 
+  def pretty_area
+    ('1'..'13').include?(self.home_area) ? "District #{self.home_area}" : self.home_area.capitalize
+  end
+
   def in_reaping?
     ReapingCheck.last.is_active? && self.reaping_checks.exists?(ReapingCheck.last)
   end

@@ -60,6 +60,7 @@ class CharacterController < ApplicationController
     @latest_checks = {}
     rc = ReapingCheck.last
     ac = ActivityCheck.last
+    # TODO fix for no checks
     if rc.is_active?
       @latest_checks[:reaping] = {
           active: true,
