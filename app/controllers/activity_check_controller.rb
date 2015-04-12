@@ -33,9 +33,14 @@ class ActivityCheckController < ApplicationController
   end
 
   def checks
+    ac = ActivityCheck.last
+    ac ||= ActivityCheck.new
+    rc = ReapingCheck.last
+    rc ||= ReapingCheck.new
+
     @checks = {
-        activity: ActivityCheck.last,
-        reaping: ReapingCheck.last
+        activity: ac,
+        reaping: rc
     }
   end
 

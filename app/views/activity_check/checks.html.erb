@@ -62,4 +62,8 @@
       </table>
       </div>
     <% end %>
-  </div>
+  <% unless @checks[:reaping].is_active? || @checks[:activity].is_active? %>
+    <div class="panel panel-default">None active.</div>
+<% end %>
+
+    </div>
