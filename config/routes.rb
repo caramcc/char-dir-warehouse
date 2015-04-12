@@ -95,6 +95,7 @@ Rails.application.routes.draw do
 
   # Search
   get '/search' => 'search#search'
+  post '/search' => 'search#search'
 
 
   # API Routes
