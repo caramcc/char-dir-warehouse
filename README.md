@@ -40,14 +40,14 @@ Also, make sure you're developing on a new branch rather than on `develop` or `m
 
 * Testing the controllers
 
-* Build out a JSON API (consider building frontend in a JS framework?)
+* ~Build out a JSON API~
 
 * Census and Reaping and stats
 
-* more useful 'look at dis info' pages
+* ~more useful 'look at dis info' pages~
 
-* populate front page with anything
+* ~populate front page with anything~
 
-* implement search (see: nav bar)
+* ~implement search (see: nav bar)~
 
-* make nav bar not suck also (although rn it sucks less)
+* ~make nav bar not suck also (although rn it sucks less)~
