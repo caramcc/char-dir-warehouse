@@ -228,4 +228,12 @@ class ApiController < ApplicationController
     render json: results, status: 200
   end
 
+  def logs
+    if current_user.group == 'ADMIN'
+      log = ''
+      File.open(Rails.root.join('log/production.log'), 'r').each_line { |line| log << line }
+      render text: log
+    end
+  end
+
 end
