@@ -12,7 +12,8 @@ class ApiController < ApplicationController
 
   def character_find
     params[:ao] == 'or' ? ao = 'or' : ao = 'and'
-    accepted_params = { #TODO: Move this to config file?
+    #TODO: Move this to config file?
+    accepted_params = {
         'created_before' => {
             operator: '>',
             field: 'created_at'
