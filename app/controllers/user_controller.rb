@@ -18,26 +18,38 @@ class UserController < ApplicationController
     @latest_checks = {}
     rc = ReapingCheck.last
     ac = ActivityCheck.last
-    if rc.is_active?
-      @latest_checks[:reaping] = {
-          active: true,
-          games: rc.games
-      }
-    else
+    if rc.nil?
       @latest_checks[:reaping] = {
           active: false
       }
+    else
+      if rc.is_active?
+        @latest_checks[:reaping] = {
+            active: true,
+            games: rc.games
+        }
+      else
+        @latest_checks[:reaping] = {
+            active: false
+        }
+      end
     end
 
-    if ac.is_active?
-      @latest_checks[:activity] = {
-          active: true,
-          games: ac.games
-      }
-    else
+    if ac.nil?
       @latest_checks[:activity] = {
           active: false
       }
+    else
+      if ac.is_active?
+        @latest_checks[:activity] = {
+            active: true,
+            games: ac.games
+        }
+      else
+        @latest_checks[:activity] = {
+            active: false
+        }
+      end
     end
 
   end
@@ -63,10 +75,8 @@ class UserController < ApplicationController
   end
 
   def edit
-    @logged_in_user = User.find_by_id(session[:user_id])
-    @logged_in_user ||= User.new
     @user = User.find_by_id(params[:id])
-    unless @logged_in_user.can_edit?(@user)
+    unless current_user.can_edit?(@user)
       render :status => :unauthorized
     end
   end
@@ -92,6 +102,8 @@ class UserController < ApplicationController
         old_user[key] = value
       end
     end
+    
+    old_user.group.upcase!
 
     old_user.save
 

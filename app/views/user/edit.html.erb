@@ -13,7 +13,7 @@
           <span class="input-group-addon" id="sizing-addon1">Email</span>
           <%= f.email_field :email, class: 'form-control', placeholder: 'Last', value: @user.email %>
         </div>
-        <% if @logged_in_user.can_promote? %>
+        <% if current_user.can_promote? %>
 
             <div class="input-group input-group">
               <span class="input-group-addon" id="sizing-addon1">Group</span>
@@ -22,7 +22,7 @@
 
         <% end %>
 
-        <% if @user.id == @logged_in_user.id %>
+        <% if @user.id == current_user.id %>
           <div class="panel panel-default">
             <div class="panel-heading">Update Password - not yet implemented</div>
             <div class="panel-body">

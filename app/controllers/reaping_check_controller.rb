@@ -38,17 +38,15 @@ class ReapingCheckController < ApplicationController
   end
 
   def add_characters
-    @logged_in_user = User.find_by_id(session[:user_id])
     @check = ReapingCheck.find_by_games(params[:games])
     @user = User.find_by_id(params[:user_id])
-    unless @logged_in_user.can_edit?(@user)
+    unless current_user.can_edit?(@user)
       render :status => :unauthorized
     end
     @characters = @user.characters
   end
 
   def add
-    @logged_in_user = User.find_by_id(session[:user_id])
     @check = ReapingCheck.find_by_games(params[:games])
     user = User.find_by_id(params[:user_id])
     if params[:chk]
