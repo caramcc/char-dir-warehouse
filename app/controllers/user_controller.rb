@@ -102,6 +102,8 @@ class UserController < ApplicationController
         old_user[key] = value
       end
     end
+    
+    old_user.group.upcase!
 
     old_user.save
 
