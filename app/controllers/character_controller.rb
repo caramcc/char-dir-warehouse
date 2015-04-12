@@ -95,7 +95,7 @@ class CharacterController < ApplicationController
 
   def edit
     @char = Character.find_by_id(params[:id])
-    if User.find_by_id(session[:user_id]).can_edit?(@char)
+    if current_user.can_edit?(@char)
       @user = User.find_by_id(@char.user_id)
     else
       render file: 'public/403.html', status: :forbidden
@@ -152,7 +152,7 @@ class CharacterController < ApplicationController
 
 
   def approve_all_pending
-    if User.find_by_id(session[:user_id]).can_approve?
+    if current_user.can_approve?
       chars = Character.where('char_approved = false')
       @pending = {}
       chars.each do |char|
@@ -170,7 +170,7 @@ class CharacterController < ApplicationController
   end
 
   def approve_all_fcs
-    if User.find_by_id(session[:user_id]).can_approve?
+    if current_user.can_approve?
       chars = Character.where(fc_approved: false)
       # @pending = [{
       #                 character: character,
@@ -210,7 +210,7 @@ class CharacterController < ApplicationController
   end
 
   def approve
-    if User.find_by_id(session[:user_id]).can_approve?
+    if current_user.can_approve?
       @approved = {}
       puts params
       params[:chr].each do |id|
@@ -232,7 +232,7 @@ class CharacterController < ApplicationController
   end
 
   def approve_fcs
-    if User.find_by_id(session[:user_id]).can_approve?
+    if current_user.can_approve?
       @approved = {}
       puts params
       params[:fcs].each do |id|
@@ -255,8 +255,7 @@ class CharacterController < ApplicationController
 
   def delete
     @char = Character.find_by_id(params[:id])
-    @viewing_user = User.find_by_id(session[:user_id])
-    unless @viewing_user.can_edit?(@char)
+    unless current_user.can_edit?(@char)
       render file: 'public/403.html', status: :forbidden
     end
   end
@@ -264,7 +263,7 @@ class CharacterController < ApplicationController
   def destroy
     @char = Character.find_by_id(params[:id])
     user = @char.user_id
-    if User.find_by_id(session[:user_id]).can_edit?(@char) && params[:confirmation] == @char.first_name
+    if current_user.can_edit?(@char) && params[:confirmation] == @char.first_name
       @char.destroy!
       redirect_to "/user/#{user}"
     else

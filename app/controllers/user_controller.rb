@@ -75,10 +75,8 @@ class UserController < ApplicationController
   end
 
   def edit
-    @logged_in_user = User.find_by_id(session[:user_id])
-    @logged_in_user ||= User.new
     @user = User.find_by_id(params[:id])
-    unless @logged_in_user.can_edit?(@user)
+    unless current_user.can_edit?(@user)
       render :status => :unauthorized
     end
   end
