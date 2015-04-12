@@ -203,12 +203,12 @@ class ApiController < ApplicationController
 
     name = params[:name]
     if name.split(' ').length == 2
-      query = Character.where("`first_name` LIKE '%#{name.split(' ')[0]}%' AND `last_name` LIKE '%#{name.split(' ')[2]}%'")
+      query = Character.where("first_name LIKE '%#{name.split(' ')[0]}%' AND last_name LIKE '%#{name.split(' ')[2]}%'")
     else
-      query = Character.where("`first_name` LIKE '%#{name}%' OR `last_name` LIKE '%#{name}%'")
+      query = Character.where("first_name LIKE '%#{name}%' OR last_name LIKE '%#{name}%'")
     end
 
-    user_query = User.where("`username` LIKE '%#{name}%' OR `display_name` LIKE '%#{name}%'")
+    user_query = User.where("username LIKE '%#{name}%' OR display_name LIKE '%#{name}%'")
 
     user_results = []
     # TODO get user characters?
