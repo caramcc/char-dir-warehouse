@@ -1,5 +1,4 @@
 class SearchController < ApplicationController
-  
   def search
     query = params[:query]
     if query
