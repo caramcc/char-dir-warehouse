@@ -4,8 +4,8 @@
     <div class="panel-heading">
       <h1 class="list-group-item-heading">
         <%= @char.first_name %> <%=  @char.last_name %>
-        <small><a href="/user/<%= @char.user_id %>" class="panel-title">[ <%= User.find_by_id(@char.user_id).display_name.downcase %> ]</a></small>
-        <% if @user.can_edit?(@char) %>
+        <small><a href="/user/<%= @char.user_id %>" class="panel-title">[ <%= @latest_checks[:udn].downcase %> ]</a></small>
+        <% if current_user.can_edit?(@char) %>
           <a href="/character/edit/<%= @char.id%>"> <span class="badge pull-right">edit <span class="glyphicon glyphicon-edit"></span></span></a>
           <a href="/character/delete/<%= @char.id%>"> <span class="badge pull-right">delete <span class="glyphicon glyphicon-trash"></span></span></a>
         <% end %>
@@ -44,36 +44,38 @@
     <% unless @char.fc_first.nil? || @char.fc_approved %>
       <div class="alert alert-warning" role="alert">This character's face claim is still pending approval.</div>
     <% end %>
-    <% if @latest_checks[:reaping][:active] && @char.is_reapable? %>
-      <% if @latest_checks[:reaping][:char_in] %>
-        <div class="alert alert-success" role="alert">
-          <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
-          This character is in the <%= @latest_checks[:reaping][:games].ordinalize %> Games Reaping Check.
-        </div>
-      <% else %>
-        <div class="alert alert-warning" role="alert">
-          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-          This character is <b>not</b> in the <%= @latest_checks[:reaping][:games].ordinalize %> Games Reaping Check.
-          <a href="/checks/reaping/<%= @latest_checks[:reaping][:games] %>/add/<%= @user.id %> " class="alert-link">
-            Update your reaping check <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-          </a>
-        </div>
+    <% if current_user.id == @char.user_id %>
+      <% if @latest_checks[:reaping][:active] && @char.is_reapable? %>
+        <% if @latest_checks[:reaping][:char_in] %>
+          <div class="alert alert-success" role="alert">
+            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+            This character is in the <%= @latest_checks[:reaping][:games].ordinalize %> Games Reaping Check.
+          </div>
+        <% else %>
+          <div class="alert alert-warning" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            This character is <b>not</b> in the <%= @latest_checks[:reaping][:games].ordinalize %> Games Reaping Check.
+            <a href="/checks/reaping/<%= @latest_checks[:reaping][:games] %>/add/<%= @char.user_id %> " class="alert-link">
+              Update your reaping check <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            </a>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
-    <% if @latest_checks[:activity][:active] %>
-      <% if @latest_checks[:activity][:char_in] %>
-        <div class="alert alert-success" role="alert">
-          <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
-          This character is in the <%= @latest_checks[:activity][:games].ordinalize %> Games Activity Check.
-        </div>
-      <% else %>
-        <div class="alert alert-danger" role="alert">
-          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-          This character is <b>not</b> in the <%= @latest_checks[:activity][:games].ordinalize %> Games Activity Check.
-          <a href="/checks/activity/<%= @latest_checks[:activity][:games] %>/add/<%= @user.id %> " class="alert-link">
-            Update your activity check <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-          </a>
-        </div>
+      <% if @latest_checks[:activity][:active] %>
+        <% if @latest_checks[:activity][:char_in] %>
+          <div class="alert alert-success" role="alert">
+            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+            This character is in the <%= @latest_checks[:activity][:games].ordinalize %> Games Activity Check.
+          </div>
+        <% else %>
+          <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            This character is <b>not</b> in the <%= @latest_checks[:activity][:games].ordinalize %> Games Activity Check.
+            <a href="/checks/activity/<%= @latest_checks[:activity][:games] %>/add/<%= @char.user_id %> " class="alert-link">
+              Update your activity check <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            </a>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
   </div>
