@@ -49,6 +49,17 @@ class User < ActiveRecord::Base
     10 + (non_reapables * 3)
   end
 
+  def update_profile(params)
+    if params.has_key?(:old_password)
+      self.authenticate(params[:old_password])
+      self.update(password: params[:new_password], password_confirmation: params[:confirm_new_password])
+    end
+
+    self.group = params[:group]
+    self.group = params[:display_name]
+    self.group = params[:email]
+  end
+
   class << self
 
     def find_by_email_or_username(email_or_username)

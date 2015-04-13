@@ -102,7 +102,12 @@ class UserController < ApplicationController
         old_user[key] = value
       end
     end
-    
+
+    if params[:user].has_key?(:old_password)
+      old_user.authenticate(params[:user][:old_password])
+      old_user.update(password: params[:user][:new_password], password_confirmation: params[:user][:confirm_new_password])
+    end
+
     old_user.group.upcase!
 
     old_user.save
