@@ -109,6 +109,9 @@ Rails.application.routes.draw do
 
   get '/api/find/' => 'api#generic_find_by_name'
 
+  # Log Routes
+  get '/logs' => 'api#logs'
+
 
   # Example resource route with sub-resources:
   #   resources :products do

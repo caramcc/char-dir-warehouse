@@ -24,21 +24,21 @@
 
         <% if @user.id == current_user.id %>
           <div class="panel panel-default">
-            <div class="panel-heading">Update Password - not yet implemented</div>
+            <div class="panel-heading">Update Password</div>
             <div class="panel-body">
                 <div class="input-group input-group">
                   <span class="input-group-addon" id="sizing-addon1">Current Password</span>
-                  <%= f.password_field :old_password, class: 'form-control', placeholder: 'Current Password', disabled: true %>
+                  <%= f.password_field :old_password, class: 'form-control', placeholder: 'Current Password', disabled: false %>
                 </div>
 
                 <div class="input-group input-group">
                   <span class="input-group-addon" id="sizing-addon1">New Password</span>
-                  <%= f.password_field :new_password, class: 'form-control', placeholder: 'New Password', disabled: true %>
+                  <%= f.password_field :new_password, class: 'form-control', placeholder: 'New Password', disabled: false %>
                 </div>
 
                 <div class="input-group input-group">
                   <span class="input-group-addon" id="sizing-addon1">Confirm New Password</span>
-                  <%= f.password_field :confirm_new_password, class: 'form-control', placeholder: 'Confirm New Password', disabled: true %>
+                  <%= f.password_field :confirm_new_password, class: 'form-control', placeholder: 'Confirm New Password', disabled: false %>
                 </div>
             </div>
           </div>

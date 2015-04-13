@@ -100,9 +100,9 @@ class ApiController < ApplicationController
     params.each do |key, value|
       if accepted_params.has_key?(key)
         if query == ''
-          query = "`#{accepted_params[key][:field]}` #{accepted_params[key][:operator]} '#{params[key]}'"
+          query = "#{accepted_params[key][:field]} #{accepted_params[key][:operator]} '#{params[key]}'"
         else
-          query = "#{query} #{ao} `#{accepted_params[key][:field]}` #{accepted_params[key][:operator]} '#{params[key]}'"
+          query = "#{query} #{ao} #{accepted_params[key][:field]} #{accepted_params[key][:operator]} '#{params[key]}'"
         end
         puts "added to query: #{query}"
       else
@@ -181,9 +181,9 @@ class ApiController < ApplicationController
     params.each do |key, value|
       if accepted_params.has_key?(key)
         if query == ''
-          query = "`#{accepted_params[key][:field]}` #{accepted_params[key][:operator]} '#{params[key]}'"
+          query = "#{accepted_params[key][:field]} #{accepted_params[key][:operator]} '#{params[key]}'"
         else
-          query = "#{query} #{ao} `#{accepted_params[key][:field]}` #{accepted_params[key][:operator]} '#{params[key]}'"
+          query = "#{query} #{ao} #{accepted_params[key][:field]} #{accepted_params[key][:operator]} '#{params[key]}'"
         end
         puts "added to query: #{query}"
       else
@@ -203,12 +203,12 @@ class ApiController < ApplicationController
 
     name = params[:name]
     if name.split(' ').length == 2
-      query = Character.where("`first_name` LIKE '%#{name.split(' ')[0]}%' AND `last_name` LIKE '%#{name.split(' ')[2]}%'")
+      query = Character.where("first_name LIKE '%#{name.split(' ')[0]}%' AND last_name LIKE '%#{name.split(' ')[2]}%'")
     else
-      query = Character.where("`first_name` LIKE '%#{name}%' OR `last_name` LIKE '%#{name}%'")
+      query = Character.where("first_name LIKE '%#{name}%' OR last_name LIKE '%#{name}%'")
     end
 
-    user_query = User.where("`username` LIKE '%#{name}%' OR `display_name` LIKE '%#{name}%'")
+    user_query = User.where("username LIKE '%#{name}%' OR display_name LIKE '%#{name}%'")
 
     user_results = []
     # TODO get user characters?
@@ -226,6 +226,16 @@ class ApiController < ApplicationController
 
 
     render json: results, status: 200
+  end
+
+  def logs
+    if current_user.group == 'ADMIN'
+      log = ''
+      File.open(Rails.root.join("log/#{Rails.env}.log"), 'r').each_line { |line| log << line; log << "<br>\n"; }
+      render text: log
+    else
+      render status: :unauthorized
+    end
   end
 
 end
