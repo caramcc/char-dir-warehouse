@@ -31,9 +31,6 @@ class Character < ActiveRecord::Base
         self.char_approved && self.gender != 'Other'
   end
 
-  def pretty_area
-    ('1'..'13').include?(self.home_area) ? "District #{self.home_area}" : self.home_area.capitalize
-  end
 
   def in_reaping?
     ReapingCheck.last.is_active? && self.reaping_checks.exists?(ReapingCheck.last)
@@ -41,6 +38,12 @@ class Character < ActiveRecord::Base
 
   def remove_from_reaping
     self.reaping_checks.destroy(ReapingCheck.last)
+  end
+
+  class << self
+    def pretty_area(area)
+      ('1'..'13').include?(area) ? "District #{area}" : area.capitalize
+    end
   end
 
 end
