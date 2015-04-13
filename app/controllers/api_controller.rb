@@ -100,9 +100,9 @@ class ApiController < ApplicationController
     params.each do |key, value|
       if accepted_params.has_key?(key)
         if query == ''
-          query = "`#{accepted_params[key][:field]}` #{accepted_params[key][:operator]} '#{params[key]}'"
+          query = "#{accepted_params[key][:field]} #{accepted_params[key][:operator]} '#{params[key]}'"
         else
-          query = "#{query} #{ao} `#{accepted_params[key][:field]}` #{accepted_params[key][:operator]} '#{params[key]}'"
+          query = "#{query} #{ao} #{accepted_params[key][:field]} #{accepted_params[key][:operator]} '#{params[key]}'"
         end
         puts "added to query: #{query}"
       else
@@ -181,9 +181,9 @@ class ApiController < ApplicationController
     params.each do |key, value|
       if accepted_params.has_key?(key)
         if query == ''
-          query = "`#{accepted_params[key][:field]}` #{accepted_params[key][:operator]} '#{params[key]}'"
+          query = "#{accepted_params[key][:field]} #{accepted_params[key][:operator]} '#{params[key]}'"
         else
-          query = "#{query} #{ao} `#{accepted_params[key][:field]}` #{accepted_params[key][:operator]} '#{params[key]}'"
+          query = "#{query} #{ao} #{accepted_params[key][:field]} #{accepted_params[key][:operator]} '#{params[key]}'"
         end
         puts "added to query: #{query}"
       else
