@@ -231,8 +231,10 @@ class ApiController < ApplicationController
   def logs
     if current_user.group == 'ADMIN'
       log = ''
-      File.open(Rails.root.join('log/production.log'), 'r').each_line { |line| log << line }
+      File.open(Rails.root.join("log/#{Rails.env}.log"), 'r').each_line { |line| log << line; log << "<br>\n"; }
       render text: log
+    else
+      render status: :unauthorized
     end
   end
 
