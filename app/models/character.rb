@@ -33,7 +33,13 @@ class Character < ActiveRecord::Base
 
 
   def in_reaping?
-    ReapingCheck.last.is_active? && self.reaping_checks.exists?(ReapingCheck.last)
+
+    if ReapingCheck.last.nil?
+      false
+    else
+      ReapingCheck.last.is_active? && self.reaping_checks.exists?(ReapingCheck.last)
+    end
+
   end
 
   def remove_from_reaping

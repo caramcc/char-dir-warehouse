@@ -35,6 +35,9 @@ gem 'validates_url_format_of'
 gem 'momentjs-rails', '>= 2.8.1'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
 
+# bootstrap select
+gem 'bootstrap-select-rails'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

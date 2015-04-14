@@ -26,7 +26,10 @@
 
       <div class="input-group input-group">
         <span class="input-group-addon" id="sizing-addon1">District/Area</span>
-        <%= f.text_field :home_area, class: 'form-control', placeholder: 'District/Area' %>
+        <% opts = []
+           ('1'..'13').each { |x| opts.push ["District #{x}", x]}
+           opts.push ['Capitol', 'Capitol'], ['Wanderer', 'Wanderer'] %>
+        <%= f.select :home_area, opts, {}, { class: 'selectpicker', 'data-live-search'=> true } %>
       </div>
 
       <div class="panel panel-default">
@@ -61,10 +64,10 @@
             <%= f.radio_button :special, 'Mayor', class: 'form-control' %> Mayor
           </label>
           <label class="btn btn-primary">
-            <%= f.radio_button :special, 'Victor', class: 'form-control' %> Gamemaker
+            <%= f.radio_button :special, 'Victor', class: 'form-control' %> Victor
           </label>
           <label class="btn btn-primary">
-            <%= f.radio_button :special, 'Gamemaker', class: 'form-control' %> Victor
+            <%= f.radio_button :special, 'Gamemaker', class: 'form-control' %> Gamemaker
           </label>
           <label class="btn btn-primary">
             <%= f.radio_button :special, '', class: 'form-control' %> N/A
