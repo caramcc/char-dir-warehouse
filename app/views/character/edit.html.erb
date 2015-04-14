@@ -1,5 +1,8 @@
 <div class="container">
   <h1>Edit Character: <%= @char.first_name %> <%= @char.last_name %></h1>
+  <script type="text/javascript">
+    $('.selectpicker').selectpicker();
+  </script>
 
   <%= form_for :character, url: '/character/update' do |f| %>
 
