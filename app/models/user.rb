@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
       end
     end
 
-    10 + (non_reapables * 3)
+    10 + (non_reapables * 2)
   end
 
   def update_profile(params)
