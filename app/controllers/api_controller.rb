@@ -1,6 +1,6 @@
 class ApiController < ApplicationController
 
-  before_filter :authorize
+  before_filter :authorize, :except => [:search_suggest]
 
   def character_get_all
     render json: Character.all, status: 200
@@ -120,7 +120,16 @@ class ApiController < ApplicationController
   end
 
   def user_get_all
-    render json: User.all, status: 200
+    excluded_fields = [:password_digest]
+    # uncomment
+    # excluded_fields = [:password_digest, :email_token, password_reset_token, password_reset_token_expiry]
+
+    unless current_user.group == 'ADMIN'
+      excluded_fields.push :email
+    end
+
+
+    render json: User.all, except: excluded_fields, status: 200
   end
 
   def user_get_by_id
@@ -196,7 +205,16 @@ class ApiController < ApplicationController
     puts query
     user = User.where(query)
 
-    render json: user, status: 200
+    excluded_fields = [:password_digest]
+    # uncomment
+    # excluded_fields = [:password_digest, :email_token, password_reset_token, password_reset_token_expiry]
+
+    unless current_user.group == 'ADMIN'
+      excluded_fields.push :email
+    end
+
+
+    render json: user, except: excluded_fields, status: 200
   end
 
   def generic_find_by_name
@@ -236,6 +254,23 @@ class ApiController < ApplicationController
     else
       render status: :unauthorized
     end
+  end
+
+  def search_suggest
+    data = [] # array of hash, keys = name, type
+    Character.all.each do |char|
+      h = { name: "#{char.first_name} #{char.last_name}", type: "Character - #{Character.pretty_area(char.home_area)} #{char.gender} #{char.special}"}
+      data.push h
+    end
+
+    User.all.each do |user|
+      h = { name: user.username, type: 'User'}
+      h2 = { name: user.display_name, type: 'User'}
+      data.push h
+      data.push h2
+    end
+
+    render json: data, status: 200
   end
 
 end

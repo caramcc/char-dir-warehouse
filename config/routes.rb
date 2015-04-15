@@ -109,6 +109,8 @@ Rails.application.routes.draw do
 
   get '/api/find/' => 'api#generic_find_by_name'
 
+  get '/api/suggestions' => 'api#search_suggest'
+
   # Log Routes
   get '/logs' => 'api#logs'
 

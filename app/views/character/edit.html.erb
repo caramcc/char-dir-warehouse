@@ -1,5 +1,8 @@
 <div class="container">
   <h1>Edit Character: <%= @char.first_name %> <%= @char.last_name %></h1>
+  <script type="text/javascript">
+    $('.selectpicker').selectpicker();
+  </script>
 
   <%= form_for :character, url: '/character/update' do |f| %>
 
@@ -24,22 +27,25 @@
         <%= f.number_field :age, class: 'form-control', placeholder: 'Age', value: @char.age %>
       </div>
 
-      <div class="input-group input-group">
-        <span class="input-group-addon" id="sizing-addon1">District/Area</span>
-        <%= f.text_field :home_area, class: 'form-control', placeholder: 'District/Area', value: @char.home_area %>
-      </div>
+        <div class="input-group input-group">
+          <span class="input-group-addon" id="sizing-addon1">District/Area</span>
+          <% opts = []
+             ('1'..'13').each { |x| opts.push ["District #{x}", x]}
+             opts.push ['Capitol', 'Capitol'], ['Wanderer', 'Wanderer'] %>
+          <%= f.select :home_area, options_for_select(opts, @char.home_area), {}, { class: 'selectpicker', 'data-live-search'=> true } %>
+        </div>
 
       <div class="panel panel-default">
         <div class="panel-heading">Gender</div>
         <div class="panel-body">
           <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-primary">
+            <label class="btn btn-primary <%= @char.gender == 'Male' ? 'active' : '' %>">
               <%= f.radio_button :gender, 'Male', class: 'form-control' %>  Male
             </label>
-            <label class="btn btn-primary">
+            <label class="btn btn-primary <%= @char.gender == 'Female' ? 'active' : '' %>">
               <%= f.radio_button :gender, 'Female', class: 'form-control' %> Female
             </label>
-            <label class="btn btn-primary">
+            <label class="btn btn-primary <%= @char.gender == 'Other' ? 'active' : '' %>">
               <%= f.radio_button :gender, 'Other', class: 'form-control' %> Other Genders
             </label>
           </div>
@@ -51,20 +57,20 @@
         <div class="panel-heading">Special Types (optional)</div>
         <div class="panel-body">
           <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-primary">
+            <label class="btn btn-primary <%= @char.special == 'Peacekeeper' ? 'active' : '' %>">
               <%= f.radio_button :special, 'Peacekeeper', class: 'form-control' %>  Peacekeeper
             </label>
-            <label class="btn btn-primary">
+            <label class="btn btn-primary <%= @char.special == 'Avox' ? 'active' : '' %>">
               <%= f.radio_button :special, 'Avox', class: 'form-control' %> Avox
             </label>
-            <label class="btn btn-primary">
+            <label class="btn btn-primary <%= @char.special == 'Mayor' ? 'active' : '' %>">
               <%= f.radio_button :special, 'Mayor', class: 'form-control' %> Mayor
             </label>
-            <label class="btn btn-primary">
-              <%= f.radio_button :special, 'Victor', class: 'form-control' %> Gamemaker
+            <label class="btn btn-primary <%= @char.special == 'Victor' ? 'active' : '' %>">
+              <%= f.radio_button :special, 'Victor', class: 'form-control'%> Victor
             </label>
-            <label class="btn btn-primary">
-              <%= f.radio_button :special, 'Gamemaker', class: 'form-control' %> Victor
+            <label class="btn btn-primary <%= @char.special == 'Gamemaker' ? 'active' : '' %>">
+              <%= f.radio_button :special, 'Gamemaker', class: 'form-control' %> Gamemaker
             </label>
             <label class="btn btn-primary">
               <%= f.radio_button :special, '', class: 'form-control' %> N/A

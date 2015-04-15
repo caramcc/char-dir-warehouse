@@ -138,7 +138,9 @@ class CharacterController < ApplicationController
 
     params[:character].each do |key, value|
       if old_char.respond_to?(key)
-        old_char[key] = value
+        unless value.blank?
+          old_char[key] = value
+        end
       end
     end
 
