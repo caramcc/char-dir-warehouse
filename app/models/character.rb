@@ -3,6 +3,7 @@ class Character < ActiveRecord::Base
   #               :fc_last, :char_approved, :fc_approved
 
   belongs_to :user
+  belongs_to :tessera
   has_and_belongs_to_many :reaping_checks
   has_and_belongs_to_many :activity_checks
 

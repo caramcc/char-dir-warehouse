@@ -6,7 +6,11 @@ class ReapingCheckController < ApplicationController
       render :status => :unauthorized
     end
 
-    rc = ReapingCheck.new(reaping_check_params)
+    check_params = reaping_check_params
+    check_params[:opens_on] = Date.strptime(check_params[:opens_on], '%m/%d/%Y %I:%M %p')
+    check_params[:closes_on] = Date.strptime(check_params[:closes_on], '%m/%d/%Y %I:%M %p')
+
+    rc = ReapingCheck.new(check_params)
 
     rc.games ||= ReapingCheck.last.games + 1
 

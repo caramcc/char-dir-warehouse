@@ -1,6 +1,7 @@
 class ReapingCheck < ActiveRecord::Base
   # t.timestamp :opens_on, t.timestamp :closes_on
   has_and_belongs_to_many :characters
+  belongs_to :tessera
 
   def is_active?
     Time.now.to_i > self.opens_on.to_i && Time.now.to_i < self.closes_on.to_i
