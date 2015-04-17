@@ -68,9 +68,11 @@ class Character < ActiveRecord::Base
   end
 
   def approve_tessera(boolean)
-    tessera = self.active_tessera
-    tessera.approved = boolean
-    tessera.save
+    unless boolean.blank?
+      tessera = self.active_tessera
+      tessera.approved = boolean
+      tessera.save
+    end
   end
 
   def remove_from_reaping

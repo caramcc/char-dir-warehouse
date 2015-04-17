@@ -10,17 +10,19 @@
 
     <table class="table sortable-theme-bootstrap table-hover" data-sortable>
       <th></th>
-      <th data-sorted="true" data-sorted-direction="descending">District/Area</th>
+      <th data-sorted="true" data-sorted-direction="descending">District</th>
       <th>Gender</th>
       <th>First Name</th>
       <th>Last Name</th>
       <th>Owner</th>
       <th>Age</th>
-      <th>Tessera</th>
-      <th>Approved?</th>
       <th>View on HGRPG</th>
+      <th>Tessera</th>
+      <th>Tessera approved?</th>
 
       <% @check.characters.each do |char| %>
+        <% tessera = @tessera[char.id]
+           tessera ||= Tessera.new.attributes %>
         <tr>
           <td><a href="/character/<%= char.id %>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></td>
           <td><%= char.home_area %></td>
@@ -30,10 +32,10 @@
           <td><a href="/user/<%= char.user_id%>"><%= User.find_by_id(char.user_id).display_name %></a></td>
           <td><%= char.age %></td>
           <td><a href="<%= char.bio_thread %>" target="_blank">[link]</a></td>
-          <td><%= @tessera[char.id]['number'] %></td>
+          <td><%= tessera['number'].nil? ? '0' : tessera['number'] %></td>
 
           <td>
-            <% if @tessera[char.id]['approved'] %>
+            <% if tessera['approved'] || tessera['number'].nil? %>
               <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
             <% else %>
               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
