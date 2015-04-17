@@ -13,7 +13,12 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require jquery.turbolinks
 //= require turbolinks
 //= require moment
 //= require bootstrap-datetimepicker
+//= require bootstrap-select
+//= require bootstrap/alert
+//= require bootstrap/dropdown
+//= require twitter/typeahead
 //= require_tree .

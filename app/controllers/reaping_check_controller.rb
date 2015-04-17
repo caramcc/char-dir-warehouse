@@ -6,7 +6,11 @@ class ReapingCheckController < ApplicationController
       render :status => :unauthorized
     end
 
-    rc = ReapingCheck.new(reaping_check_params)
+    check_params = reaping_check_params
+    check_params[:opens_on] = Date.strptime(check_params[:opens_on], '%m/%d/%Y %I:%M %p')
+    check_params[:closes_on] = Date.strptime(check_params[:closes_on], '%m/%d/%Y %I:%M %p')
+
+    rc = ReapingCheck.new(check_params)
 
     rc.games ||= ReapingCheck.last.games + 1
 
@@ -88,7 +92,12 @@ class ReapingCheckController < ApplicationController
 
   def show_by_games
     @check = ReapingCheck.find_by_games(params[:games])
-    # render json: @check.characters
+    tessera = Tessera.where(reaping_check_id: @check.id)
+    @tessera = {}
+    tessera.each do |t|
+      @tessera[t.character_id] = t.attributes
+    end
+    puts @tessera
   end
 
   def update
@@ -97,6 +106,32 @@ class ReapingCheckController < ApplicationController
 
   def close
 
+  end
+
+  def all_tessera
+    if current_user.can_approve?
+      @check = ReapingCheck.find_by_games(params[:games])
+      tessera = Tessera.where(reaping_check_id: @check.id)
+      @tessera = {}
+      tessera.each do |t|
+        @tessera[t.character_id] = t.attributes
+      end
+    else
+      render status: :unauthorized
+    end
+  end
+
+  def update_all_tessera
+    if current_user.can_approve?
+      params[:tessera].each do |id|
+        tess = Tessera.find_by_id(id)
+        tess.approved = true
+        tess.save
+      end
+      redirect_to "/checks/reaping/#{params[:games]}/tessera"
+    else
+      render status: :unauthorized
+    end
   end
 
   private

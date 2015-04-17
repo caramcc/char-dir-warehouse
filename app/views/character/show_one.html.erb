@@ -13,7 +13,7 @@
     </div>
       <ul class="list-group">
         <li class="list-group-item"><b>Age:</b> <%= @char.age %></li>
-        <li class="list-group-item"><b>Area:</b> <%= @char.home_area.pretty_area %></li>
+        <li class="list-group-item"><b><%= @char.special.blank? ? '' : "#{@char.special}, " %><%= Character.pretty_area(@char.home_area) %></b></li>
         <li class="list-group-item"><b>Gender:</b> <%= @char.gender %></li>
         <li class="list-group-item"><b>Face Claim:</b> <%= @char.fc_first %> <%= @char.fc_last %></li>
         <% unless @char.reaping_checks.blank? %>

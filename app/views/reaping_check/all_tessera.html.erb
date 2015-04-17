@@ -1,0 +1,59 @@
+<div class="container">
+
+  <h1><%= @check.games.ordinalize %> Games Reaping Check: Characters</h1>
+
+  <form action="/checks/reaping/tessera" method="POST" class="form-group">
+    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+    <input name="games" type="hidden" value="<%= @check.games %>" />
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <!--<div class="panel-heading">Approved Characters</div>-->
+
+      <!--TODO: Make the table actually sortable-->
+
+      <table class="table sortable-theme-bootstrap table-hover" data-sortable>
+        <th></th>
+        <th data-sorted="true" data-sorted-direction="descending">District/Area</th>
+        <th>Gender</th>
+        <th>Name</th>
+        <th>Owner</th>
+        <th>Age</th>
+        <th>View on HGRPG</th>
+        <th>Previous Tessera</th>
+        <th>Tessera</th>
+        <th>Approved?</th>
+        <th>Approve:</th>
+
+
+        <% @check.characters.each do |char| %>
+          <tr>
+            <td><a href="/character/<%= char.id %>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></td>
+            <td><%= char.home_area %></td>
+            <td><%= char.gender %></td>
+            <td><label for="<%= @tessera[char.id]['id'] %>"><%= char.first_name %> <%= char.last_name %></label></td>
+            <td><a href="/user/<%= char.user_id%>"><%= User.find_by_id(char.user_id).display_name %></a></td>
+            <td><%= char.age %></td>
+            <td><a href="<%= char.bio_thread %>" target="_blank">[link]</a></td>
+            <td><%= @tessera[char.id]['previous_number'] %></td>
+            <td><%= @tessera[char.id]['number'] %></td>
+
+            <td>
+              <% if @tessera[char.id]['approved'] %>
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+              <% else %>
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              <% end %>
+            </td>
+
+            <td>
+              <input type="checkbox" name="tessera[]" id="<%= @tessera[char.id]['id'] %>"
+                     value="<%= @tessera[char.id]['id'] %>" checked="<%= @tessera[char.id]['approved'] %>" disabled="<%= @tessera[char.id]['approved'] %>">
+            </td>
+
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <button type="submit" class="btn btn-primary">Approve</button>
+  </form>
+</div>

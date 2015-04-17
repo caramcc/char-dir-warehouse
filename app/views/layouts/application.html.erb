@@ -6,10 +6,60 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= favicon_link_tag %>
   <%= csrf_meta_tags %>
+
+  <script type="text/javascript">
+    var countries = new Bloodhound({
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      limit: 10,
+      prefetch: {
+        // url points to a json file that contains an array of country names, see
+        // https://github.com/twitter/typeahead.js/blob/gh-pages/data/countries.json
+        url: <%= Rails.root.join('api', 'suggestions.json') %>,
+        // the json file contains an array of strings, but the Bloodhound
+        // suggestion engine expects JavaScript objects so this converts all of
+        // those strings
+        filter: function(list) {
+          return $.map(list, function(country) { return { name: country }; });
+        }
+      }
+    });
+
+    // kicks off the loading/processing of `local` and `prefetch`
+    countries.initialize();
+
+    // passing in `null` for the `options` arguments will result in the default
+    // options being used
+    $('#prefetch .typeahead').typeahead(null, {
+      name: 'countries',
+      displayKey: 'name',
+      // `ttAdapter` wraps the suggestion engine in an adapter that
+      // is compatible with the typeahead jQuery plugin
+      source: countries.ttAdapter()
+    });
+    // replace above with below, except right... also need a way to link to values
+    $(function () {
+      $('.local-type').typeahead({
+        name: 'local-tt',
+      }, {
+        source: function (query, cb) {
+          cb(data);
+        },
+        templates: {
+          empty: [
+            '<div class="empty-message">',
+            'unable to find any Best Picture winners that match the current query',
+            '</div>'].join('\n'),
+          suggestion: Handlebars.compile('<p><strong>{{locality}}</strong> – {{city}}</p>')
+        }
+      });
+    });
+  </script>
+
 </head>
 <body>
 <!--<div class="container">-->
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-inverse navbar-static-top">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -45,7 +95,7 @@
             <div class="form-group">
               <input type="text" class="form-control" placeholder="Search" name="query" >
             </div>
-            <button type="submit" class="btn btn-default" >Submit</button>
+            <button type="submit" class="btn btn-default" >Go</button>
           </form>
           <ul class="nav navbar-nav navbar-right">
 
@@ -56,6 +106,10 @@
                       <ul class="dropdown-menu" role="menu">
                         <li><a href="/checks/new/reaping">New Reaping Check</a></li>
                         <li><a href="/checks/new/reaping">New Activity Check</a></li>
+                        <% if ReapingCheck.current_games %>
+                          <li class="divider"></li>
+                          <li><a href="/checks/reaping/<%= ReapingCheck.current_games %>/tessera">Approve Tessera</a></li>
+                        <% end %>
                         <li class="divider"></li>
                         <li><a href="/characters/pending">Pending Characters</a></li>
                         <li><a href="/characters/fcs/pending">Pending FCs</a></li>
