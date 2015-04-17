@@ -56,7 +56,7 @@ class CharacterController < ApplicationController
   def show_one
 
     @char = Character.joins(:user).find_by(id: params[:id])
-    udn = User.find_by_id(session[:user_id]).display_name
+    user_display_name = User.find_by_id(session[:user_id]).display_name
     @latest_checks = {}
     rc = ReapingCheck.last
     ac = ActivityCheck.last
@@ -87,7 +87,7 @@ class CharacterController < ApplicationController
       }
     end
 
-    @latest_checks[:udn] = udn
+    @latest_checks[:udn] = user_display_name
 
   end
 
@@ -104,7 +104,6 @@ class CharacterController < ApplicationController
     else
       render file: 'public/403.html', status: :forbidden
     end
-
 
   end
 
@@ -135,6 +134,14 @@ class CharacterController < ApplicationController
     if old_char.in_reaping? && params[:character][:gender] == 'Other'
       old_char.remove_from_reaping
     end
+
+    approve = old_char.update_tessera(params[:character][:tessera])
+    if approve
+      old_char.approve_tessera(params[:character][:tessera_approved])
+    end
+
+    params[:character].delete :tessera
+    params[:character].delete :tessera_approved
 
     params[:character].each do |key, value|
       if old_char.respond_to?(key)
@@ -277,6 +284,16 @@ class CharacterController < ApplicationController
     end
   end
 
+
+  def user_tessera
+    @chars = Character.find_by_user_id(params[:id])
+
+  end
+
+  def all_tessera
+    rc_id = ReapingCheck.find_by_games(params[:games]).id
+    @tessera = Tessera.where(reaping_check_id: rc_id)
+  end
 
   private
   def character_params

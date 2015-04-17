@@ -273,4 +273,8 @@ class ApiController < ApplicationController
     render json: data, status: 200
   end
 
+  def tessera
+    render json: Tessera.all, status: 200
+  end
+
 end

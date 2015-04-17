@@ -95,7 +95,36 @@
         </div>
       </div>
 
-        <% if @user.can_approve? %>
+        <% if @char.in_reaping? %>
+          <div class="panel panel-default">
+            <div class="panel-heading">Tessera</div>
+            <div class="panel-body">
+              <div class="input-group input-group">
+                <span class="input-group-addon" id="sizing-addon1"><label for="character_tessera">Tessera</label></span>
+                <span class="input-group-addon right">
+                  <%= f.number_field :tessera, value: @char.active_tessera.number, class: 'form-control',
+                                     min: 0, max: 3, disabled: current_user.id != @char.user_id %></span>
+              </div>
+
+              <div class="input-group input-group">
+                <span class="input-group-addon" id="sizing-addon1">
+                  Current Tessera <%= @char.active_tessera.approved ? '' : 'not' %> approved.</span>
+              </div>
+
+              <% if @char.user_id != current_user.id %>
+                <div class="input-group input-group">
+                  <span class="input-group-addon" id="sizing-addon1"><label for="character_tessera_approved">Approve Tessera:</label></span>
+                  <span class="input-group-addon right">
+                    <%= f.check_box :tessera_approved, checked: @char.active_tessera.approved, disabled: @char.active_tessera.number == 0 %>
+                  </span>
+                </div>
+              <% end %>
+
+            </div>
+          </div>
+        <% end %>
+
+        <% if current_user.can_approve? && (current_user.id != @char.user_id || current_user.id == 1) %>
         <div class="panel panel-default">
           <div class="panel-heading">Admin Options</div>
           <div class="panel-body">

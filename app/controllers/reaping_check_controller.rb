@@ -92,6 +92,12 @@ class ReapingCheckController < ApplicationController
 
   def show_by_games
     @check = ReapingCheck.find_by_games(params[:games])
+    tessera = Tessera.where(reaping_check_id: @check.id)
+    @tessera = {}
+    tessera.each do |t|
+      @tessera[t.character_id] = t.attributes
+    end
+    puts @tessera
     # render json: @check.characters
   end
 
@@ -101,6 +107,19 @@ class ReapingCheckController < ApplicationController
 
   def close
 
+  end
+
+  def all_tessera
+    rc = ReapingCheck.find_by_games(params[:games])
+    @chars = []
+    rc.characters.each do |char|
+      char = char.attributes
+      tessera = char.active_tessera
+      char[:tessera_number] = tessera.number
+      char[:tessera_previous] = tessera.previous_number
+      char[:tessera_approved] = tessera.approved
+      @chars.push char
+    end
   end
 
   private

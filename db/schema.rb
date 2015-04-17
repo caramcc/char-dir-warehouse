@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150415154544) do
+ActiveRecord::Schema.define(version: 20150415180014) do
 
   create_table "activity_checks", force: :cascade do |t|
     t.datetime "opens_on"
@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(version: 20150415154544) do
     t.datetime "updated_at",                 null: false
     t.integer  "character_id",     limit: 4
     t.integer  "reaping_check_id", limit: 4
+    t.integer  "previous_number",  limit: 4
   end
 
   create_table "users", force: :cascade do |t|

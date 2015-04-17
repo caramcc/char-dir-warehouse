@@ -38,6 +38,11 @@ Rails.application.routes.draw do
   get '/tos' => 'application#eula'
   get '/privacy' => 'application#privacy'
 
+  # Sessions
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
   # User
   get '/signup' => 'user#new'
   post '/user' => 'user#create'
@@ -46,14 +51,11 @@ Rails.application.routes.draw do
   get '/user/edit/:id' => 'user#edit'
   post '/user/update' => 'user#update'
   get '/user/:id/characters' => 'user#characters'
+  get '/user/:id/characters/tessera' => 'character#user_tessera'
 
   get '/users' => 'user#index'
   get '/user' => 'user#index' # may as well alias this (shouldn't conflict with POST route for /user)
 
-  # Sessions
-  get '/login' => 'sessions#new'
-  post '/login' => 'sessions#create'
-  get '/logout' => 'sessions#destroy'
 
 
   # Character (single)
@@ -64,6 +66,8 @@ Rails.application.routes.draw do
   post '/character/update' => 'character#update'
   get '/character/delete/:id' => 'character#delete'
   post '/character/delete' => 'character#destroy'
+  get '/character/tessera/:id' => 'character#edit_tessera'
+  post '/character/tessera' => 'character#update_tessera'
 
   # Characters (all/plural)
   get '/characters' => 'character#show'
@@ -84,6 +88,7 @@ Rails.application.routes.draw do
   post '/checks/reaping/:games/add' => 'reaping_check#add'
   get '/checks/new/reaping/' => 'reaping_check#new'
   post '/checks/create/reaping/' => 'reaping_check#create'
+  get '/checks/reaping/:games/tessera' => 'character#all_tessera'
 
   # Checks - activity
   get '/checks/activity' => 'activity_check#index'
@@ -110,6 +115,7 @@ Rails.application.routes.draw do
   get '/api/find/' => 'api#generic_find_by_name'
 
   get '/api/suggestions' => 'api#search_suggest'
+  get '/api/tessera' => 'api#tessera'
 
   # Log Routes
   get '/logs' => 'api#logs'
