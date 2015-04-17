@@ -56,7 +56,7 @@ class Character < ActiveRecord::Base
         tessera.character_id = self.id
         tessera.reaping_check_id = ReapingCheck.current_games_id
         tessera.previous_number =  0
-      else
+      elsif tessera.approved
         tessera.previous_number = tessera.number
       end
 
