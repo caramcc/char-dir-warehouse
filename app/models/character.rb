@@ -3,6 +3,7 @@ class Character < ActiveRecord::Base
   #               :fc_last, :char_approved, :fc_approved
 
   belongs_to :user
+  belongs_to :tessera
   has_and_belongs_to_many :reaping_checks
   has_and_belongs_to_many :activity_checks
 
@@ -33,13 +34,45 @@ class Character < ActiveRecord::Base
 
 
   def in_reaping?
-
     if ReapingCheck.last.nil?
       false
     else
       ReapingCheck.last.is_active? && self.reaping_checks.exists?(ReapingCheck.last)
     end
+  end
 
+  def active_tessera
+    Tessera.where(character_id: self.id, reaping_check_id: ReapingCheck.current_games_id).first
+  end
+
+  # returns "should the tessera be approved?"
+  def update_tessera(number)
+    if number.blank?
+      true #
+    else
+      tessera = self.active_tessera
+      if tessera.nil?
+        tessera = Tessera.new
+        tessera.character_id = self.id
+        tessera.reaping_check_id = ReapingCheck.current_games_id
+        tessera.previous_number =  0
+      elsif tessera.approved
+        tessera.previous_number = tessera.number
+      end
+
+      tessera.approved = tessera.previous_number == number.to_i
+      tessera.number = number
+      tessera.save
+      false
+    end
+  end
+
+  def approve_tessera(boolean)
+    unless boolean.blank?
+      tessera = self.active_tessera
+      tessera.approved = boolean
+      tessera.save
+    end
   end
 
   def remove_from_reaping

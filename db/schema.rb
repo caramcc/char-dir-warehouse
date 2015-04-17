@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150410233121) do
+ActiveRecord::Schema.define(version: 20150415180014) do
 
   create_table "activity_checks", force: :cascade do |t|
     t.datetime "opens_on"
@@ -24,6 +24,14 @@ ActiveRecord::Schema.define(version: 20150410233121) do
   create_table "activity_checks_characters", force: :cascade do |t|
     t.integer "character_id",      limit: 4
     t.integer "activity_check_id", limit: 4
+  end
+
+  create_table "armors", force: :cascade do |t|
+    t.integer  "damage",     limit: 4
+    t.integer  "hp",         limit: 4
+    t.string   "area",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "characters", force: :cascade do |t|
@@ -53,6 +61,39 @@ ActiveRecord::Schema.define(version: 20150410233121) do
     t.integer "reaping_check_id", limit: 4
   end
 
+  create_table "combatants", force: :cascade do |t|
+    t.integer  "damage",     limit: 4
+    t.integer  "hp",         limit: 4
+    t.boolean  "fire",       limit: 1
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "containers", force: :cascade do |t|
+    t.boolean  "full",       limit: 1
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "first_aids", force: :cascade do |t|
+    t.integer  "uses",          limit: 4
+    t.integer  "damage_healed", limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "foods", force: :cascade do |t|
+    t.boolean  "poisoned",   limit: 1
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "reaping_checks", force: :cascade do |t|
     t.datetime "opens_on"
     t.datetime "closes_on"
@@ -61,15 +102,47 @@ ActiveRecord::Schema.define(version: 20150410233121) do
     t.integer  "games",      limit: 4
   end
 
+  create_table "tar_containers", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tesseras", force: :cascade do |t|
+    t.integer  "number",           limit: 4
+    t.boolean  "approved",         limit: 1
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "character_id",     limit: 4
+    t.integer  "reaping_check_id", limit: 4
+    t.integer  "previous_number",  limit: 4
+  end
+
   create_table "users", force: :cascade do |t|
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.string   "username",        limit: 255
-    t.string   "display_name",    limit: 255
-    t.string   "characters",      limit: 255
-    t.string   "group",           limit: 255
-    t.string   "email",           limit: 255
-    t.string   "password_digest", limit: 255
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.string   "username",                    limit: 255
+    t.string   "display_name",                limit: 255
+    t.string   "characters",                  limit: 255
+    t.string   "group",                       limit: 255
+    t.string   "email",                       limit: 255
+    t.string   "password_digest",             limit: 255
+    t.boolean  "email_verified",              limit: 1
+    t.string   "email_token",                 limit: 255
+    t.string   "password_reset_token",        limit: 255
+    t.datetime "password_reset_token_expiry"
+  end
+
+  create_table "water_containers", force: :cascade do |t|
+    t.boolean  "purified",   limit: 1
+    t.boolean  "poisoned",   limit: 1
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "weapons", force: :cascade do |t|
+    t.string   "class",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_foreign_key "characters", "activity_checks"

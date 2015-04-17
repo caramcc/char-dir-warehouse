@@ -5,7 +5,11 @@ class ActivityCheckController < ApplicationController
       render :status => :unauthorized
     end
 
-    ac = ActivityCheck.new(activity_check_params)
+    check_params = activity_check_params
+    check_params[:opens_on] = Date.strptime(check_params[:opens_on], '%m/%d/%Y %I:%M %p')
+    check_params[:closes_on] = Date.strptime(check_params[:closes_on], '%m/%d/%Y %I:%M %p')
+
+    ac = ActivityCheck.new(check_params)
 
     ac.games ||= ActivityCheck.last.games + 1
 

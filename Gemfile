@@ -39,6 +39,9 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
 # bootstrap select
 gem 'bootstrap-select-rails'
 
+# Twitter typeahead search suggest
+gem 'twitter-typeahead-rails'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

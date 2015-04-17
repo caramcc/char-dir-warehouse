@@ -20,4 +20,5 @@
 //= require bootstrap-select
 //= require bootstrap/alert
 //= require bootstrap/dropdown
+//= require twitter/typeahead
 //= require_tree .
