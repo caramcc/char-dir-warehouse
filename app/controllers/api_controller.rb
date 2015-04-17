@@ -1,6 +1,6 @@
 class ApiController < ApplicationController
 
-  before_filter :authorize, :except => [:search_suggest]
+  before_filter :authorize, :except => [:search_suggest, :all_active_characters]
 
   def character_get_all
     render json: Character.all, status: 200
@@ -8,6 +8,22 @@ class ApiController < ApplicationController
 
   def character_get_by_id
     render json: Character.find_by_id(params[:id]), status: 200
+  end
+
+  def all_active_characters
+    active_chars = Character.all.select { |char| char.is_active? && char.char_approved }
+    # acceptable params: district, special
+    unless params[:area].blank?
+      areas = params[:area].split(',')
+      active_chars.select! { |char| areas.include? char.home_area }
+    end
+
+    unless params[:special].blank?
+      specials = params[:special].split(',').map { |s| s.capitalize }
+      active_chars.select! { |char| specials.include? char.special }
+    end
+
+    render json: active_chars, status: 200
   end
 
   def character_find
