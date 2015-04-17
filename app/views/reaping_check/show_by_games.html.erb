@@ -29,6 +29,7 @@
           <td><%= char.last_name %></td>
           <td><a href="/user/<%= char.user_id%>"><%= User.find_by_id(char.user_id).display_name %></a></td>
           <td><%= char.age %></td>
+          <td><a href="<%= char.bio_thread %>" target="_blank">[link]</a></td>
           <td><%= @tessera[char.id]['number'] %></td>
 
           <td>
@@ -39,7 +40,6 @@
             <% end %>
           </td>
 
-          <td><a href="<%= char.bio_thread %>" target="_blank">[link]</a></td>
         </tr>
       <% end %>
     </table>

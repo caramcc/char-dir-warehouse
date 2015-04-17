@@ -98,7 +98,6 @@ class ReapingCheckController < ApplicationController
       @tessera[t.character_id] = t.attributes
     end
     puts @tessera
-    # render json: @check.characters
   end
 
   def update
@@ -110,15 +109,28 @@ class ReapingCheckController < ApplicationController
   end
 
   def all_tessera
-    rc = ReapingCheck.find_by_games(params[:games])
-    @chars = []
-    rc.characters.each do |char|
-      char = char.attributes
-      tessera = char.active_tessera
-      char[:tessera_number] = tessera.number
-      char[:tessera_previous] = tessera.previous_number
-      char[:tessera_approved] = tessera.approved
-      @chars.push char
+    if current_user.can_approve?
+      @check = ReapingCheck.find_by_games(params[:games])
+      tessera = Tessera.where(reaping_check_id: @check.id)
+      @tessera = {}
+      tessera.each do |t|
+        @tessera[t.character_id] = t.attributes
+      end
+    else
+      render status: :unauthorized
+    end
+  end
+
+  def update_all_tessera
+    if current_user.can_approve?
+      params[:tessera].each do |id|
+        tess = Tessera.find_by_id(id)
+        tess.approved = true
+        tess.save
+      end
+      redirect_to "/checks/reaping/#{params[:games]}/tessera"
+    else
+      render status: :unauthorized
     end
   end
 

@@ -287,13 +287,8 @@ class CharacterController < ApplicationController
 
   def user_tessera
     @chars = Character.find_by_user_id(params[:id])
-
   end
 
-  def all_tessera
-    rc_id = ReapingCheck.find_by_games(params[:games]).id
-    @tessera = Tessera.where(reaping_check_id: rc_id)
-  end
 
   private
   def character_params

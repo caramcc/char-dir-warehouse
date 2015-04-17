@@ -66,8 +66,6 @@ Rails.application.routes.draw do
   post '/character/update' => 'character#update'
   get '/character/delete/:id' => 'character#delete'
   post '/character/delete' => 'character#destroy'
-  get '/character/tessera/:id' => 'character#edit_tessera'
-  post '/character/tessera' => 'character#update_tessera'
 
   # Characters (all/plural)
   get '/characters' => 'character#show'
@@ -88,7 +86,8 @@ Rails.application.routes.draw do
   post '/checks/reaping/:games/add' => 'reaping_check#add'
   get '/checks/new/reaping/' => 'reaping_check#new'
   post '/checks/create/reaping/' => 'reaping_check#create'
-  get '/checks/reaping/:games/tessera' => 'character#all_tessera'
+  get '/checks/reaping/:games/tessera' => 'reaping_check#all_tessera'
+  post '/checks/reaping/tessera' => 'reaping_check#update_all_tessera'
 
   # Checks - activity
   get '/checks/activity' => 'activity_check#index'
