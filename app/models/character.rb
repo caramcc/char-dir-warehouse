@@ -41,6 +41,14 @@ class Character < ActiveRecord::Base
     end
   end
 
+  def is_active?
+    if ActivityCheck.last.nil?
+      false
+    else
+      self.activity_checks.exists?(ActivityCheck.last)
+    end
+  end
+
   def active_tessera
     Tessera.where(character_id: self.id, reaping_check_id: ReapingCheck.current_games_id).first
   end
