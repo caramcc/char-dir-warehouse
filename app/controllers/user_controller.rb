@@ -12,8 +12,6 @@ class UserController < ApplicationController
 
   def show
     @user = User.find_by_id(params[:id])
-    @viewing = User.find_by_id(session[:user_id])
-    @viewing ||= User.new
 
     @latest_checks = {}
     rc = ReapingCheck.last

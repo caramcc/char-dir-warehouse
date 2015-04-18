@@ -7,6 +7,7 @@
   <div class="panel panel-default">
     <!-- Default panel contents -->
       <table class="table sortable-theme-bootstrap" data-sortable>
+        <th></th>
         <th>User</th>
         <th>Name</th>
         <th>Special</th>
@@ -19,6 +20,7 @@
         <% @pending.each do |user, chars| %>
           <% chars.each do |char| %>
             <tr>
+              <td><a href="/character/<%= char.id %>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></td>
               <td><%= user %></td>
               <td><label for="<%= char.id %>"><%= char.first_name %> <%= char.last_name %></label></td>
               <td><%= char.special %></td>

@@ -56,7 +56,7 @@ class CharacterController < ApplicationController
   def show_one
 
     @char = Character.joins(:user).find_by(id: params[:id])
-    user_display_name = User.find_by_id(session[:user_id]).display_name
+    user_display_name = User.find_by_id(@char.user_id).display_name
     @latest_checks = {}
     rc = ReapingCheck.last
     ac = ActivityCheck.last
