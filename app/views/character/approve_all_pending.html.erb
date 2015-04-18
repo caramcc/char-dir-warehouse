@@ -10,6 +10,7 @@
         <th>User</th>
         <th>Name</th>
         <th data-sorted="true" data-sorted-direction="descending">District/Area</th>
+        <th>Special</th>
         <th>Age</th>
         <th>Gender</th>
         <th>View on HGRPG</th>
@@ -20,6 +21,7 @@
             <tr>
               <td><%= user %></td>
               <td><label for="<%= char.id %>"><%= char.first_name %> <%= char.last_name %></label></td>
+              <td><%= char.special %></td>
               <td><%= char.home_area %></td>
               <td><%= char.age %></td>
               <td><%= char.gender %></td>

@@ -109,6 +109,7 @@ Rails.application.routes.draw do
 
   get '/api/character' => 'api#character_get_all'
   get '/api/character/:id' => 'api#character_get_by_id'
+  get '/api/characters/active' => 'api#all_active_characters'
   get '/api/find/character/' => 'api#character_find'
 
   get '/api/find/' => 'api#generic_find_by_name'
