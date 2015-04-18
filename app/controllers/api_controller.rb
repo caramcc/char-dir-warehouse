@@ -11,11 +11,12 @@ class ApiController < ApplicationController
   end
 
   def all_active_characters
+    headers['Last-Modified'] = Time.now.httpdate
     active_chars = Character.all.select { |char| char.is_active? && char.char_approved }
     # acceptable params: district, special
     unless params[:area].blank?
       areas = params[:area].split(',')
-      active_chars.select! { |char| areas.include? char.home_area }
+      active_chars.select! { |char| areas.include? char.home_area.downcase }
     end
 
     unless params[:special].blank?
