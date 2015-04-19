@@ -58,6 +58,7 @@ Rails.application.routes.draw do
 
 
 
+  scope module: :warehouse do
   # Character (single)
   get '/character/new' => 'character#new'
   post '/character' => 'character#create'
@@ -96,6 +97,8 @@ Rails.application.routes.draw do
   post '/checks/activity/:games/add' => 'activity_check#add'
   get '/checks/new/activity/' => 'activity_check#new'
   post '/checks/create/activity/' => 'activity_check#create'
+
+  end
 
   # Search
   get '/search' => 'search#search'
