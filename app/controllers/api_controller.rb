@@ -1,6 +1,5 @@
 class ApiController < ApplicationController
-  include Warehouse
-  include Hero
+  include Warehouse, Hero
 
   before_filter :authorize, :except => [:search_suggest, :all_active_characters]
 
@@ -294,6 +293,19 @@ class ApiController < ApplicationController
 
   def tessera
     render json: Tessera.all, status: 200
+  end
+
+
+  def attacks
+    attacks = []
+    Attack.all.each do |attack|
+      attacks.push attack.weaponize
+    end
+    render json: attacks, status:200
+  end
+
+  def attack
+    render json: Attack.find_by_attack_code(params[:code]).weaponize, status:200
   end
 
 end
