@@ -27,8 +27,8 @@ module Hero
       self.type == 'Tribute'
     end
 
-    def same_location?()
-
+    def same_location?(combatant_or_item)
+      self.active_location == combatant_or_item.active_location
     end
 
     def end_of_day
