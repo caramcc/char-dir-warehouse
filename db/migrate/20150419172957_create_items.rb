@@ -10,6 +10,7 @@ class CreateItems < ActiveRecord::Migration
       t.integer :uses
       t.integer :damage_healed
       t.boolean :poisoned
+      t.boolean :flammable
       t.boolean :purified
       t.string :weapon_class
     end

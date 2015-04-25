@@ -24,6 +24,7 @@ module Warehouse
     config.active_record.raise_in_transactional_callbacks = true
 
     config.filter_parameters << :password
+    config.autoload_paths += %W(#{config.root}/lib)
 
     config.staff_permissions = {
         :account_edit => %w(ADMIN MODERATOR LIBRARIAN),

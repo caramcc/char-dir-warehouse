@@ -1,4 +1,5 @@
 class ApiController < ApplicationController
+  include Warehouse
 
   before_filter :authorize, :except => [:search_suggest, :all_active_characters]
 
