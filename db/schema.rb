@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150419173724) do
+ActiveRecord::Schema.define(version: 20150425063430) do
+
+  create_table "actions", force: :cascade do |t|
+    t.integer "combatant1_id",              limit: 4
+    t.integer "combatant2_id",              limit: 4
+    t.integer "combatant1_starting_damage", limit: 4
+    t.integer "combatant1_ending_damage",   limit: 4
+    t.string  "type",                       limit: 255
+    t.integer "location_id",                limit: 4
+    t.integer "day_id",                     limit: 4
+  end
 
   create_table "activity_checks", force: :cascade do |t|
     t.datetime "opens_on"
@@ -54,14 +64,6 @@ ActiveRecord::Schema.define(version: 20150419173724) do
   end
 
   create_table "combatants", force: :cascade do |t|
-    t.integer  "damage",     limit: 4
-    t.integer  "hp",         limit: 4
-    t.boolean  "fire",       limit: 1
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
-  create_table "hero_combatants", force: :cascade do |t|
     t.string   "type",       limit: 255
     t.string   "name",       limit: 255
     t.integer  "damage",     limit: 4
@@ -88,12 +90,30 @@ ActiveRecord::Schema.define(version: 20150419173724) do
     t.string  "weapon_class",  limit: 255
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.boolean "open",      limit: 1
+    t.integer "closed_on", limit: 4
+  end
+
   create_table "reaping_checks", force: :cascade do |t|
     t.datetime "opens_on"
     t.datetime "closes_on"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.integer  "games",      limit: 4
+  end
+
+  create_table "stations", force: :cascade do |t|
+    t.boolean "combat",         limit: 1
+    t.string  "station_name",   limit: 255
+    t.integer "combatatant_id", limit: 4
+  end
+
+  create_table "tds", force: :cascade do |t|
+    t.integer "action_id",    limit: 4
+    t.integer "combatant_id", limit: 4
+    t.integer "td_counter",   limit: 4
+    t.boolean "active",       limit: 1
   end
 
   create_table "tesseras", force: :cascade do |t|

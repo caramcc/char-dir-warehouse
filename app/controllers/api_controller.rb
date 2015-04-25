@@ -1,5 +1,6 @@
 class ApiController < ApplicationController
   include Warehouse
+  include Hero
 
   before_filter :authorize, :except => [:search_suggest, :all_active_characters]
 
