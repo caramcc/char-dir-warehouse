@@ -24,7 +24,7 @@ module Warehouse
     config.active_record.raise_in_transactional_callbacks = true
 
     config.filter_parameters << :password
-    config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
 
     config.staff_permissions = {
         :account_edit => %w(ADMIN MODERATOR LIBRARIAN),
