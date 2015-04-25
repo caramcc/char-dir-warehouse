@@ -11,16 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150425063430) do
+ActiveRecord::Schema.define(version: 20150425154748) do
 
   create_table "actions", force: :cascade do |t|
-    t.integer "combatant1_id",              limit: 4
-    t.integer "combatant2_id",              limit: 4
-    t.integer "combatant1_starting_damage", limit: 4
-    t.integer "combatant1_ending_damage",   limit: 4
-    t.string  "type",                       limit: 255
-    t.integer "location_id",                limit: 4
-    t.integer "day_id",                     limit: 4
+    t.integer "recipient_starting_damage", limit: 4
+    t.integer "recipient_ending_damage",   limit: 4
+    t.string  "type",                      limit: 255
+    t.integer "location_id",               limit: 4
+    t.integer "day_id",                    limit: 4
+  end
+
+  create_table "actions_combatants", force: :cascade do |t|
+    t.integer "action_id",    limit: 4
+    t.integer "combatant_id", limit: 4
   end
 
   create_table "activity_checks", force: :cascade do |t|
@@ -64,30 +67,43 @@ ActiveRecord::Schema.define(version: 20150425063430) do
   end
 
   create_table "combatants", force: :cascade do |t|
-    t.string   "type",       limit: 255
-    t.string   "name",       limit: 255
-    t.integer  "damage",     limit: 4
-    t.integer  "hp",         limit: 4
-    t.boolean  "has_fire",   limit: 1
-    t.integer  "water_days", limit: 4
-    t.integer  "food_days",  limit: 4
-    t.boolean  "poisoned",   limit: 1
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "type",            limit: 255
+    t.string   "name",            limit: 255
+    t.integer  "damage",          limit: 4
+    t.integer  "hp",              limit: 4
+    t.boolean  "has_fire",        limit: 1
+    t.integer  "water_days",      limit: 4
+    t.integer  "food_days",       limit: 4
+    t.boolean  "poisoned",        limit: 1
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "active_location", limit: 4
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.integer "number", limit: 4
+  end
+
+  create_table "inventory_delta", force: :cascade do |t|
+    t.integer "action_id",    limit: 4
+    t.integer "item_id",      limit: 4
+    t.integer "combatant_id", limit: 4
+    t.string  "change",       limit: 255
   end
 
   create_table "items", force: :cascade do |t|
-    t.string  "type",          limit: 255
-    t.string  "name",          limit: 255
-    t.integer "damage",        limit: 4
-    t.integer "hp",            limit: 4
-    t.integer "area",          limit: 4
-    t.boolean "full",          limit: 1
-    t.integer "uses",          limit: 4
-    t.integer "damage_healed", limit: 4
-    t.boolean "poisoned",      limit: 1
-    t.boolean "purified",      limit: 1
-    t.string  "weapon_class",  limit: 255
+    t.string  "type",            limit: 255
+    t.string  "name",            limit: 255
+    t.integer "damage",          limit: 4
+    t.integer "hp",              limit: 4
+    t.integer "area",            limit: 4
+    t.boolean "full",            limit: 1
+    t.integer "uses",            limit: 4
+    t.integer "damage_healed",   limit: 4
+    t.boolean "poisoned",        limit: 1
+    t.boolean "purified",        limit: 1
+    t.string  "weapon_class",    limit: 255
+    t.integer "active_location", limit: 4
   end
 
   create_table "locations", force: :cascade do |t|
@@ -104,9 +120,9 @@ ActiveRecord::Schema.define(version: 20150425063430) do
   end
 
   create_table "stations", force: :cascade do |t|
-    t.boolean "combat",         limit: 1
-    t.string  "station_name",   limit: 255
-    t.integer "combatatant_id", limit: 4
+    t.boolean "combat",       limit: 1
+    t.string  "station_name", limit: 255
+    t.integer "combatant_id", limit: 4
   end
 
   create_table "tds", force: :cascade do |t|

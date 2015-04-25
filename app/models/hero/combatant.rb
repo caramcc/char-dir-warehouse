@@ -2,9 +2,11 @@ module Hero
   class Combatant < ActiveRecord::Base
     has_many :stations
     has_many :items
-    has_and_belongs_to_many :locations
+    has_many :locations
     has_and_belongs_to_many :actions
     has_many :tds
+    belongs_to :inventory_delta
+    belongs_to :games
 
     # t.string   "type",       limit: 255
     # t.string   "name",       limit: 255
@@ -14,6 +16,7 @@ module Hero
     # t.integer  "water_days", limit: 4
     # t.integer  "food_days",  limit: 4
     # t.boolean  "poisoned",   limit: 1
+    # t.integer  "active_location"
 
     def alive?
       self.damage < self.hp
