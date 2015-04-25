@@ -23,13 +23,17 @@ module Hero
       self.damage < self.hp
     end
 
-   def is_tribute?
-     self.type == 'Tribute'
-   end
+    def is_tribute?
+      self.type == 'Tribute'
+    end
 
-   def end_of_day
+    def same_location?()
 
-   end
+    end
+
+    def end_of_day
+
+    end
 
   end
 end

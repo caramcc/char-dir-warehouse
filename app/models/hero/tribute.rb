@@ -9,8 +9,8 @@ module Hero
     # alive?
     # is_tribute?
 
-    def can_attack?(combatatant)
-    #   same location as combatatant
+    def can_attack?(combatant)
+    #   same location as combatant
     end
 
 
