@@ -7,6 +7,7 @@ module Hero
     has_many :tds
     belongs_to :inventory_delta
     belongs_to :games
+    belongs_to :user
 
     # t.string   "type",       limit: 255
     # t.string   "name",       limit: 255
