@@ -295,17 +295,31 @@ class ApiController < ApplicationController
     render json: Tessera.all, status: 200
   end
 
+  # TODO: Don't rescue LoadError, fix whatever's causing Hero not to load on first run
 
   def attacks
-    attacks = []
-    Attack.all.each do |attack|
-      attacks.push attack.weaponize
+    begin
+      attacks = []
+      Attack.all.each do |attack|
+        attacks.push attack.weaponize
+      end
+      render json: attacks, status:200
+    rescue LoadError
+      attacks = []
+      Attack.all.each do |attack|
+        attacks.push attack.weaponize
+      end
+      render json: attacks, status:200
     end
-    render json: attacks, status:200
+
   end
 
   def attack
-    render json: Attack.find_by_attack_code(params[:code]).weaponize, status:200
+    begin
+      render json: Attack.find_by_attack_code(params[:code]).weaponize, status:200
+    rescue LoadError
+      render json: Attack.find_by_attack_code(params[:code]).weaponize, status:200
+    end
   end
 
 end
