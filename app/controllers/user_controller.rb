@@ -1,4 +1,5 @@
 class UserController < ApplicationController
+  include Warehouse
 
   def index
     @users = []
