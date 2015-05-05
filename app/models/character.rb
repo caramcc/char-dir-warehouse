@@ -50,8 +50,7 @@ class Character < ActiveRecord::Base
   end
 
   def active_tessera
-    t = Tessera.where(character_id: self.id, reaping_check_id: ReapingCheck.current_games_id).first
-    t ||= Tessera.new
+    Tessera.where(character_id: self.id, reaping_check_id: ReapingCheck.current_games_id).first
   end
 
   # returns "should the tessera be approved?"
