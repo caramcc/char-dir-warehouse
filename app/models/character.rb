@@ -78,6 +78,7 @@ class Character < ActiveRecord::Base
   def approve_tessera(boolean)
     unless boolean.blank?
       tessera = self.active_tessera
+      tessera ||= Tessera.new
       tessera.approved = boolean
       tessera.save
     end
