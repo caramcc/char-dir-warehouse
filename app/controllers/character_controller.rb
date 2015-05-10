@@ -153,6 +153,8 @@ class CharacterController < ApplicationController
 
     if fc_changed
       old_char.fc_approved = false
+      old_char.fc_first = ''
+      old_char.fc_last = ''
     end
 
     if old_char.fc_first.blank? && old_char.fc_last.blank?
