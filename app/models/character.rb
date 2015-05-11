@@ -1,6 +1,7 @@
 class Character < ActiveRecord::Base
   # attr_accessor :id, :owner_id, :first_name, :last_name, :bio_thread, :age, :home_area, :special, :gender, :fc_first,
   #               :fc_last, :char_approved, :fc_approved
+  # flags: fc_flagged (fc_flag), char_flagged (char_flag), shared_fc_owner_id (is a user_id), is_dead, is_tribute, games_number
 
   belongs_to :user
   belongs_to :tessera
