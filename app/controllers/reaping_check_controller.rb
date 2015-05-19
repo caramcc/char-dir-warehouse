@@ -119,6 +119,7 @@ class ReapingCheckController < ApplicationController
           @tessera[char.id].previous_number = 0
           @tessera[char.id].number = 0
           @tessera[char.id].approved = true
+          @tessera[char.id].save
         end
         @tessera[char.id] = @tessera[char.id].attributes
       end
@@ -131,6 +132,7 @@ class ReapingCheckController < ApplicationController
     if current_user.can_approve?
       params[:tessera].each do |id|
         tess = Tessera.find_by_id(id)
+        tess ||= Tessera.new
         tess.approved = true
         tess.save
       end
