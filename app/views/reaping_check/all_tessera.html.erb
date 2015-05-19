@@ -47,7 +47,7 @@
 
             <td>
               <input type="checkbox" name="tessera[]" id="<%= @tessera[char.id]['id'] %>"
-                     value="<%= @tessera[char.id]['id'] %>" checked="<%= @tessera[char.id]['approved'] %>" disabled="<%= @tessera[char.id]['approved'] %>">
+                     value="<%= @tessera[char.id]['id'] %>" <%= @tessera[char.id]['approved'] ? 'checked' : '' %> <%= current_user.can_approve? || true ? '' : 'disabled' %>>
             </td>
 
           </tr>
