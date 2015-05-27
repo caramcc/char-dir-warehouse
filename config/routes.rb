@@ -117,6 +117,8 @@ Rails.application.routes.draw do
   get '/api/suggestions' => 'api#search_suggest'
   get '/api/tessera' => 'api#tessera'
 
+  get '/api/reaping/list' => 'api#reaping_list'
+
   # Log Routes
   get '/logs' => 'api#logs'
 

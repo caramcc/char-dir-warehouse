@@ -263,6 +263,25 @@ class ApiController < ApplicationController
     render json: results, status: 200
   end
 
+  def reaping_list
+    output = ''
+    rc = ReapingCheck.last
+    possibles = rc.characters
+    rc_id = rc.id
+    possibles.each do |p|
+      tessera = Tessera.where("character_id = #{p.id} AND reaping_check_id = #{rc_id} AND approved = true")
+      if tessera.last
+        t = tessera.last.number
+      else
+        t = 0
+      end
+      u = User.find_by_id(p.user_id)
+      u.username.downcase == u.display_name.downcase ? un = u.display_name : un = "#{u.username} '#{u.display_name}'"
+      output << "D#{p.home_area}#{p.gender[0].downcase}\t#{p.first_name} #{p.last_name}\t[#{un}]\t#{p.age}\t#{t}<br>"
+    end
+    render text: output
+  end
+
   def logs
     if current_user.group == 'ADMIN'
       log = ''
