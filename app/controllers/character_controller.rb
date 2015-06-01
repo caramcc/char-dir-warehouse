@@ -56,7 +56,7 @@ class CharacterController < ApplicationController
   def fc_list
     @fcs = {}
     @no_fcs = []
-    Character.order(:fc_last).each do |char|
+    Character.order(:fc_last, :fc_first).each do |char|
 
       if char.fc_approved
         char_data = {
