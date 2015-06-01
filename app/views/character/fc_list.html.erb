@@ -1,0 +1,25 @@
+<div class="container">
+
+  <% @fcs.each do |letter, chars| %>
+
+    <% to_ta = "[div align=center][font size=3]#{letter}[/font][font size=1]\n\n" %>
+      <% chars.each do |char| %>
+        <% if char[:gender][0].upcase == 'M'
+          color = "33CCCC"
+        elsif char[:gender][0].upcase == 'F'
+          color = "lightpink"
+        else
+          color = ''
+        end %>
+        <% to_ta << "[font color=#{color}]#{char[:fc_last].upcase}, #{char[:fc_first]}[/font] plays [b]#{char[:first_name]} #{char[:last_name]}[/b] [ #{char[:user_username].downcase} ]\n" %>
+      <% end %>
+    <% if ['A', 'I', 'R'].include? letter.upcase %>
+      <textarea>
+    <% end %>
+<%= "#{to_ta}[/font]" %>
+    <% if ['H', 'Q', 'Z'].include? letter.upcase %>
+      </textarea>
+    <% end %>
+  <% end %>
+
+</div>
