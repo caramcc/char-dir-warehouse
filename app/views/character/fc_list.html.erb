@@ -13,11 +13,11 @@
         end %>
         <% to_ta << "[font color=#{color}]#{char[:fc_last].upcase}, #{char[:fc_first]}[/font] plays [b]#{char[:first_name]} #{char[:last_name]}[/b] [ #{char[:user_username].downcase} ]\n" %>
       <% end %>
-    <% if ['A', 'I', 'R'].include? letter.upcase %>
+    <% if [' ', 'A', 'I', 'R'].include? letter.upcase %>
       <textarea>
     <% end %>
 <%= "#{to_ta}[/font]" %>
-    <% if ['H', 'Q', 'Z'].include? letter.upcase %>
+    <% if [' ', 'H', 'Q', 'Z'].include? letter.upcase %>
       </textarea>
     <% end %>
   <% end %>
