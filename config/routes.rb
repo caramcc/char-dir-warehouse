@@ -70,6 +70,7 @@ Rails.application.routes.draw do
   # Characters (all/plural)
   get '/characters' => 'character#show'
   get '/characters/fcs' => 'character#fcs'
+  get '/characters/fcs/list' => 'character#fc_list'
   get '/characters/pending' => 'character#approve_all_pending'
   post '/characters/approve' => 'character#approve'
   get '/characters/approve' => 'character#approve'
@@ -116,6 +117,9 @@ Rails.application.routes.draw do
 
   get '/api/suggestions' => 'api#search_suggest'
   get '/api/tessera' => 'api#tessera'
+
+  get '/api/reaping/list' => 'api#reaping_list'
+  get '/api/reaping/quell70' => 'api#quell70_reaping_list'
 
   # Log Routes
   get '/logs' => 'api#logs'
