@@ -20,11 +20,12 @@ module Warehouse
     def fcs
       @fcs = {}
       @no_fcs = []
-      Character.order(:fc_last).each do |char|
+      Character.order(:fc_last, :fc_first).each do |char|
+        char.fc_last.nil? ? char.fc_last = '' : char.fc_last = fc_last
 
         char_data = {
             fc_first: char.fc_first,
-            fc_last: char.fc_last,
+            fc_last: char.fc_last.upcase,
             first_name: char.first_name,
             last_name: char.last_name,
             gender: char.gender,
@@ -38,7 +39,7 @@ module Warehouse
         end
 
         if char.fc_last.blank? && char.fc_first.blank?
-         @no_fcs.push char_data
+          @no_fcs.push char_data
         else
           if char.fc_last.blank?
             char_data[:fc_last] = ' '
@@ -53,6 +54,45 @@ module Warehouse
         end
       end
     end
+
+    def fc_list
+      @fcs = {}
+      @no_fcs = []
+      Character.order(:fc_last, :fc_first).each do |char|
+
+        if char.fc_approved
+          char.fc_last.blank? ? fc_last = ' ' : fc_last = char.fc_last.upcase
+          char_data = {
+              fc_first: char.fc_first,
+              fc_last: fc_last,
+              first_name: char.first_name,
+              last_name: char.last_name,
+              gender: char.gender,
+              id: char.id,
+              user_id: char.user_id,
+              user_username: User.find_by_id(char.user_id).username
+          }
+
+          if char.gender.blank?
+            char_data[:gender] = '????'
+          end
+
+          if fc_last.blank? && char.fc_first.blank?
+            @no_fcs.push char_data
+          else
+
+            if @fcs.include? fc_last[0]
+              @fcs[fc_last[0]].push char_data
+            else
+              @fcs[fc_last[0]] = [char_data]
+            end
+
+          end
+        end
+
+      end
+    end
+
 
     def show_one
 
@@ -154,6 +194,10 @@ module Warehouse
 
       if fc_changed
         old_char.fc_approved = false
+        old_char.fc_first = params[:character][:fc_first]
+        old_char.fc_first ||= ''
+        old_char.fc_last = params[:character][:fc_last]
+        old_char.fc_last ||= ''
       end
 
       if old_char.fc_first.blank? && old_char.fc_last.blank?
@@ -294,7 +338,7 @@ module Warehouse
     private
     def character_params
       params.require(:character).permit(:first_name, :last_name, :bio_thread, :age, :home_area, :special, :gender,
-                                                  :fc_first, :fc_last)
+                                        :fc_first, :fc_last)
     end
 
   end

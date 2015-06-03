@@ -87,7 +87,7 @@ module Warehouse
           chr.reaping_checks.delete(@check)
           chr.save
         end
-          redirect_to "/checks/reaping/#{@check.games}"
+        redirect_to "/checks/reaping/#{@check.games}"
       end
     end
 
@@ -112,10 +112,17 @@ module Warehouse
     def all_tessera
       if current_user.can_approve?
         @check = ReapingCheck.find_by_games(params[:games])
-        tessera = Tessera.where(reaping_check_id: @check.id)
         @tessera = {}
-        tessera.each do |t|
-          @tessera[t.character_id] = t.attributes
+        @check.characters.each do |char|
+          @tessera[char.id] = Tessera.where(reaping_check_id: @check.id, character_id: char.id).first
+          if @tessera[char.id].nil?
+            @tessera[char.id] = Tessera.new
+            @tessera[char.id].previous_number = 0
+            @tessera[char.id].number = 0
+            @tessera[char.id].approved = true
+            @tessera[char.id].save
+          end
+          @tessera[char.id] = @tessera[char.id].attributes
         end
       else
         render status: :unauthorized
@@ -126,6 +133,7 @@ module Warehouse
       if current_user.can_approve?
         params[:tessera].each do |id|
           tess = Tessera.find_by_id(id)
+          tess ||= Tessera.new
           tess.approved = true
           tess.save
         end
