@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
     Rails.application.config.staff_permissions[:character_approve].include?(self.group)
   end
 
+  def open_games?
+    Rails.application.config.staff_permissions[:open_games].include?(self.group)
+  end
+
   def can_promote?
     # Rails.application.config.staff_permissions[:user_promote].include?(self.group)
 
@@ -36,6 +40,7 @@ class User < ActiveRecord::Base
   def reaping_checks?
     %w(ADMIN LIBRARIAN).include?(self.group)
   end
+
 
   def reaping_tickets
   #   how many characters can this member enter into the reaping?

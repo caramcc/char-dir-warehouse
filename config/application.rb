@@ -38,7 +38,8 @@ class Application < Rails::Application
       :admin_panel => %w(ADMIN LIBRARIAN),
       :character_edit => %w(ADMIN LIBRARIAN),
       :character_approve => %w(ADMIN LIBRARIAN MODERATOR),
-      :fc_approve => %w(ADMIN LIBRARIAN)
+      :fc_approve => %w(ADMIN LIBRARIAN),
+      :open_games => %W(ADMIN)
   }
 
 

@@ -1,0 +1,21 @@
+<div class="container">
+
+  <h1><%= @games.number.ordinalize %> Hunger Games</h1>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="list-group-item-heading">
+        Gamemakers
+        <% if current_user.open_games? %>
+          <small><a href="/hero/gamemakers/add/"> <span class="pull-right"><span class="glyphicon glyphicon-plus-sign"></span></span></a></small>
+        <% end %>
+      </h3>
+    </div>
+    <ul class="list-group">
+      <% @games.gamemakers.each do |gm| %>
+        <li class="list-group-item"><a href="/user/<%= gm.id %>"><%= gm.display_name %> [<%= gm.username %>] </a></li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>

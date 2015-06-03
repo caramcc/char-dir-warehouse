@@ -87,7 +87,7 @@ class UserController < ApplicationController
 
     if user.save
       session[:user_id] = user.id
-      redirect_to '/users#show'
+      redirect_to '/users#info'
     else
       redirect_to '/signup'
     end

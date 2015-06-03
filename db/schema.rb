@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150425162950) do
+ActiveRecord::Schema.define(version: 20150603201003) do
 
   create_table "actions", force: :cascade do |t|
     t.integer "recipient_starting_damage", limit: 4
@@ -47,22 +47,30 @@ ActiveRecord::Schema.define(version: 20150425162950) do
   end
 
   create_table "characters", force: :cascade do |t|
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.string   "first_name",        limit: 255
-    t.string   "last_name",         limit: 255
-    t.string   "bio_thread",        limit: 255
-    t.string   "home_area",         limit: 255
-    t.string   "gender",            limit: 255
-    t.string   "fc_first",          limit: 255
-    t.string   "fc_last",           limit: 255
-    t.boolean  "char_approved",     limit: 1
-    t.boolean  "fc_approved",       limit: 1
-    t.integer  "age",               limit: 4
-    t.integer  "user_id",           limit: 4
-    t.string   "special",           limit: 255
-    t.integer  "reaping_check_id",  limit: 4
-    t.integer  "activity_check_id", limit: 4
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "first_name",         limit: 255
+    t.string   "last_name",          limit: 255
+    t.string   "bio_thread",         limit: 255
+    t.string   "home_area",          limit: 255
+    t.string   "gender",             limit: 255
+    t.string   "fc_first",           limit: 255
+    t.string   "fc_last",            limit: 255
+    t.boolean  "char_approved",      limit: 1
+    t.boolean  "fc_approved",        limit: 1
+    t.integer  "age",                limit: 4
+    t.integer  "user_id",            limit: 4
+    t.string   "special",            limit: 255
+    t.integer  "reaping_check_id",   limit: 4
+    t.integer  "activity_check_id",  limit: 4
+    t.boolean  "fc_flagged",         limit: 1
+    t.string   "fc_flag",            limit: 255
+    t.boolean  "char_flagged",       limit: 1
+    t.string   "char_flag",          limit: 255
+    t.integer  "shared_fc_owner_id", limit: 4
+    t.boolean  "is_dead",            limit: 1
+    t.boolean  "is_tribute",         limit: 1
+    t.integer  "games_number",       limit: 4
   end
 
   add_index "characters", ["activity_check_id"], name: "index_characters_on_activity_check_id", using: :btree
@@ -89,6 +97,7 @@ ActiveRecord::Schema.define(version: 20150425162950) do
 
   create_table "games", force: :cascade do |t|
     t.integer "number", limit: 4
+    t.boolean "active", limit: 1
   end
 
   create_table "inventory_delta", force: :cascade do |t|
@@ -162,6 +171,7 @@ ActiveRecord::Schema.define(version: 20150425162950) do
     t.string   "email_token",                 limit: 255
     t.string   "password_reset_token",        limit: 255
     t.datetime "password_reset_token_expiry"
+    t.integer  "games_id",                    limit: 4
   end
 
   add_foreign_key "characters", "activity_checks"

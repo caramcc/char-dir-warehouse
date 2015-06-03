@@ -102,6 +102,17 @@ Rails.application.routes.draw do
 
   scope module: :hero do
 
+    # GM routes
+    get '/hero/games/new' => 'games#new'
+    post '/hero/games/new' => 'games#create'
+    get '/hero/games/:number' => 'games#info'
+
+    get '/hero/gamemakers/add' => 'games#add_gm'
+
+
+    # View routes
+
+
   end
 
   # Search

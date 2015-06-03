@@ -5,5 +5,16 @@ module Hero
     has_many :actions
     has_many :gamemakers
 
+    # Games init
+
+    # current Games
+
+    # add gamemaker
+
+    # add tribute
+
+    # add item
+
+
   end
 end

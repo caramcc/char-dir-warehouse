@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="col-lg-6">
+    <h1>Create Games Check</h1>
+
+    <%= form_for :games, url: '/hero/games/new' do |f| %>
+
+      <div class="input-group input-group">
+        <span class="input-group-addon" id="sizing-addon1">Games</span>
+        <%= f.number_field :number, class: 'form-control', placeholder: 'Games Number' %>
+      </div>
+
+      <%= f.submit 'Submit', class: 'btn btn-primary' %>
+
+    <% end %>
+  </div>
+</div>
+
