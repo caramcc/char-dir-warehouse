@@ -37,6 +37,11 @@ module Hero
 
     end
 
+    def add_gm
+
+    end
+
+
     def update
 
     end

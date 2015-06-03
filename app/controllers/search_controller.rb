@@ -1,4 +1,7 @@
 class SearchController < ApplicationController
+  include Warehouse
+  include Hero
+
   def search
     query = params[:query]
     if query
@@ -20,6 +23,20 @@ class SearchController < ApplicationController
           :users => []
       }
     end
+  end
+
+
+  def typeahead
+    users = User.where('username LIKE ? OR display_name LIKE ?', "%#{params[:query]}%", "%#{params[:query]}%")
+    renderer = []
+    users.each do |u|
+      h = {
+        name: u.username,
+        id: u.id
+      }
+      renderer.push h
+    end
+    render json: renderer
   end
   
 end

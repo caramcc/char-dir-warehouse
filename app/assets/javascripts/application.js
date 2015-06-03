@@ -21,4 +21,5 @@
 //= require bootstrap/alert
 //= require bootstrap/dropdown
 //= require twitter/typeahead
+//= require twitter/typeahead/bloodhound
 //= require_tree .

@@ -23,12 +23,16 @@ class Application < Rails::Application
   config.active_record.raise_in_transactional_callbacks = true
 
   config.filter_parameters << :password
-  # config.paths.add 'app/api', glob: '**/*.rb'
-  # config.autoload_paths += Dir["#{Rails.root}/app/models/*"]
-  config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
-  config.autoload_paths += [
-      config.root.join('app')
-  ]
+
+  config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**/}')]
+  config.autoload_paths += Dir[Rails.root.join('lib', '{**}')]
+
+  # # config.paths.add 'app/api', glob: '**/*.rb'
+  # # config.autoload_paths += Dir["#{Rails.root}/app/models/*"]
+  # config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
+  # config.autoload_paths += [
+  #     config.root.join('app')
+  # ]
 
   config.staff_permissions = {
       :account_edit => %w(ADMIN MODERATOR LIBRARIAN),

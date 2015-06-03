@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :combatants
   has_secure_password
   include Warehouse
+  include Hero
 
   validates :email, :uniqueness => true
   validates :username, :uniqueness => true
