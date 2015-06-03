@@ -34,6 +34,11 @@ Also, make sure you're developing on a new branch rather than on `develop` or `m
 * Can be manually pushed up to Heroku from the command line: `git push heroku master`
 
 
+
+## Hero Schema
+
+![hero database schema](hero-schema.png)
+
 ## TODO
 
 * Validations for Character model
