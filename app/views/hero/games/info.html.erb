@@ -14,6 +14,7 @@
     <ul class="list-group">
       <% @games.gamemakers.each do |gm| %>
         <li class="list-group-item"><a href="/user/<%= gm.id %>"><%= gm.display_name %> [<%= gm.username %>] </a></li>
+        <li class="list-group-item"><a href="/user/<%= gm.id %>"><%= gm.attributes %> [<%= gm.username %>] </a></li>
       <% end %>
     </ul>
   </div>

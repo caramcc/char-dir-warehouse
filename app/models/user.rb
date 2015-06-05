@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :characters
+  has_many :characters, class_name: 'Warehouse::Character'
   has_many :combatants
   has_secure_password
   include Warehouse
@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
   validates :email, :uniqueness => true
   validates :username, :uniqueness => true
   validates :display_name, :uniqueness => true
+
+  def is_gm_for?(games_number)
+    games_id == games_number
+  end
 
   def admin_panel?
     # Needed before Rails.application.config loads...

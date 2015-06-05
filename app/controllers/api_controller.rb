@@ -387,6 +387,16 @@ class ApiController < ApplicationController
 
   end
 
+  def games
+    games = Hero::Games.find_by_number(params[:games])
+    games ||= Hero::Games.all
+    render json: games
+  end
+
+  def gms
+    render json: User.where(games_id: Hero::Games.find_by_number(params[:games]))
+  end
+
   def attack
     begin
       render json: Attack.find_by_attack_code(params[:code]).weaponize, status:200

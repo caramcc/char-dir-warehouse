@@ -3,8 +3,7 @@ module Hero
     has_many :combatants
     has_many :items
     has_many :actions
-    has_many :gamemakers
-
+    has_many :gamemakers, :class_name => 'User'
     # Games init
 
     # current Games

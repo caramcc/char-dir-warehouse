@@ -1,3 +1,24 @@
-<div id="bloodhound">
-  <input class="typeahead" type="text" placeholder="States of USA">
+<div class="container">
+  <div class="col-lg-6">
+    <h1>Add Gamemaker</h1>
+
+    <form action="/hero/gamemakers/add/" method="POST" class="form-group">
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+
+      <div class="input-group input-group">
+        <span class="input-group-addon" id="sizing-addon1">Gamemaker</span>
+        <input name="id" type="hidden" value="<%= @games.id %>" />
+
+        <select name="gm_id" class="form-control selectpicker" data-live-search="true" >
+          <% @staff.each do |staff| %>
+            <option value="<%= staff.id %>"><%= "#{staff.display_name} [#{staff.username}]" %></option>
+          <% end %>
+        </select>
+
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+    </div>
+  </div>
 </div>
