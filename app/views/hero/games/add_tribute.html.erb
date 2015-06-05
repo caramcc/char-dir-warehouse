@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="col-lg-6">
+    <h1>Add Tributes</h1>
+
+    <form action="/hero/tributes/add/" method="POST" class="form-group">
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+
+      <div class="input-group input-group">
+        <span class="input-group-addon" id="sizing-addon1">Gamemaker</span>
+        <input name="id" type="hidden" value="<%= @games.id %>" />
+
+        <select name="char_ids[]" class="form-control selectpicker" data-live-search="true" multiple data-selected-text-format="count">
+          <% @reapable.each do |char| %>
+            <option value="<%= char.id %>" <%= @tributes.include?(char) ? 'selected' : '' %> data-subtext="<%= Warehouse::Character.pretty_area(char.home_area) %> <%= char.gender[0] %>">
+              <%= "#{char.first_name} #{char.last_name}" %>
+            </option>
+          <% end %>
+        </select>
+
+        <select name="previous[]" hidden multiple>
+          <% @tributes.each do |prev| %>
+            <option value="<%= prev.id %>" selected>prev</option>
+          <% end %>
+        </select>
+
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+  </div>
+</div>
+</div>

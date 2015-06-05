@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150603201003) do
+ActiveRecord::Schema.define(version: 20150605120240) do
 
   create_table "actions", force: :cascade do |t|
     t.integer "recipient_starting_damage", limit: 4
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20150603201003) do
     t.boolean  "is_dead",            limit: 1
     t.boolean  "is_tribute",         limit: 1
     t.integer  "games_number",       limit: 4
+    t.integer  "games_id",           limit: 4
   end
 
   add_index "characters", ["activity_check_id"], name: "index_characters_on_activity_check_id", using: :btree

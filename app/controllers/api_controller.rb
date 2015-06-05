@@ -4,16 +4,16 @@ class ApiController < ApplicationController
   before_filter :authorize, :except => [:search_suggest, :all_active_characters]
 
   def character_get_all
-    render json: Character.all, status: 200
+    render json: Warehouse::Character.all, status: 200
   end
 
   def character_get_by_id
-    render json: Character.find_by_id(params[:id]), status: 200
+    render json: Warehouse::Character.find_by_id(params[:id]), status: 200
   end
 
   def all_active_characters
     headers['Last-Modified'] = Time.now.httpdate
-    active_chars = Character.all.select { |char| char.is_active? && char.char_approved }
+    active_chars = Warehouse::Character.all.select { |char| char.is_active? && char.char_approved }
     # acceptable params: district, special
     unless params[:area].blank?
       areas = params[:area].split(',')
@@ -131,7 +131,7 @@ class ApiController < ApplicationController
     end
 
     puts query
-    chr = Character.where(query)
+    chr = Warehouse::Character.where(query)
     # user = User.where("group" => params[:group].upcase, "created_at.to_i BEFORE" => params[:joined_since])
 
     render json: chr, status: 200
@@ -239,12 +239,12 @@ class ApiController < ApplicationController
 
     name = params[:name]
     if name.split(' ').length == 2
-      query = Character.where("first_name LIKE '%#{name.split(' ')[0]}%' AND last_name LIKE '%#{name.split(' ')[2]}%'")
+      query = Warehouse::Character.where("first_name LIKE '%#{name.split(' ')[0]}%' AND last_name LIKE '%#{name.split(' ')[2]}%'")
     else
-      query = Character.where("first_name LIKE '%#{name}%' OR last_name LIKE '%#{name}%'")
+      query = Warehouse::Character.where("first_name LIKE '%#{name}%' OR last_name LIKE '%#{name}%'")
     end
 
-    user_query = User.where("username LIKE '%#{name}%' OR display_name LIKE '%#{name}%'")
+    user_query = Warehouse::User.where("username LIKE '%#{name}%' OR display_name LIKE '%#{name}%'")
 
     user_results = []
     # TODO get user characters?
@@ -349,7 +349,7 @@ class ApiController < ApplicationController
 
   def search_suggest
     data = [] # array of hash, keys = name, type
-    Character.all.each do |char|
+    Warehouse::Character.all.each do |char|
       h = { name: "#{char.first_name} #{char.last_name}", type: "Character - #{Character.pretty_area(char.home_area)} #{char.gender} #{char.special}"}
       data.push h
     end
@@ -395,6 +395,11 @@ class ApiController < ApplicationController
 
   def gms
     render json: User.where(games_id: Hero::Games.find_by_number(params[:games]))
+  end
+
+  def games_tributes
+
+    render json: Warehouse::Character.tributes(params[:games])
   end
 
   def attack

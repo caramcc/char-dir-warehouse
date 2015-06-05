@@ -89,10 +89,24 @@ module Warehouse
       self.reaping_checks.destroy(ReapingCheck.last)
     end
 
+    def dg
+      "D#{home_area}#{gender[0]}"
+    end
+
     class << self
       def pretty_area(area)
         ('1'..'13').include?(area) ? "District #{area}" : area.capitalize
       end
+
+      def reapable
+        reapable = Character.all
+        reapable.select {|x| x.is_reapable?}
+      end
+
+      def tributes(games_number)
+        tributes = Character.where(games_number: games_number)
+      end
+
     end
 
   end

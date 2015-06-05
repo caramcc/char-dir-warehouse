@@ -110,6 +110,9 @@ Rails.application.routes.draw do
     get '/hero/gamemakers/add' => 'games#add_gm'
     post '/hero/gamemakers/add' => 'games#update_gm'
 
+    get '/hero/tributes/add' => 'games#add_tribute'
+    post '/hero/tributes/add' => 'games#update_tribute'
+
 
     # View routes
 
@@ -146,8 +149,9 @@ Rails.application.routes.draw do
   get '/api/reaping/list' => 'api#reaping_list'
   get '/api/reaping/quell70' => 'api#quell70_reaping_list'
 
-  get '/api/games/' => 'api#games'
-  get '/api/gms/' => 'api#gms'
+  get '/api/games/:games' => 'api#games'
+  get '/api/games/:games/gms/' => 'api#gms'
+  get '/api/games/:games/tributes' => 'api#games_tributes'
 
 
   # typeahead

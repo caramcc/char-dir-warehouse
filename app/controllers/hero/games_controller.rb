@@ -45,7 +45,6 @@ module Hero
       @games = Games.where(active: true).last
     end
 
-
     def update_gm
       games = Games.find_by_id(params[:id])
 
@@ -56,6 +55,42 @@ module Hero
       games.gamemakers <<  user
 
       user.save
+      games.save
+
+      redirect_to "/hero/games/#{games.number}"
+    end
+
+
+    def add_tribute
+      @games = Games.where(active: true).last
+      @reapable = Warehouse::Character.reapable
+      @tributes = Warehouse::Character.tributes(@games.number)
+    end
+
+    def update_tribute
+      games = Games.where(active: true).last
+
+      tributes = params[:char_ids]
+      removed = params[:previous].reject {|x| tributes.include? x}
+
+      removed.each do |char_id|
+        extrib = Warehouse::Character.find_by_id(char_id)
+
+        extrib.update(is_tribute: false, games_number: nil)
+
+        games.tributes.delete extrib
+        extrib.save!
+      end
+
+      tributes.each do |char_id|
+        tribute = Warehouse::Character.find_by_id(char_id)
+        tribute.is_tribute = true
+        tribute.games_number = games.number
+        games.tributes << tribute
+
+        tribute.save
+      end
+
       games.save
 
       redirect_to "/hero/games/#{games.number}"
