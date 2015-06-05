@@ -7,55 +7,6 @@
   <%= favicon_link_tag %>
   <%= csrf_meta_tags %>
 
-  <script type="text/javascript">
-    var countries = new Bloodhound({
-      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-      queryTokenizer: Bloodhound.tokenizers.whitespace,
-      limit: 10,
-      prefetch: {
-        // url points to a json file that contains an array of country names, see
-        // https://github.com/twitter/typeahead.js/blob/gh-pages/data/countries.json
-        url: <%= Rails.root.join('api', 'suggestions.json') %>,
-        // the json file contains an array of strings, but the Bloodhound
-        // suggestion engine expects JavaScript objects so this converts all of
-        // those strings
-        filter: function(list) {
-          return $.map(list, function(country) { return { name: country }; });
-        }
-      }
-    });
-
-    // kicks off the loading/processing of `local` and `prefetch`
-    countries.initialize();
-
-    // passing in `null` for the `options` arguments will result in the default
-    // options being used
-    $('#prefetch .typeahead').typeahead(null, {
-      name: 'countries',
-      displayKey: 'name',
-      // `ttAdapter` wraps the suggestion engine in an adapter that
-      // is compatible with the typeahead jQuery plugin
-      source: countries.ttAdapter()
-    });
-    // replace above with below, except right... also need a way to link to values
-    $(function () {
-      $('.local-type').typeahead({
-        name: 'local-tt',
-      }, {
-        source: function (query, cb) {
-          cb(data);
-        },
-        templates: {
-          empty: [
-            '<div class="empty-message">',
-            'unable to find any Best Picture winners that match the current query',
-            '</div>'].join('\n'),
-          suggestion: Handlebars.compile('<p><strong>{{locality}}</strong> – {{city}}</p>')
-        }
-      });
-    });
-  </script>
-
 </head>
 <body>
 <!--<div class="container">-->
@@ -100,6 +51,22 @@
           <ul class="nav navbar-nav navbar-right">
 
             <% if current_user %>
+                <% if current_user.is_gm_for?(current_games.number) && current_games.active %>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">GM Panel <span class="caret"></span></a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="/hero/games/<%= current_games.number %>">Dashboard</a></li>
+                        <li><a href="/checks/new/activity">New Activity Check</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/characters/pending">Pending Characters</a></li>
+                        <li><a href="/characters/fcs/pending">Pending FCs</a></li>
+                        <li><a href="/characters/fcs/list">Formatted FC List</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/#">Ban List</a></li>
+                      </ul>
+                    </li>
+                <% end %>
+
                 <% if current_user.admin_panel? %>
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin Panel <span class="caret"></span></a>

@@ -11,13 +11,19 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def current_games
+    @current_games ||= Hero::Games.where(active: true).last
+  end
+  helper_method :current_games
+
+
   def authorize
     redirect_to '/login' unless current_user
   end
 
   def index
     @current_user = current_user
-
+    @current_games = current_games
   end
 
 end

@@ -8,6 +8,9 @@ module Hero
     # Games init
 
     # current Games
+    def current
+      Games.where(active: true).last
+    end
 
     # add gamemaker
 
