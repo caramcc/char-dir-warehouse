@@ -105,13 +105,16 @@ Rails.application.routes.draw do
     # GM routes
     get '/hero/games/new' => 'games#new'
     post '/hero/games/new' => 'games#create'
-    get '/hero/games/:number' => 'games#info'
+    get '/hero/games/:games' => 'games#info'
 
-    get '/hero/gamemakers/add' => 'games#add_gm'
-    post '/hero/gamemakers/add' => 'games#update_gm'
+    get '/hero/games/:games/gamemakers/add' => 'games#add_gm'
+    post '/hero/games/:games/gamemakers/add' => 'games#update_gm'
 
-    get '/hero/tributes/add' => 'games#add_tribute'
-    post '/hero/tributes/add' => 'games#update_tribute'
+    get '/hero/games/:games/tributes/add' => 'games#add_tribute'
+    post '/hero/games/:games/tributes/add' => 'games#update_tributes'
+
+    get '/hero/games/:games/mutts/add' => 'games#add_mutt'
+    post '/hero/games/:games/mutts/add' => 'games#update_mutts'
 
 
     # View routes
@@ -152,6 +155,7 @@ Rails.application.routes.draw do
   get '/api/games/:games' => 'api#games'
   get '/api/games/:games/gms/' => 'api#gms'
   get '/api/games/:games/tributes' => 'api#games_tributes'
+  get '/api/games/:games/combatants' => 'api#games_combatants'
 
 
   # typeahead

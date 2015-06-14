@@ -398,8 +398,13 @@ class ApiController < ApplicationController
   end
 
   def games_tributes
+    # render json: Warehouse::Character.tributes(params[:games])
+    render json: Hero::Games.find_by_number(params[:games]).tributes
+  end
 
-    render json: Warehouse::Character.tributes(params[:games])
+  def games_combatants
+    # render json: Warehouse::Character.tributes(params[:games])
+    render json: Hero::Games.find_by_number(params[:games])
   end
 
   def attack

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150605120240) do
+ActiveRecord::Schema.define(version: 20150614140822) do
 
   create_table "actions", force: :cascade do |t|
     t.integer "recipient_starting_damage", limit: 4
@@ -94,6 +94,9 @@ ActiveRecord::Schema.define(version: 20150605120240) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.integer  "active_location", limit: 4
+    t.integer  "user_id",         limit: 4
+    t.integer  "games_id",        limit: 4
+    t.integer  "character_id",    limit: 4
   end
 
   create_table "games", force: :cascade do |t|

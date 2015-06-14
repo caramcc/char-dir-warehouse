@@ -8,6 +8,8 @@ module Hero
     belongs_to :inventory_delta
     belongs_to :games
     belongs_to :user
+    scope :tribute, -> { where(type: 'Hero::Tribute') }
+    delegate :tributes, to: :tributes
 
     # t.string   "type",       limit: 255
     # t.string   "name",       limit: 255

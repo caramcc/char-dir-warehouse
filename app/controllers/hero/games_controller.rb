@@ -33,8 +33,7 @@ module Hero
     end
 
     def info
-      @games = Games.find_by_number(params[:number])
-
+      @games = Games.find_by_number(params[:games])
     end
 
     def add_gm
@@ -42,11 +41,23 @@ module Hero
         render :status => :unauthorized
       end
       @staff = User.where.not(:group => 'MEMBER')
-      @games = Games.where(active: true).last
+      @games = Games.find_by_number(params[:games])
+    end
+
+    def add_mutt
+      games = Games.find_by_number(params[:games])
+      unless current_user.is_gm_for?(games.number)
+        render :status => :unauthorized
+      end
+
+    end
+
+    def create_mutt
+
     end
 
     def update_gm
-      games = Games.find_by_id(params[:id])
+      games = Games.find_by_number(params[:games])
 
       user = User.find_by_id(params[:gm_id])
 
@@ -62,33 +73,45 @@ module Hero
 
 
     def add_tribute
-      @games = Games.where(active: true).last
+      @games = Games.find_by_number(params[:games])
       @reapable = Warehouse::Character.reapable
       @tributes = Warehouse::Character.tributes(@games.number)
     end
 
-    def update_tribute
+    def update_tributes
       games = Games.where(active: true).last
 
       tributes = params[:char_ids]
-      removed = params[:previous].reject {|x| tributes.include? x}
+      tributes ||= []
+      prev = params[:previous]
+      prev ||= []
+      removed = prev.reject {|x| tributes.include? x}
 
       removed.each do |char_id|
-        extrib = Warehouse::Character.find_by_id(char_id)
+        extrib_char = Warehouse::Character.find_by_id(char_id)
 
-        extrib.update(is_tribute: false, games_number: nil)
+        extrib_char.update(is_tribute: false, games_number: nil)
+        extrib = Tribute.find_by_character_id(char_id)
 
         games.tributes.delete extrib
-        extrib.save!
+        extrib.destroy
+        extrib_char.save!
       end
 
       tributes.each do |char_id|
-        tribute = Warehouse::Character.find_by_id(char_id)
-        tribute.is_tribute = true
-        tribute.games_number = games.number
-        games.tributes << tribute
+        t_char = Warehouse::Character.find_by_id(char_id)
+        unless t_char.is_tribute && t_char.games_number == games.number
+          t_char.is_tribute = true
+          t_char.games_number = games.number
 
-        tribute.save
+          tribute = Tribute.new_tribute_from_character(t_char)
+
+          games.tributes << tribute
+          tribute.games_id = games.id
+
+          tribute.save
+          t_char.save
+        end
       end
 
       games.save
