@@ -1,0 +1,2 @@
+module Hero::TributeHelper
+end

@@ -100,7 +100,8 @@ module Warehouse
 
       def reapable
         reapable = Character.all
-        reapable.select {|x| x.is_reapable?}
+        reapable = reapable.select {|x| x.is_reapable?}
+        reapable.sort_by { |x| [x.home_area.to_i, x.gender]}
       end
 
       def tributes(games_number)

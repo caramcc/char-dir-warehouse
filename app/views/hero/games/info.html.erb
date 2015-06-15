@@ -2,6 +2,45 @@
 
   <h1><%= @games.number.ordinalize %> Hunger Games</h1>
 
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="list-group-item-heading">
+        Tributes
+        <% if current_user.open_games? %>
+          <small><a href="/hero/games/<%= @games.number %>/tributes/add/"> <span class="pull-right"><span class="glyphicon glyphicon-plus-sign"></span></span></a></small>
+        <% end %>
+      </h3>
+    </div>
+    <table class="table sortable-theme-bootstrap table-hover" data-sortable>
+      <th></th>
+      <th data-sorted="true" data-sorted-direction="descending">ID</th>
+      <th>Name</th>
+      <th>Owner</th>
+      <th>Damage</th>
+      <th>Water</th>
+      <th>Food</th>
+      <th></th>
+
+      <% @games.tributes.each do |tribute| %>
+        <tr class="<%= tribute.alive? ? '' : 'disabled'%>">
+          <td><a href="/tribute/<%= tribute.id %>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></td>
+          <td><%= tribute.district_gender %></td>
+          <td><%= tribute.name %></td>
+          <td><a href="/user/<%= tribute.user_id %>"><%= tribute.username %></a></td>
+          <td><b><%= tribute.damage %></b></td>
+          <td><%= tribute.water_days %></td>
+          <td><%= tribute.food_days %></td>
+          <td><span class="glyphicon glyphicon-fire" style="color:#952F30;" aria-hidden="true" <%= tribute.has_fire ? 'hidden' : '' %>></span>
+            <span class="glyphicon glyphicon-tint" style="color:#2E662C;" aria-hidden="true" <%= tribute.poisoned ? 'hidden' : '' %>></span></td>
+
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+
+
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="list-group-item-heading">
@@ -14,22 +53,6 @@
     <ul class="list-group">
       <% @games.gamemakers.each do |gm| %>
         <li class="list-group-item"><a href="/user/<%= gm.id %>"><%= gm.display_name %> [<%= gm.username %>] </a></li>
-      <% end %>
-    </ul>
-  </div>
-
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="list-group-item-heading">
-        Tributes
-        <% if current_user.open_games? %>
-          <small><a href="/hero/games/<%= @games.number %>/tributes/add/"> <span class="pull-right"><span class="glyphicon glyphicon-plus-sign"></span></span></a></small>
-        <% end %>
-      </h3>
-    </div>
-    <ul class="list-group">
-      <% @games.tributes.each do |tribute| %>
-        <li class="list-group-item"><a href="/tribute/<%= tribute.id %>"><%= "#{tribute.name} [ #{tribute.user_id} ]"%> </a></li>
       <% end %>
     </ul>
   </div>

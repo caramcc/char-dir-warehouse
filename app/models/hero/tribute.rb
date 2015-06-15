@@ -13,8 +13,13 @@ module Hero
     #   same location as combatant
     end
 
-    def user
+    def district_gender
+      char = Warehouse::Character.find_by_id(character_id)
+      "D#{char.home_area}#{char.gender[0].upcase}"
+    end
 
+    def username
+      User.find_by_id(user_id).display_name
     end
 
     class << self
