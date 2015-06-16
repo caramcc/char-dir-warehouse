@@ -5,7 +5,6 @@ class CreateItemLibrary < ActiveRecord::Migration
       t.string :description
       t.string :effect_type
       t.integer :effect_amount
-      t.integer :id
     end
   end
 end

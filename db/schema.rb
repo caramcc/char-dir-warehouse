@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150614140822) do
+ActiveRecord::Schema.define(version: 20150616181745) do
 
   create_table "actions", force: :cascade do |t|
     t.integer "recipient_starting_damage", limit: 4
@@ -109,6 +109,13 @@ ActiveRecord::Schema.define(version: 20150614140822) do
     t.integer "item_id",      limit: 4
     t.integer "combatant_id", limit: 4
     t.string  "change",       limit: 255
+  end
+
+  create_table "item_libraries", force: :cascade do |t|
+    t.string  "name",          limit: 255
+    t.string  "description",   limit: 255
+    t.string  "effect_type",   limit: 255
+    t.integer "effect_amount", limit: 4
   end
 
   create_table "items", force: :cascade do |t|
