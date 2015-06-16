@@ -10,7 +10,7 @@ module Hero
     end
 
     def edit
-
+      @tribute = Tribute.find_by_id(params[:id])
     end
 
   end

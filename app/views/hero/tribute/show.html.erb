@@ -6,7 +6,7 @@
         <%= @tribute.name %>
         <small><a href="/user/<%= @tribute.user_id %>" class="panel-title">[ <%= @tribute.username.downcase %> ]</a></small>
         <% if current_user.is_gm_for?(Hero::Games.current_games_number) %>
-          <a href="/tribute/edit/<%= @tribute.id%>"> <span class="badge pull-right">edit <span class="glyphicon glyphicon-edit"></span></span></a>
+          <a href="/hero/tribute/edit/<%= @tribute.id%>"> <span class="badge pull-right">edit <span class="glyphicon glyphicon-edit"></span></span></a>
         <% end %>
       </h1>
     </div>

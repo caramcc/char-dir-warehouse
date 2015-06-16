@@ -1,151 +1,28 @@
 <div class="container">
-  <h1>Edit Tribute: <%= @char.first_name %> <%= @char.last_name %></h1>
+  <h1>Edit Tribute: <%= @tribute.name %></h1>
   <script type="text/javascript">
     $('.selectpicker').selectpicker();
   </script>
 
-  <%= form_for :character, url: '/character/update' do |f| %>
+  <form action="/hero/tribute/edit/<%= @tribute.id %>" method="POST" class="form-group">
+    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+      <!-- Default panel contents -->
 
-    <div class="col-lg-6">
-      <div class="input-group input-group">
-        <span class="input-group-addon" id="sizing-addon1">First Name</span>
-        <%= f.text_field :first_name, class: 'form-control', placeholder: 'First', value: @char.first_name, autofocus: true  %>
-      </div>
-
-      <div class="input-group input-group">
-        <span class="input-group-addon" id="sizing-addon1">Last Name</span>
-        <%= f.text_field :last_name, class: 'form-control', placeholder: 'Last', value: @char.last_name %>
-      </div>
-
-      <div class="input-group input-group">
-        <span class="input-group-addon" id="sizing-addon1">Bio Link</span>
-        <%= f.url_field :bio_thread, class: 'form-control', placeholder: 'Bio Link', value: @char.bio_thread %>
-      </div>
-
-      <div class="input-group input-group">
-        <span class="input-group-addon" id="sizing-addon1">Age</span>
-        <%= f.number_field :age, class: 'form-control', placeholder: 'Age', value: @char.age %>
-      </div>
-
-      <div class="input-group input-group">
-        <span class="input-group-addon" id="sizing-addon1">District/Area</span>
-        <% opts = []
-           ('1'..'13').each { |x| opts.push ["District #{x}", x]}
-           opts.push ['Capitol', 'Capitol'], ['Wanderer', 'Wanderer'] %>
-        <%= f.select :home_area, options_for_select(opts, @char.home_area), {}, { class: 'selectpicker', 'data-live-search'=> true } %>
-      </div>
-
-      <div class="panel panel-default">
-        <div class="panel-heading">Gender</div>
-        <div class="panel-body">
-          <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-primary <%= @char.gender == 'Male' ? 'active' : '' %>">
-              <%= f.radio_button :gender, 'Male', class: 'form-control' %>  Male
-            </label>
-            <label class="btn btn-primary <%= @char.gender == 'Female' ? 'active' : '' %>">
-              <%= f.radio_button :gender, 'Female', class: 'form-control' %> Female
-            </label>
-            <label class="btn btn-primary <%= @char.gender == 'Other' ? 'active' : '' %>">
-              <%= f.radio_button :gender, 'Other', class: 'form-control' %> Other Genders
-            </label>
-          </div>
-          <a href="/about#other-genders" target="_blank"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
-        </div>
-      </div>
-
-      <div class="panel panel-default">
-        <div class="panel-heading">Special Types (optional)</div>
-        <div class="panel-body">
-          <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-primary <%= @char.special == 'Peacekeeper' ? 'active' : '' %>">
-              <%= f.radio_button :special, 'Peacekeeper', class: 'form-control' %>  Peacekeeper
-            </label>
-            <label class="btn btn-primary <%= @char.special == 'Avox' ? 'active' : '' %>">
-              <%= f.radio_button :special, 'Avox', class: 'form-control' %> Avox
-            </label>
-            <label class="btn btn-primary <%= @char.special == 'Mayor' ? 'active' : '' %>">
-              <%= f.radio_button :special, 'Mayor', class: 'form-control' %> Mayor
-            </label>
-            <label class="btn btn-primary <%= @char.special == 'Victor' ? 'active' : '' %>">
-              <%= f.radio_button :special, 'Victor', class: 'form-control'%> Victor
-            </label>
-            <label class="btn btn-primary <%= @char.special == 'Gamemaker' ? 'active' : '' %>">
-              <%= f.radio_button :special, 'Gamemaker', class: 'form-control' %> Gamemaker
-            </label>
-            <label class="btn btn-primary">
-              <%= f.radio_button :special, '', class: 'form-control' %> N/A
-            </label>
-          </div>
-          <a href="/about#special-types" target="_blank"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
-        </div>
-      </div>
-
-      <div class="panel panel-default">
-        <div class="panel-heading">Face Claim (optional)</div>
-        <div class="panel-body">
+        <% @tribute.attributes.each do |key, value| %>
+          <% unless key.include?('id') || key.include?('_at') || key == 'type' %>
+        <!-- TODO: CUT THIS SHIT OUT -->
           <div class="input-group input-group">
-            <span class="input-group-addon" id="sizing-addon1">FC First Name</span>
-            <%= f.text_field :fc_first, class: 'form-control', placeholder: 'FC First Name', value: @char.fc_first %>
-          </div>
-
-          <div class="input-group input-group">
-            <span class="input-group-addon" id="sizing-addon1">FC Last Name</span>
-            <%= f.text_field :fc_last, class: 'form-control', placeholder: 'FC Last Name', value: @char.fc_last %>
-          </div>
-        </div>
-      </div>
-
-      <% if @char.in_reaping? %>
-        <div class="panel panel-default">
-          <div class="panel-heading">Tessera</div>
-          <div class="panel-body">
-            <div class="input-group input-group">
-              <span class="input-group-addon" id="sizing-addon1"><label for="character_tessera">Tessera</label></span>
-                <span class="input-group-addon right">
-                  <% @char.active_tessera.nil? ? tessera = Tessera.new : tessera = @char.active_tessera %>
-                  <%= f.number_field :tessera, value: tessera.number, class: 'form-control',
-                                     min: 0, max: 3, disabled: current_user.id != @char.user_id %></span>
-            </div>
-
-            <div class="input-group input-group">
-                <span class="input-group-addon" id="sizing-addon1">
-                  Current Tessera <%= tessera.approved ? '' : 'not' %> approved.</span>
-            </div>
-
-            <% if @char.user_id != current_user.id %>
-              <div class="input-group input-group">
-                <span class="input-group-addon" id="sizing-addon1"><label for="character_tessera_approved">Approve Tessera:</label></span>
-                  <span class="input-group-addon right">
-                    <%= f.check_box :tessera_approved, checked: tessera.approved, disabled: tessera.number == 0 %>
-                  </span>
-              </div>
-            <% end %>
+            <span class="input-group-addon" id="sizing-addon1"><%= key %></span>
+            <input class="form-control" type="text" name="attrs[]" placeholder="<%= key %>" id="<%= key %>" value="<%= value %>">
 
           </div>
-        </div>
-      <% end %>
 
-      <% if current_user.can_approve? && (current_user.id != @char.user_id || current_user.id == 1) %>
-        <div class="panel panel-default">
-          <div class="panel-heading">Admin Options</div>
-          <div class="panel-body">
-            <div class="input-group input-group">
-              <span class="input-group-addon" id="sizing-addon1"><label for="character_char_approved">Character Approved?</label></span>
-              <span class="input-group-addon right"><%= f.check_box :char_approved, checked: @char.char_approved %></span>
-            </div>
+          <% end %>
+        <% end %>
 
-            <div class="input-group input-group">
-              <span class="input-group-addon" id="sizing-addon1"><label for="character_fc_approved">Face Claim Approved?</label></span>
-              <span class="input-group-addon right"><%= f.check_box :fc_approved, checked: @char.fc_approved %></span>
-            </div>
-          </div>
-        </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+  </form>
 
-      <% end %>
 
-      <%= f.hidden_field :id, value: @char.id %>
 
-      <%= f.submit 'Submit', class: 'btn btn-primary' %>
-    </div>
-  <% end %>
 </div>

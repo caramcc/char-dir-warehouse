@@ -117,6 +117,7 @@ Rails.application.routes.draw do
     post '/hero/games/:games/mutts/add' => 'games#update_mutts'
 
     get '/hero/tribute/:id' => 'tribute#show'
+    get '/hero/tribute/edit/:id' => 'tribute#edit'
 
     # View routes
 
