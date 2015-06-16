@@ -1,0 +1,142 @@
+<div class="container">
+  <div class="col-lg-6">
+
+
+  t.string  "type",         limit: 255
+  t.string  "name",         limit: 255
+  t.text    "description",  limit: 65535
+  t.integer "damage",       limit: 4
+  t.integer "hp",           limit: 4
+  t.string  "area",         limit: 255
+  t.boolean "full",         limit: 1
+  t.integer "uses",         limit: 4
+  t.string  "weapon_class", limit: 255
+
+
+
+  <h1>New Item</h1>
+  <script type="text/javascript">
+    $('.selectpicker').selectpicker();
+
+    $(function() {
+      $('#type-selector').change(function(){
+        $('.secondary').hide();
+        $('#' + $(this).val()).show();
+      });
+    });
+  </script>
+
+
+  <form action="/hero/items/library/new" method="POST" class="form-group">
+    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+    <!-- Default panel contents -->
+
+    <div class="input-group input-group">
+      <span class="input-group-addon" id="sizing-addon1">Item Name</span>
+      <input class="form-control" type="text" name="name" placeholder="Item Name" id="name">
+    </div>
+
+    <div class="input-group input-group">
+      <span class="input-group-addon" id="sizing-addon1">Item Type</span>
+      <select id="type-selector" name="item_type" class="form-control selectpicker" data-live-search="true">
+        <% @data[:item_types].each do |type| %>
+          <option value="<%= type %>">
+            <%= type %>
+          </option>
+        <% end %>
+      </select>
+    </div>
+
+    <!-- ARMOR -->
+    <div id="Armor" class="panel panel-default secondary" style="display:none">
+      <div class="panel-heading">Armor</div>
+        <div class="panel-body">
+          <div class="input-group input-group">
+            <span class="input-group-addon" id="sizing-addon1">Armor Area</span>
+            <select name="armor_area" class="form-control selectpicker" data-live-search="true">
+              <% @data[:armor_areas].each do |area| %>
+                <option value="<%= area %>">
+                  <%= area %>
+                </option>
+              <% end %>
+            </select>
+          </div>
+          <div class="input-group input-group">
+            <span class="input-group-addon" id="sizing-addon1">Damage Saved</span>
+            <input class="form-control" type="number" name="name" id="name">
+          </div>
+      </div>
+    </div>
+
+      <!-- WEAPON -->
+    <div id="Weapon" class="panel panel-default secondary" style="display:none">
+      <div class="panel-heading">Weapon</div>
+      <div class="panel-body">
+        <div class="input-group input-group">
+            <span class="input-group-addon" id="sizing-addon1">Weapon Class</span>
+            <select name="weapon_class" class="form-control selectpicker" data-live-search="true">
+              <% @data[:weapon_types].each do |area| %>
+                <option value="<%= area %>">
+                  <%= area %>
+                </option>
+              <% end %>
+            </select>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- CONTAINER -->
+    <div id="Container" class="panel panel-default secondary" style="display:none">
+      <div class="panel-heading">Container</div>
+      <div class="panel-body">
+        <div class="input-group input-group">
+          <span class="input-group-addon" id="sizing-addon1">Full?</span>
+          <input class="form-control" type="checkbox" name="full" id="full">
+        </div>
+      </div>
+    </div>
+
+
+    <!-- MEDICINAL -->
+    <div id="Medicinal" class="panel panel-default secondary" style="display:none">
+      <div class="panel-heading">Medicinal Item</div>
+      <div class="panel-body">
+        <div class="input-group input-group">
+          <span class="input-group-addon" id="sizing-addon1">Amount Healed</span>
+          <input class="form-control" type="text" name="name" placeholder="Item Name" id="name">
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- REST OF FORM -->
+
+    <div class="panel panel-default">
+      <div class="input-group input-group">
+        <span class="input-group-addon" id="sizing-addon1">Edible?</span>
+        <input type="checkbox" name="edible" id="edible">
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="input-group input-group">
+        <span class="input-group-addon" id="sizing-addon1">Drinkable?</span>
+        <input type="checkbox" name="drinkable" id="drinkable">
+      </div>
+    </div>
+
+    <div class="input-group input-group">
+      <span class="input-group-addon" id="sizing-addon1">Description</span>
+      <textarea class="form-control" rows="3" name="description" id="description"></textarea>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Create</button>
+  </form>
+
+
+
+  </div>
+</div>

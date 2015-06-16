@@ -1,0 +1,73 @@
+<div class="container">
+
+  <h1>Item Library</h1>
+
+
+  <% @items.each do |item| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="list-group-item-heading">
+          <%= item.name %>
+        </h3>
+      </div>
+      <table class="table sortable-theme-bootstrap table-hover" data-sortable>
+        <th>ID</th>
+        <th data-sorted="true" data-sorted-direction="descending">Name</th>
+        <th>Type</th>
+        <!-- Area/Class/full-->
+        <% case item.type %>
+          <% when 'Armor' %>
+            <th>Armor Area</th>
+          <% when 'Weapon' %>
+            <th>Weapon Class</th>
+          <% when 'Container' %>
+            <th>Full?</th>
+          <% else %>
+        <% end %>
+
+        <!-- edible/drinkable -->
+        <th></th>
+
+        <!-- disposable -->
+        <% unless item.uses.nil? %>
+          <th>Uses</th>
+        <% end %>
+        <th>Description</th>
+        <% if current_user.is_gm_for?(Hero::Games.current_games_number) || current_user.open_games? %>
+            <th>Edit</th>
+        <% end %>
+
+          <tr>
+            <td><%= item.id %></td>
+            <td><%= item.name %></td>
+            <td><%= item.type %></td>
+            <% case item.type %>
+            <% when 'Armor' %>
+              <td><%= item.area %></td>
+            <% when 'Weapon' %>
+              <td><%= item.area %></td>
+            <% when 'Container' %>
+              <td><%= item.full %></td>
+            <% else %>
+            <% end %>
+            <% if item.edible %>
+              <td><span class="glyphicon glyphicon-apple" aria-hidden="true"></span></td>
+            <% end %>
+            <% if item.drinkable %>
+              <td><span class="glyphicon glyphicon-tint" aria-hidden="true"></span></td>
+            <% end %>
+            <!-- disposable -->
+            <% unless item.uses.nil? %>
+              <td><%= item.uses %></td>
+            <% end %>
+            <td><%= item.description %></td>
+            <% if current_user.is_gm_for?(Hero::Games.current_games_number) || current_user.open_games? %>
+              <th><a href='/hero/items/library/edit/<%= item.id %>'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></th>
+            <% end %>
+          </tr>
+      </table>
+    </div>
+  <% end %>
+
+
+</div>

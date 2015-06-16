@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616181745) do
+ActiveRecord::Schema.define(version: 20150616201612) do
 
   create_table "actions", force: :cascade do |t|
     t.integer "recipient_starting_damage", limit: 4
@@ -112,10 +112,17 @@ ActiveRecord::Schema.define(version: 20150616181745) do
   end
 
   create_table "item_libraries", force: :cascade do |t|
-    t.string  "name",          limit: 255
-    t.string  "description",   limit: 255
-    t.string  "effect_type",   limit: 255
-    t.integer "effect_amount", limit: 4
+    t.string  "type",         limit: 255
+    t.string  "name",         limit: 255
+    t.integer "damage",       limit: 4
+    t.integer "hp",           limit: 4
+    t.string  "area",         limit: 255
+    t.boolean "full",         limit: 1
+    t.integer "uses",         limit: 4
+    t.string  "weapon_class", limit: 255
+    t.text    "description",  limit: 65535
+    t.boolean "edible",       limit: 1
+    t.boolean "drinkable",    limit: 1
   end
 
   create_table "items", force: :cascade do |t|
@@ -131,6 +138,8 @@ ActiveRecord::Schema.define(version: 20150616181745) do
     t.boolean "purified",        limit: 1
     t.string  "weapon_class",    limit: 255
     t.integer "active_location", limit: 4
+    t.boolean "edible",          limit: 1
+    t.boolean "drinkable",       limit: 1
   end
 
   create_table "locations", force: :cascade do |t|
