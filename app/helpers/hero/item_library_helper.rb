@@ -1,0 +1,2 @@
+module Hero::ItemLibraryHelper
+end
