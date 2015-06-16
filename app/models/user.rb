@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates :display_name, :uniqueness => true
 
   def is_gm_for?(games_number)
-    games_number == games_number
+    Hero::Games.current_games_number == games_number
   end
 
   def admin_panel?

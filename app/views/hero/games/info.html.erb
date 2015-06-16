@@ -24,15 +24,15 @@
 
       <% @games.tributes.each do |tribute| %>
         <tr class="<%= tribute.alive? ? '' : 'disabled'%>">
-          <td><a href="/tribute/<%= tribute.id %>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></td>
+          <td><a href="/hero/tribute/<%= tribute.id %>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></td>
           <td><%= tribute.district_gender %></td>
           <td><%= tribute.name %></td>
           <td><a href="/user/<%= tribute.user_id %>"><%= tribute.username %></a></td>
           <td><b><%= tribute.damage %></b></td>
           <td><%= tribute.water_days %></td>
           <td><%= tribute.food_days %></td>
-          <td><span class="glyphicon glyphicon-fire" style="color:#952F30;" aria-hidden="true" <%= tribute.has_fire ? 'hidden' : '' %>></span>
-            <span class="glyphicon glyphicon-tint" style="color:#2E662C;" aria-hidden="true" <%= tribute.poisoned ? 'hidden' : '' %>></span></td>
+          <td><% tribute.has_fire ? '<span class="glyphicon glyphicon-fire" style="color:#952F30;" aria-hidden="true"></span>' : '' %>
+            <% tribute.poisoned ? '<span class="glyphicon glyphicon-tint" style="color:#2E662C;" aria-hidden="true" ></span>' : ''%></td>
 
         </tr>
       <% end %>

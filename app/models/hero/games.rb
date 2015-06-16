@@ -7,13 +7,17 @@ module Hero
     has_many :gamemakers, :class_name => 'User'
     # Games init
 
-    # current Games
-
     # add gamemaker
 
     # add tribute
 
     # add item
+
+    class << self
+      def current_games_number
+        Games.where(active: true).last.number
+      end
+    end
 
 
   end

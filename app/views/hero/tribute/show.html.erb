@@ -1,50 +1,20 @@
 <div class="container">
 
-  <h1>All Characters</h1>
-
   <div class="panel panel-default">
-    <!-- Default panel contents -->
-    <!--<div class="panel-heading">Approved Characters</div>-->
-
-    <!--TODO: Make the table actually sortable-->
-
-    <table class="table sortable-theme-bootstrap table-hover" data-sortable>
-      <th></th>
-      <th data-sorted="true" data-sorted-direction="descending">District/Area</th>
-      <th>Gender</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Owner</th>
-      <th>Age</th>
-      <th>Special</th>
-      <th>Face Claim</th>
-      <th>FC Valid?</th>
-      <th>View on HGRPG</th>
-
-      <% @chars.each do |char| %>
-        <tr class="<%= char.char_approved ? '' : 'warning'%>">
-          <td><a href="/character/<%= char.id %>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></td>
-          <td><%= char.home_area %></td>
-          <td><%= char.gender %></td>
-          <td><%= char.first_name %></td>
-          <td><%= char.last_name %></td>
-          <td><a href="/user/<%= char.user_id%>"><%= @display_names[char.user_id] %></a></td>
-          <td><%= char.age %></td>
-          <td><%= char.special %></td>
-
-          <td><%= char.fc_first %> <%= char.fc_last %></td>
-
-          <td>
-            <% if char.fc_approved %>
-              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-            <% else %>
-              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-            <% end %>
-          </td>
-
-          <td><a href="<%= char.bio_thread %>" target="_blank">[link]</a></td>
-        </tr>
-      <% end %>
-    </table>
+    <div class="panel-heading">
+      <h1 class="list-group-item-heading">
+        <%= @tribute.name %>
+        <small><a href="/user/<%= @tribute.user_id %>" class="panel-title">[ <%= @tribute.username.downcase %> ]</a></small>
+        <% if current_user.is_gm_for?(Hero::Games.current_games_number) %>
+          <a href="/tribute/edit/<%= @tribute.id%>"> <span class="badge pull-right">edit <span class="glyphicon glyphicon-edit"></span></span></a>
+        <% end %>
+      </h1>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item"><b>Attributes:</b> <%= @tribute.attributes %></li>
+    </ul>
   </div>
+
+
+
 </div>
