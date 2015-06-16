@@ -9,7 +9,8 @@ module Hero
     def new
       @data = {
           :item_types => %w(Item Weapon Armor Medicinal Container),
-          :weapon_types => %w(Sword Knife Spear Bow Whip Blunt Projectile Thrown-Knife Thrown-Axe Axe Flail Glaive),
+          :weapon_types => ['Sword', 'Knife', 'Spear', 'Bow', 'Whip', 'Blunt', 'Projectile', 'Throwing Knife',
+                            'Throwing Axe', 'Axe', 'Flail', 'Glaive'],
           :armor_areas => %w(Head Legs Hands Torso Feet)
       }
     end
