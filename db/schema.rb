@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150614140822) do
+ActiveRecord::Schema.define(version: 20150617193432) do
 
   create_table "actions", force: :cascade do |t|
     t.integer "recipient_starting_damage", limit: 4
@@ -111,6 +111,23 @@ ActiveRecord::Schema.define(version: 20150614140822) do
     t.string  "change",       limit: 255
   end
 
+  create_table "item_libraries", force: :cascade do |t|
+    t.string  "kind",         limit: 255
+    t.string  "name",         limit: 255
+    t.integer "damage",       limit: 4
+    t.integer "hp",           limit: 4
+    t.string  "area",         limit: 255
+    t.boolean "full",         limit: 1
+    t.string  "weapon_class", limit: 255
+    t.text    "description",  limit: 65535
+    t.boolean "edible",       limit: 1
+    t.boolean "drinkable",    limit: 1
+    t.boolean "stackable",    limit: 1
+    t.boolean "flammable",    limit: 1
+    t.boolean "firestarter",  limit: 1
+    t.boolean "consumable",   limit: 1
+  end
+
   create_table "items", force: :cascade do |t|
     t.string  "type",            limit: 255
     t.string  "name",            limit: 255
@@ -118,12 +135,17 @@ ActiveRecord::Schema.define(version: 20150614140822) do
     t.integer "hp",              limit: 4
     t.integer "area",            limit: 4
     t.boolean "full",            limit: 1
-    t.integer "uses",            limit: 4
     t.integer "damage_healed",   limit: 4
     t.boolean "poisoned",        limit: 1
     t.boolean "purified",        limit: 1
     t.string  "weapon_class",    limit: 255
     t.integer "active_location", limit: 4
+    t.boolean "edible",          limit: 1
+    t.boolean "drinkable",       limit: 1
+    t.boolean "stackable",       limit: 1
+    t.boolean "flammable",       limit: 1
+    t.boolean "firestarter",     limit: 1
+    t.boolean "consumable",      limit: 1
   end
 
   create_table "locations", force: :cascade do |t|

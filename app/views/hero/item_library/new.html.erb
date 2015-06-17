@@ -1,0 +1,130 @@
+<div class="container">
+  <div class="col-lg-6">
+
+
+  <h1>New Item</h1>
+  <script type="text/javascript">
+    $('.selectpicker').selectpicker();
+
+    $(function() {
+      $('#type-selector').change(function(){
+        $('.secondary').hide();
+        $('#' + $(this).val()).show();
+      });
+    });
+  </script>
+
+
+  <form action="/hero/items/library/new" method="POST" class="form-group">
+    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+    <!-- Default panel contents -->
+
+    <div class="input-group input-group">
+      <span class="input-group-addon" id="sizing-addon1">Item Name</span>
+      <input class="form-control" type="text" name="item_name" id="item_name" placeholder="Item Name">
+    </div>
+
+    <div class="input-group input-group">
+      <span class="input-group-addon" id="sizing-addon1">Item Type</span>
+      <select id="type-selector" name="item_type" class="form-control selectpicker">
+        <% @data[:item_types].each do |type| %>
+          <option value="<%= type %>">
+            <%= type %>
+          </option>
+        <% end %>
+      </select>
+    </div>
+
+    <!-- ARMOR -->
+    <div id="Armor" class="panel panel-default secondary" style="display:none">
+      <div class="panel-heading">Armor</div>
+        <div class="panel-body">
+          <div class="input-group input-group">
+            <span class="input-group-addon" id="sizing-addon1">Damage Saved</span>
+            <input class="form-control" type="number" name="armor_damage" id="armor_damage">
+          </div>
+          <div class="input-group input-group">
+            <span class="input-group-addon" id="sizing-addon1">Armor Area</span>
+            <select name="armor_area" class="form-control selectpicker">
+              <% @data[:armor_areas].each do |area| %>
+                <option value="<%= area %>">
+                  <%= area %>
+                </option>
+              <% end %>
+            </select>
+          </div>
+      </div>
+    </div>
+
+      <!-- WEAPON -->
+    <div id="Weapon" class="panel panel-default secondary" style="display:none">
+      <div class="panel-heading">Weapon</div>
+      <div class="panel-body">
+        <div class="input-group input-group">
+            <span class="input-group-addon" id="sizing-addon1">Weapon Class</span>
+            <select name="weapon_class" class="form-control selectpicker">
+              <% @data[:weapon_types].each do |area| %>
+                <option value="<%= area %>">
+                  <%= area %>
+                </option>
+              <% end %>
+            </select>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- CONTAINER -->
+    <div id="Container" class="panel panel-default secondary" style="display:none">
+      <div class="panel-heading">Container</div>
+      <div class="panel-body">
+        <div class="input-group input-group">
+          <label for="full">Full?</label> <input type="checkbox" name="full" id="full">
+        </div>
+      </div>
+    </div>
+
+
+    <!-- MEDICINAL -->
+    <div id="Medicinal" class="panel panel-default secondary" style="display:none">
+      <div class="panel-heading">Medicinal Item</div>
+      <div class="panel-body">
+        <div class="input-group input-group">
+          <span class="input-group-addon" id="sizing-addon1">Amount Healed with First Aid</span>
+          <input class="form-control" type="number" name="amount_healed" id="amount_healed">
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- REST OF FORM -->
+
+
+    <div class="panel panel-default" >
+      <div class="panel-heading">Attributes</div>
+      <div class="panel-body">
+        <label for="edible">Edible?</label> <input type="checkbox" name="edible" id="edible"><br>
+        <label for="drinkable">Drinkable?</label> <input type="checkbox" name="drinkable" id="drinkable"><br>
+        <label for="stackable">Stackable?</label> <input type="checkbox" name="stackable" id="stackable"><br>
+        <label for="flammable">Flammable?</label> <input type="checkbox" name="flammable" id="flammable"><br>
+        <label for="fire_starter">Fire Starter?</label> <input type="checkbox" name="fire_starter" id="fire_starter"><br>
+        <label for="consumable">Consumable?</label> <input type="checkbox" name="consumable" id="consumable">
+      </div>
+    </div>
+
+    <div class="panel panel-default" >
+      <div class="panel-heading">Description</div>
+      <div class="panel-body">
+      <textarea class="form-control" rows="3" name="description" id="description"></textarea>
+        </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Create</button>
+  </form>
+
+
+
+  </div>
+</div>

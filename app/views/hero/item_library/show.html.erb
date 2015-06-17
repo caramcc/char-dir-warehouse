@@ -1,0 +1,84 @@
+<div class="container">
+
+  <h1>Item Library</h1>
+
+  <% @items.each do |kind, ary| %>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="list-group-item-heading">
+          <%= kind %>
+        </h3>
+      </div>
+      <table class="table sortable-theme-bootstrap table-hover" data-sortable>
+        <th>ID</th>
+        <th data-sorted="true" data-sorted-direction="descending">Name</th>
+        <th>Type</th>
+        <!-- Area/Class/full-->
+        <% case kind %>
+        <% when 'Armor' %>
+          <th>Armor Area</th>
+        <% when 'Weapon' %>
+          <th>Weapon Class</th>
+        <% when 'Container' %>
+          <th>Full?</th>
+        <% else %>
+        <% end %>
+
+        <!-- edible/drinkable -->
+        <th></th>
+
+        <th>Description</th>
+        <% if current_user.is_gm_for?(Hero::Games.current_games_number) || current_user.open_games? %>
+          <th>Edit</th>
+        <% end %>
+
+         <% ary.each do |item| %>
+            <tr>
+              <td><%= item.id %></td>
+              <td><%= item.name %></td>
+              <td><%= item.kind %></td>
+              <% case item.kind %>
+              <% when 'Armor' %>
+                <td><%= item.area %></td>
+              <% when 'Weapon' %>
+                <td><%= item.weapon_class %></td>
+              <% when 'Container' %>
+                <td><%= item.full ? 'yes' : 'no' %></td>
+              <% else %>
+              <% end %>
+
+              <td>
+                <% if item.edible %>
+                  <span class="glyphicon glyphicon-cutlery" aria-hidden="true" title="edible"></span>
+                <% end %>
+                <% if item.drinkable %>
+                  <span class="glyphicon glyphicon-tint" aria-hidden="true" title="drinkable"></span>
+                <% end %>
+                <% if item.stackable %>
+                  <span class="glyphicon glyphicon-equalizer" aria-hidden="true" title="stackable"></span>
+                <% end %>
+                <% if item.flammable %>
+                  <span class="glyphicon glyphicon-fire" aria-hidden="true" title="flammable"></span>
+                <% end %>
+                <% if item.firestarter %>
+                  <span class="glyphicon glyphicon-lamp" aria-hidden="true" title="fire starter"></span>
+                <% end %>
+                <% if item.consumable %>
+                  <span class="glyphicon glyphicon-adjust" aria-hidden="true" title="consumable"></span>
+                <% end %>
+              </td>
+
+              <td><%= item.description %></td>
+              <% if current_user.is_gm_for?(Hero::Games.current_games_number) || current_user.open_games? %>
+                <th><a href='/hero/items/library/edit/<%= item.id %>'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></th>
+              <% end %>
+            </tr>
+         <% end %>
+
+      </table>
+    </div>
+  <% end %>
+
+
+</div>

@@ -119,6 +119,14 @@ Rails.application.routes.draw do
     get '/hero/tribute/:id' => 'tribute#show'
     get '/hero/tribute/edit/:id' => 'tribute#edit'
 
+
+    get '/hero/items/library' => 'item_library#show'
+    get '/hero/items/library/new' => 'item_library#new'
+    post '/hero/items/library/new' => 'item_library#create'
+    get '/hero/items/library/:item' => 'item_library#show_one'
+    get '/hero/items/library/edit/:item' => 'item_library#edit'
+    post '/hero/items/library/edit/:item' => 'item_library#update'
+
     # View routes
 
 
