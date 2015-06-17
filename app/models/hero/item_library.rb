@@ -4,7 +4,7 @@ module Hero
     class << self
 
       def new_weapon(item_name, weapon_class, description, edible = false, drinkable = false, stackable = false,
-                     flammable = false, fire_starter = false)
+                     flammable = false, fire_starter = false, consumable = false)
         item = ItemLibrary.new
         item.name = item_name
         item.kind = 'Weapon'
@@ -15,13 +15,14 @@ module Hero
         item.stackable = stackable
         item.flammable = flammable
         item.firestarter = fire_starter
+        item.consumable = consumable
 
         item.save
 
       end
 
       def new_armor(item_name, armor_area, armor_amount, description, edible = false, drinkable = false, stackable = false,
-                    flammable = false, fire_starter = false)
+                    flammable = false, fire_starter = false, consumable = false)
         item = ItemLibrary.new
         item.name = item_name
         item.kind = 'Armor'
@@ -33,13 +34,14 @@ module Hero
         item.stackable = stackable
         item.flammable = flammable
         item.firestarter = fire_starter
+        item.consumable = consumable
 
         item.save
 
       end
 
       def new_container(item_name, description, full, edible = false, drinkable = false, stackable = false,
-                        flammable = false, fire_starter = false)
+                        flammable = false, fire_starter = false, consumable = false)
         item = ItemLibrary.new
         item.name = item_name
         item.kind = 'Container'
@@ -50,13 +52,14 @@ module Hero
         item.stackable = stackable
         item.flammable = flammable
         item.firestarter = fire_starter
+        item.consumable = consumable
 
         item.save
 
       end
 
       def new_medicinal(item_name, amount_healed, description, edible = false, drinkable = false, stackable = false,
-                        flammable = false, fire_starter = false)
+                        flammable = false, fire_starter = false, consumable = false)
         item = ItemLibrary.new
         item.name = item_name
         item.kind = 'Medicinal'
@@ -67,13 +70,15 @@ module Hero
         item.stackable = stackable
         item.flammable = flammable
         item.firestarter = fire_starter
+        item.consumable = consumable
+
 
         item.save
 
       end
 
       def new_item(item_name, description, edible = false, drinkable = false, stackable = false,
-                   flammable = false, fire_starter = false)
+                   flammable = false, fire_starter = false, consumable = false)
         item = ItemLibrary.new
         item.name = item_name
         item.kind = 'Item'
@@ -83,6 +88,7 @@ module Hero
         item.stackable = stackable
         item.flammable = flammable
         item.firestarter = fire_starter
+        item.consumable = consumable
 
         item.save
 

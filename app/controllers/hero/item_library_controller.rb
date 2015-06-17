@@ -42,20 +42,20 @@ module Hero
       case params[:item_type]
         when 'Weapon'
           id = ItemLibrary.new_weapon(params[:item_name], params[:weapon_class], params[:description], params[:edible],
-                                 params[:drinkable], params[:stackable], params[:fire_starter])
+                                 params[:drinkable], params[:stackable], params[:fire_starter], params[:consumable])
         when 'Armor'
           id = ItemLibrary.new_armor(params[:item_name], params[:armor_area], params[:armor_damage], params[:description],
-                                     params[:edible], params[:drinkable], params[:stackable], params[:flammable], params[:fire_starter])
+                                     params[:edible], params[:drinkable], params[:stackable], params[:flammable], params[:fire_starter], params[:consumable])
         when 'Medicinal'
           id = ItemLibrary.new_medicinal(params[:item_name], params[:amount_healed], params[:description], params[:edible],
-                                         params[:drinkable], params[:stackable], params[:flammable], params[:fire_starter])
+                                         params[:drinkable], params[:stackable], params[:flammable], params[:fire_starter], params[:consumable])
 
         when 'Container'
           id = ItemLibrary.new_container(params[:item_name], params[:description], params[:full], params[:edible],
-                                         params[:drinkable], params[:stackable], params[:flammable], params[:fire_starter])
+                                         params[:drinkable], params[:stackable], params[:flammable], params[:fire_starter], params[:consumable])
         else
           id = ItemLibrary.new_item(params[:item_name], params[:description], params[:edible], params[:drinkable],
-                                    params[:stackable], params[:flammable], params[:fire_starter])
+                                    params[:stackable], params[:flammable], params[:fire_starter], params[:consumable])
       end
 
       # TODO: Add :add_to when tributes have items n stuff

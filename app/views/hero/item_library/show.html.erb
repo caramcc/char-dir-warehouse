@@ -50,19 +50,22 @@
 
               <td>
                 <% if item.edible %>
-                  <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-cutlery" aria-hidden="true" title="edible"></span>
                 <% end %>
                 <% if item.drinkable %>
-                  <span class="glyphicon glyphicon-tint" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-tint" aria-hidden="true" title="drinkable"></span>
                 <% end %>
                 <% if item.stackable %>
-                  <span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-equalizer" aria-hidden="true" title="stackable"></span>
                 <% end %>
                 <% if item.flammable %>
-                  <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-fire" aria-hidden="true" title="flammable"></span>
                 <% end %>
                 <% if item.firestarter %>
-                  <span class="glyphicon glyphicon-lamp" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-lamp" aria-hidden="true" title="fire starter"></span>
+                <% end %>
+                <% if item.consumable %>
+                  <span class="glyphicon glyphicon-adjust" aria-hidden="true" title="consumable"></span>
                 <% end %>
               </td>
 
