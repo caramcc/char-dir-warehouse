@@ -2,13 +2,12 @@
 
   <h1>Item Library</h1>
 
-  <!-- TODO: Sort by Item type then table it out -->
+  <% @items.each do |kind, ary| %>
 
-  <% @items.each do |item| %>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="list-group-item-heading">
-          <%= item.name %>
+          <%= kind %>
         </h3>
       </div>
       <table class="table sortable-theme-bootstrap table-hover" data-sortable>
@@ -16,69 +15,64 @@
         <th data-sorted="true" data-sorted-direction="descending">Name</th>
         <th>Type</th>
         <!-- Area/Class/full-->
-        <% case item.kind %>
-          <% when 'Armor' %>
-            <th>Armor Area</th>
-          <% when 'Weapon' %>
-            <th>Weapon Class</th>
-          <% when 'Container' %>
-            <th>Full?</th>
-          <% else %>
+        <% case kind %>
+        <% when 'Armor' %>
+          <th>Armor Area</th>
+        <% when 'Weapon' %>
+          <th>Weapon Class</th>
+        <% when 'Container' %>
+          <th>Full?</th>
+        <% else %>
         <% end %>
 
         <!-- edible/drinkable -->
         <th></th>
 
-        <!-- disposable -->
-        <!--<% unless item.uses.nil? %>-->
-          <!--<th>Uses</th>-->
-        <!--<% end %>-->
         <th>Description</th>
         <% if current_user.is_gm_for?(Hero::Games.current_games_number) || current_user.open_games? %>
-            <th>Edit</th>
+          <th>Edit</th>
         <% end %>
 
-          <tr>
-            <td><%= item.id %></td>
-            <td><%= item.name %></td>
-            <td><%= item.kind %></td>
-            <% case item.kind %>
-            <% when 'Armor' %>
-              <td><%= item.area %></td>
-            <% when 'Weapon' %>
-              <td><%= item.weapon_class %></td>
-            <% when 'Container' %>
-              <td><%= item.full %></td>
-            <% else %>
-            <% end %>
+         <% ary.each do |item| %>
+            <tr>
+              <td><%= item.id %></td>
+              <td><%= item.name %></td>
+              <td><%= item.kind %></td>
+              <% case item.kind %>
+              <% when 'Armor' %>
+                <td><%= item.area %></td>
+              <% when 'Weapon' %>
+                <td><%= item.weapon_class %></td>
+              <% when 'Container' %>
+                <td><%= item.full ? 'yes' : 'no' %></td>
+              <% else %>
+              <% end %>
 
-            <td>
-              <% if item.edible %>
-                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
-              <% end %>
-              <% if item.drinkable %>
-                <span class="glyphicon glyphicon-tint" aria-hidden="true"></span>
-              <% end %>
-              <% if item.stackable %>
-                <span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span>
-              <% end %>
-              <% if item.flammable %>
-                <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-              <% end %>
-              <% if item.firestarter %>
-                <span class="glyphicon glyphicon-lamp" aria-hidden="true"></span>
-              <% end %>
-            </td>
+              <td>
+                <% if item.edible %>
+                  <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+                <% end %>
+                <% if item.drinkable %>
+                  <span class="glyphicon glyphicon-tint" aria-hidden="true"></span>
+                <% end %>
+                <% if item.stackable %>
+                  <span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span>
+                <% end %>
+                <% if item.flammable %>
+                  <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+                <% end %>
+                <% if item.firestarter %>
+                  <span class="glyphicon glyphicon-lamp" aria-hidden="true"></span>
+                <% end %>
+              </td>
 
-            <!-- disposable -->
-            <!--<% unless item.uses.nil? %>-->
-              <!--<td><%= item.uses %></td>-->
-            <!--<% end %>-->
-            <td><%= item.description %></td>
-            <% if current_user.is_gm_for?(Hero::Games.current_games_number) || current_user.open_games? %>
-              <th><a href='/hero/items/library/edit/<%= item.id %>'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></th>
-            <% end %>
-          </tr>
+              <td><%= item.description %></td>
+              <% if current_user.is_gm_for?(Hero::Games.current_games_number) || current_user.open_games? %>
+                <th><a href='/hero/items/library/edit/<%= item.id %>'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></th>
+              <% end %>
+            </tr>
+         <% end %>
+
       </table>
     </div>
   <% end %>

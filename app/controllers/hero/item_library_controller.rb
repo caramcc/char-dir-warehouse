@@ -3,7 +3,18 @@ module Hero
 
 
     def show
-      @items = ItemLibrary.all
+      items = ItemLibrary.all
+
+      @items = {}
+
+      items.each do |item|
+        if @items[item.kind].nil?
+          @items[item.kind] = [item]
+        else
+          @items[item.kind].push item
+        end
+      end
+
     end
 
     def new
