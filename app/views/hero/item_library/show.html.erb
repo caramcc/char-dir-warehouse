@@ -2,6 +2,7 @@
 
   <h1>Item Library</h1>
 
+  <!-- TODO: Sort by Item type then table it out -->
 
   <% @items.each do |item| %>
     <div class="panel panel-default">
@@ -50,18 +51,24 @@
               <td><%= item.full %></td>
             <% else %>
             <% end %>
-            <% if item.edible %>
-              <td><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span></td>
-            <% end %>
-            <% if item.drinkable %>
-              <td><span class="glyphicon glyphicon-tint" aria-hidden="true"></span></td>
-            <% end %>
-            <% if item.stackable %>
-              <td><span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span></td>
-            <% end %>
 
-            <!-- edible/drinkable -->
-            <td></td>
+            <td>
+              <% if item.edible %>
+                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+              <% end %>
+              <% if item.drinkable %>
+                <span class="glyphicon glyphicon-tint" aria-hidden="true"></span>
+              <% end %>
+              <% if item.stackable %>
+                <span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span>
+              <% end %>
+              <% if item.flammable %>
+                <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+              <% end %>
+              <% if item.firestarter %>
+                <span class="glyphicon glyphicon-lamp" aria-hidden="true"></span>
+              <% end %>
+            </td>
 
             <!-- disposable -->
             <!--<% unless item.uses.nil? %>-->
