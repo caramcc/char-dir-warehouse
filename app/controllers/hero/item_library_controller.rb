@@ -16,7 +16,45 @@ module Hero
     end
 
     def create
-      puts params
+      # "item_name"=>"Jar of Hot Fudge Sundae",
+      #     "item_type"=>"Container",
+      #     "armor_damage"=>"",
+      #     "armor_area"=>"Head",
+      #     "weapon_class"=>"Sword",
+      #     "full"=>"on",
+      #     "amount_healed"=>"",
+      #     "edible"=>"on",
+      #     "drinkable"=>"on",
+      #     "stackable"=>"on",
+      #     "description"=>"yum"}
+
+      case params[:item_type]
+        when 'Weapon'
+          id = ItemLibrary.new_weapon(params[:item_name], params[:weapon_class], params[:description], params[:edible],
+                                 params[:drinkable], params[:stackable], params[:fire_starter])
+        when 'Armor'
+          id = ItemLibrary.new_armor(params[:item_name], params[:armor_area], params[:armor_damage], params[:description],
+                                     params[:edible], params[:drinkable], params[:stackable], params[:flammable], params[:fire_starter])
+        when 'Medicinal'
+          id = ItemLibrary.new_medicinal(params[:item_name], params[:amount_healed], params[:description], params[:edible],
+                                         params[:drinkable], params[:stackable], params[:flammable], params[:fire_starter])
+
+        when 'Container'
+          id = ItemLibrary.new_container(params[:item_name], params[:description], params[:full], params[:edible],
+                                         params[:drinkable], params[:stackable], params[:flammable], params[:fire_starter])
+        else
+          id = ItemLibrary.new_item(params[:item_name], params[:description], params[:edible], params[:drinkable],
+                                    params[:stackable], params[:flammable], params[:fire_starter])
+      end
+
+      # TODO: Add :add_to when tributes have items n stuff
+      #
+      # unless params[:add_to].blank?
+      #   Tribute.find_by_id(params[:add_to]).add_item_from_library(id)
+      # end
+
+      # redirect_to "/hero/items/library/#{id}"
+      redirect_to '/hero/items/library'
     end
 
 

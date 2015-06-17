@@ -123,6 +123,7 @@ Rails.application.routes.draw do
     get '/hero/items/library' => 'item_library#show'
     get '/hero/items/library/new' => 'item_library#new'
     post '/hero/items/library/new' => 'item_library#create'
+    get '/hero/items/library/:item' => 'item_library#show_one'
     get '/hero/items/library/edit/:item' => 'item_library#show'
 
     # View routes

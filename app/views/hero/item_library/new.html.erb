@@ -2,18 +2,6 @@
   <div class="col-lg-6">
 
 
-  t.string  "type",         limit: 255
-  t.string  "name",         limit: 255
-  t.text    "description",  limit: 65535
-  t.integer "damage",       limit: 4
-  t.integer "hp",           limit: 4
-  t.string  "area",         limit: 255
-  t.boolean "full",         limit: 1
-  t.integer "uses",         limit: 4
-  t.string  "weapon_class", limit: 255
-
-
-
   <h1>New Item</h1>
   <script type="text/javascript">
     $('.selectpicker').selectpicker();
@@ -33,7 +21,7 @@
 
     <div class="input-group input-group">
       <span class="input-group-addon" id="sizing-addon1">Item Name</span>
-      <input class="form-control" type="text" name="name" placeholder="Item Name" id="name">
+      <input class="form-control" type="text" name="item_name" id="item_name" placeholder="Item Name">
     </div>
 
     <div class="input-group input-group">
@@ -53,7 +41,7 @@
         <div class="panel-body">
           <div class="input-group input-group">
             <span class="input-group-addon" id="sizing-addon1">Damage Saved</span>
-            <input class="form-control" type="number" name="name" id="name">
+            <input class="form-control" type="number" name="armor_damage" id="armor_damage">
           </div>
           <div class="input-group input-group">
             <span class="input-group-addon" id="sizing-addon1">Armor Area</span>
@@ -91,8 +79,7 @@
       <div class="panel-heading">Container</div>
       <div class="panel-body">
         <div class="input-group input-group">
-          <span class="input-group-addon" id="sizing-addon1">Full?</span>
-          <input class="form-control" type="checkbox" name="full" id="full">
+          <label for="full">Full?</label> <input type="checkbox" name="full" id="full">
         </div>
       </div>
     </div>
@@ -104,7 +91,7 @@
       <div class="panel-body">
         <div class="input-group input-group">
           <span class="input-group-addon" id="sizing-addon1">Amount Healed</span>
-          <input class="form-control" type="text" name="name" placeholder="Item Name" id="name">
+          <input class="form-control" type="number" name="amount_healed" id="amount_healed">
         </div>
       </div>
     </div>
@@ -119,7 +106,9 @@
       <div class="panel-body">
         <label for="edible">Edible?</label> <input type="checkbox" name="edible" id="edible"><br>
         <label for="drinkable">Drinkable?</label> <input type="checkbox" name="drinkable" id="drinkable"><br>
-        <label for="drinkable">Stackable?</label> <input type="checkbox" name="stackable" id="stackable">
+        <label for="stackable">Stackable?</label> <input type="checkbox" name="stackable" id="stackable"><br>
+        <label for="flammable">Flammable?</label> <input type="checkbox" name="flammable" id="flammable"><br>
+        <label for="fire_starter">Fire Starter?</label> <input type="checkbox" name="fire_starter" id="fire_starter">
       </div>
     </div>
 
