@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150617193432) do
+ActiveRecord::Schema.define(version: 20150618195315) do
 
   create_table "actions", force: :cascade do |t|
     t.integer "recipient_starting_damage", limit: 4
@@ -146,6 +146,8 @@ ActiveRecord::Schema.define(version: 20150617193432) do
     t.boolean "flammable",       limit: 1
     t.boolean "firestarter",     limit: 1
     t.boolean "consumable",      limit: 1
+    t.boolean "flaming",         limit: 1
+    t.text    "description",     limit: 65535
   end
 
   create_table "locations", force: :cascade do |t|

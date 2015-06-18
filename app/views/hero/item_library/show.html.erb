@@ -17,7 +17,6 @@
       <table class="table sortable-theme-bootstrap table-hover" data-sortable>
         <th>ID</th>
         <th data-sorted="true" data-sorted-direction="descending">Name</th>
-        <th>Type</th>
         <!-- Area/Class/full-->
         <% case kind %>
         <% when 'Armor' %>
@@ -39,9 +38,8 @@
 
          <% ary.each do |item| %>
             <tr>
-              <td><%= item.id %></td>
+              <td class="col-md-1"><%= item.id %></td>
               <td><%= item.name %></td>
-              <td><%= item.kind %></td>
               <% case item.kind %>
               <% when 'Armor' %>
                 <td><%= item.area %></td>
@@ -52,7 +50,7 @@
               <% else %>
               <% end %>
 
-              <td>
+              <td class="col-md-1">
                 <% if item.edible %>
                   <span class="glyphicon glyphicon-cutlery" aria-hidden="true" title="edible"></span>
                 <% end %>
@@ -73,9 +71,9 @@
                 <% end %>
               </td>
 
-              <td><%= item.description %></td>
+              <td class="col-md-6"><%= item.description %></td>
               <% if current_user.is_gm_for?(Hero::Games.current_games_number) || current_user.open_games? %>
-                <th><a href='/hero/items/library/edit/<%= item.id %>'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></th>
+                <th class="col-md-1"><a href='/hero/items/library/edit/<%= item.id %>'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></th>
               <% end %>
             </tr>
          <% end %>

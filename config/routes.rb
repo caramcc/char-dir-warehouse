@@ -127,6 +127,10 @@ Rails.application.routes.draw do
     get '/hero/items/library/edit/:item' => 'item_library#edit'
     post '/hero/items/library/edit/:item' => 'item_library#update'
 
+
+    get 'hero/games/:games/items/new/:item' => 'item#new_from_library'
+    post 'hero/games/:games/items/new/' => 'item#create_from_library'
+
     # View routes
 
 

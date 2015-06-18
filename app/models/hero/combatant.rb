@@ -21,6 +21,10 @@ module Hero
     # t.boolean  "poisoned",   limit: 1
     # t.integer  "active_location"
 
+    def inventory_limit
+      15
+    end
+
     def alive?
       self.damage < self.hp
     end
