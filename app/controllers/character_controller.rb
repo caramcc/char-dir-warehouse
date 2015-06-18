@@ -20,7 +20,7 @@ class CharacterController < ApplicationController
     @fcs = {}
     @no_fcs = []
     Character.order(:fc_last, :fc_first).each do |char|
-      char.fc_last.nil? ? char.fc_last = '' : char.fc_last = fc_last
+      char.fc_last.nil? ? char.fc_last = '' : fc_last = char.fc_last
 
       char_data = {
           fc_first: char.fc_first,
