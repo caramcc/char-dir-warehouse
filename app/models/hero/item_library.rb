@@ -1,6 +1,15 @@
 module Hero
   class ItemLibrary < ActiveRecord::Base
 
+    def to_item
+      # case self.kind
+      #   when 'Weapon'
+      #     Hero::Weapon.new
+      #   else
+      #     Hero::Item.new
+      # end
+    end
+
 
     def update_weapon(item_name, weapon_class, description, edible = false, drinkable = false, stackable = false,
                       flammable = false, fire_starter = false, consumable = false)

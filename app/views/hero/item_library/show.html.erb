@@ -1,6 +1,10 @@
 <div class="container">
 
-  <h1>Item Library</h1>
+  <h1 style="display:inline;">Item Library</h1>
+  <% if current_user.is_gm_for?(Hero::Games.current_games_number) || current_user.open_games? %>
+    <a href='/hero/items/library/new'><span class='glyphicon glyphicon-plus-sign' aria-hidden='true'></span></a>
+  <% end %>
+  <h1></h1>
 
   <% @items.each do |kind, ary| %>
 
