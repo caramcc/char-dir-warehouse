@@ -376,6 +376,22 @@ class ApiController < ApplicationController
     render json: attacks, status:200
   end
 
+
+
+  def slack_attack
+    text = params.fetch('text').strip.to_i
+    #TODO: Validate param
+
+    if text < 51
+      r = 'fire, probably'
+    else
+      attack_data = Attack.find_by_attack_code(text).weaponize
+      r = "Attack #{text} [#{attack_data['weapon']}] is *#{attack_data['text']}, +#{attack_data['damage']} dmg"
+    end
+
+    render text: r
+  end
+
   def attack
     render json: Attack.find_by_attack_code(params[:code]).weaponize, status:200
   end
