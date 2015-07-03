@@ -15,3 +15,11 @@ aya = {
 }
 
 User.create(aya)
+
+file = File.read(Rails.root.join('lib', 'assets', 'load_attacks.json'))
+attacks = JSON.parse(file)
+
+attacks.each do |attack|
+  a = Hero::Attack.new(attack)
+  a.save
+end
