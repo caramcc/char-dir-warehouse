@@ -1,6 +1,6 @@
 class ApiController < ApplicationController
 
-  before_filter :authorize, :except => [:search_suggest, :all_active_characters]
+  before_filter :authorize, :except => [:search_suggest, :all_active_characters, :slack_attack]
 
   def character_get_all
     render json: Character.all, status: 200
@@ -386,7 +386,7 @@ class ApiController < ApplicationController
       r = 'fire, probably'
     else
       attack_data = Attack.find_by_attack_code(text).weaponize
-      r = "Attack #{text} [#{attack_data['weapon']}] is *#{attack_data['text']}, +#{attack_data['damage']} dmg"
+      r = "Attack #{text} [#{attack_data['weapon']}] is *#{attack_data['text']}*, +#{attack_data['damage']} dmg"
     end
 
     render text: r
