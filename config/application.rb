@@ -24,6 +24,10 @@ module Warehouse
     config.active_record.raise_in_transactional_callbacks = true
 
     config.filter_parameters << :password
+    # config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
+    config.autoload_paths += [
+        config.root.join('app')
+    ]
 
     config.staff_permissions = {
         :account_edit => %w(ADMIN MODERATOR LIBRARIAN),
@@ -31,9 +35,26 @@ module Warehouse
         :account_ban => %w(ADMIN MODERATOR),
         :account_promote => %w(ADMIN),
         :admin_panel => %w(ADMIN LIBRARIAN),
-        :character_edit => %w(ADMIN LIBRARIAN MODERATOR),
+        :character_edit => %w(ADMIN LIBRARIAN),
         :character_approve => %w(ADMIN LIBRARIAN MODERATOR),
         :fc_approve => %w(ADMIN LIBRARIAN)
+    }
+
+
+    config.weapon_codes = {
+        1 => 'Sword',
+        2 => 'Knife',
+        3 => 'Spear',
+        4 => 'Bow',
+        5 => 'Unarmed',
+        6 => 'Whip',
+        7 => 'Blunt',
+        8 => 'Projectile',
+        9 => 'Thrown Knife',
+        10 => 'Thrown Axe',
+        11 => 'Axe',
+        12 => 'Flail',
+        13 => 'Glaive'
     }
   end
 end
