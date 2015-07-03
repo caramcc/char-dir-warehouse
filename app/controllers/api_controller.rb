@@ -385,15 +385,15 @@ class ApiController < ApplicationController
 
     if text < 51
       if text < 21 && text > 0
-        r = 'fire extinguished, +0 dmg'
+        r = "Fire #{text} is *FIRE EXTINGUISHED*, +0 dmg"
       elsif text < 35 && text > 20
-        r = 'minor burn, +2 dmg'
+        r = "Fire #{text} is *MINOR BURN*, +2 dmg"
       elsif text < 46 && text > 35
-        r = 'moderate burn, +4 dmg'
+        r = "Fire #{text} is *MODERATE BURN*, +4 dmg"
       elsif text < 50 && text > 45
-        r = 'severe burn, +8 dmg'
+        r = "Fire #{text} is *SEVERE BURN*, +8 dmg"
       elsif text == 50
-        r = 'immolated, +100 dmg'
+        r = "Fire #{text} is *IMMOLATED*, +100 dmg"
       else
         "Sorry, I have no idea what #{text} is. Try to do fewer drugs, #{user.upcase}."
       end
