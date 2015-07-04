@@ -163,8 +163,12 @@ Rails.application.routes.draw do
   get '/api/attacks' => 'api#attacks'
   get '/api/attack/:code' => 'api#attack'
 
+  #TODO: delete these
   get '/api/reaping/list' => 'api#reaping_list'
   get '/api/reaping/quell70' => 'api#quell70_reaping_list'
+
+  get '/slack/attack' => 'api#slack_attack'
+  post '/slack/attack' => 'api#slack_attack'
 
   get '/api/games/:games' => 'api#games'
   get '/api/games/:games/gms/' => 'api#gms'
