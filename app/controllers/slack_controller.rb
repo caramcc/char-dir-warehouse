@@ -42,7 +42,7 @@ class SlackController < ApplicationController
       chars.each do |char|
         output << "*#{char.first_name} #{char.last_name}*, #{Character.pretty_area(char.home_area)} "
         output << "[#{char.owner_name}]\n"
-        output << "#{char.bio_thread}"
+        output << "<#{char.bio_thread}>"
       end
     end
 
