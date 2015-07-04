@@ -42,10 +42,31 @@ class SlackController < ApplicationController
       chars.each do |char|
         output << "*#{char.first_name} #{char.last_name}*, #{Character.pretty_area(char.home_area)} "
         output << "[#{char.owner_name}]\n"
-        output << "<#{char.bio_thread}>"
+        output << "<#{char.bio_thread}>\n\n"
+
       end
     end
 
     render text: output
   end
+
+
+  def slack_member
+    member = params.fetch('text').strip
+    output = ''
+    user = User.find_by_display_name_or_username(member)
+
+    if user.nil?
+      output = "Couldn't find any user named #{member}"
+    else
+      output << "*#{user.display_name}'s Characters:*\n"
+      user.characters.each do |char|
+        output << "*#{char.first_name} #{char.last_name}*, #{Character.pretty_area(char.home_area)}\n"
+        output << "<#{char.bio_thread}>\n\n"
+      end
+    end
+
+    render text: output
+  end
+
 end

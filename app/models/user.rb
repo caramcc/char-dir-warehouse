@@ -68,6 +68,12 @@ class User < ActiveRecord::Base
       user ||= User.where('lower(username) = ?', email_or_username.downcase).first
     end
 
+    def find_by_display_name_or_username(email_or_username)
+      user = User.find_by_display_name(email_or_username)
+      user ||= User.find_by_username(email_or_username)
+      user ||= User.where('lower(username) = ?', email_or_username.downcase).first
+    end
+
   end
 
 

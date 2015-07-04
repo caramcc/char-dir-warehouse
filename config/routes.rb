@@ -124,6 +124,7 @@ Rails.application.routes.draw do
   # Slack API Routes
   get '/slack/attack' => 'slack#slack_attack'
   get '/slack/bio' => 'slack#slack_bio'
+  get '/slack/member' => 'slack#slack_member'
 
   # Log Routes
   get '/logs' => 'api#logs'
