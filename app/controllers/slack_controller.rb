@@ -1,31 +1,35 @@
 class SlackController < ApplicationController
   def slack_attack
-    text = params.fetch('text').strip.to_i
+    attacks = params.fetch('text').split(',').map! {|x| x.strip.to_i }
     user = params.fetch('user_name')
     #TODO: Validate param
+    r = ''
 
-    if text < 51
-      if text < 21 && text > 0
-        r = "Fire #{text} is *FIRE EXTINGUISHED*, +0 dmg"
-      elsif text < 35 && text > 20
-        r = "Fire #{text} is *MINOR BURN*, +2 dmg"
-      elsif text < 46 && text > 35
-        r = "Fire #{text} is *MODERATE BURN*, +4 dmg"
-      elsif text < 50 && text > 45
-        r = "Fire #{text} is *SEVERE BURN*, +8 dmg"
-      elsif text == 50
-        r = "Fire #{text} is *IMMOLATED*, +100 dmg"
+    attacks.each do |text|
+      if text < 51
+        if text < 21 && text > 0
+          r << "Fire #{text} is *FIRE EXTINGUISHED*, +0 dmg"
+        elsif text < 35 && text > 20
+          r << "Fire #{text} is *MINOR BURN*, +2 dmg"
+        elsif text < 46 && text > 35
+          r << "Fire #{text} is *MODERATE BURN*, +4 dmg"
+        elsif text < 50 && text > 45
+          r << "Fire #{text} is *SEVERE BURN*, +8 dmg"
+        elsif text == 50
+          r << "Fire #{text} is *IMMOLATED*, +100 dmg"
+        else
+          r << "Sorry, I have no idea what #{text} is. Try to do fewer drugs, #{user.upcase}."
+        end
       else
-        "Sorry, I have no idea what #{text} is. Try to do fewer drugs, #{user.upcase}."
+        attack_data = Attack.find_by_attack_code(text)
+        if attack_data.nil?
+          r << "Sorry, I have no idea what #{text} is. Try to do fewer drugs, #{user.upcase}."
+        else
+          attack_data = attack_data.weaponize
+          r << "Attack #{text} [#{attack_data['weapon']}] is *#{attack_data['text']}*, +#{attack_data['damage']} dmg"
+        end
       end
-    else
-      attack_data = Attack.find_by_attack_code(text)
-      if attack_data.nil?
-        "Sorry, I have no idea what #{text} is. Try to do fewer drugs, #{user.upcase}."
-      else
-        attack_data = attack_data.weaponize
-        r = "Attack #{text} [#{attack_data['weapon']}] is *#{attack_data['text']}*, +#{attack_data['damage']} dmg"
-      end
+      r << "\n\n"
     end
 
     render text: r
