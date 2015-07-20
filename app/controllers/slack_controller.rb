@@ -18,12 +18,12 @@ class SlackController < ApplicationController
         elsif text == 50
           r << "Fire #{text} is *IMMOLATED*, +100 dmg"
         else
-          r << "Sorry, I have no idea what #{text} is. Try to do fewer drugs, #{user.upcase}."
+          r << "Sorry, I have no idea what #{text} is. Try to do fewer drugs, #{user.capitalize}."
         end
       else
         attack_data = Attack.find_by_attack_code(text)
         if attack_data.nil?
-          r << "Sorry, I have no idea what #{text} is. Try to do fewer drugs, #{user.upcase}."
+          r << "Sorry, I have no idea what #{text} is. Try to do fewer drugs, #{user.capitalize}."
         else
           attack_data = attack_data.weaponize
           r << "Attack #{text} [#{attack_data['weapon']}] is *#{attack_data['text']}*, +#{attack_data['damage']} dmg"

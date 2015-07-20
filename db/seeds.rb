@@ -39,6 +39,7 @@ file = File.read(Rails.root.join('lib', 'assets', 'load_attacks.json'))
 attacks = JSON.parse(file)
 
 attacks.each do |attack|
+  puts "loading attack: #{attack['attack_code']} #{attack['text']}"
   a = Attack.new(attack)
   a.save
 end
