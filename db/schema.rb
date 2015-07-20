@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150720000159) do
+ActiveRecord::Schema.define(version: 20150720012906) do
 
   create_table "actions", force: :cascade do |t|
     t.integer "recipient_starting_damage", limit: 4
@@ -40,10 +40,10 @@ ActiveRecord::Schema.define(version: 20150720000159) do
   end
 
   create_table "attacks", force: :cascade do |t|
-    t.integer "damage",      limit: 4
     t.string  "text",        limit: 255
     t.string  "armor_area",  limit: 255
-    t.float   "attack_code", limit: 24
+    t.float   "damage",      limit: 24
+    t.integer "attack_code", limit: 4
   end
 
   add_index "attacks", ["attack_code"], name: "index_attacks_on_attack_code", using: :btree
