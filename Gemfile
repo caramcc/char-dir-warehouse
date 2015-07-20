@@ -49,6 +49,9 @@ gem 'twitter-typeahead-rails'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  # fix timexone issue for windows machines
+  gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
