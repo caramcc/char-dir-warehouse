@@ -12,9 +12,15 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def current_games
+    # TODO this will be a problem
     @current_games ||= Hero::Games.where(active: true).last
   end
   helper_method :current_games
+
+  def games_is_active
+    @games_is_active = Hero::Games.last.active
+    @games_is_active ||= false
+  end
 
 
   def authorize

@@ -51,40 +51,42 @@
           <ul class="nav navbar-nav navbar-right">
 
             <% if current_user %>
-                <% if current_user.is_gm_for?(current_games.number) && current_games.active %>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">GM Panel <span class="caret"></span></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="/hero/games/<%= current_games.number %>">Dashboard</a></li>
-                        <li class="divider"></li>
-                        <li><a href="/hero/items/library">Item Library</a></li>
-                        <li><a href="/characters/fcs/pending">Pending FCs</a></li>
-                        <li><a href="/characters/fcs/list">Formatted FC List</a></li>
-                        <li class="divider"></li>
-                        <li><a href="/#">Ban List</a></li>
-                      </ul>
-                    </li>
+              <% if @games_is_active %>
+                <% if current_user.is_gm_for?(current_games.number) %>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">GM Panel <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="/hero/games/<%= current_games.number %>">Dashboard</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/hero/items/library">Item Library</a></li>
+                    <li><a href="/characters/fcs/pending">Pending FCs</a></li>
+                    <li><a href="/characters/fcs/list">Formatted FC List</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/#">Ban List</a></li>
+                  </ul>
+                </li>
                 <% end %>
+              <% end %>
 
-                <% if current_user.admin_panel? %>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin Panel <span class="caret"></span></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="/checks/new/reaping">New Reaping Check</a></li>
-                        <li><a href="/checks/new/activity">New Activity Check</a></li>
-                        <% if Warehouse::ReapingCheck.current_games %>
-                          <li class="divider"></li>
-                          <li><a href="/checks/reaping/<%= Warehouse::ReapingCheck.current_games %>/tessera">Approve Tessera</a></li>
-                        <% end %>
-                        <li class="divider"></li>
-                        <li><a href="/characters/pending">Pending Characters</a></li>
-                        <li><a href="/characters/fcs/pending">Pending FCs</a></li>
-                        <li><a href="/characters/fcs/list">Formatted FC List</a></li>
-                        <li class="divider"></li>
-                        <li><a href="/#">Ban List</a></li>
-                      </ul>
-                    </li>
-                <% end %>
+              <% if current_user.admin_panel? %>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin Panel <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="/checks/new/reaping">New Reaping Check</a></li>
+                    <li><a href="/checks/new/activity">New Activity Check</a></li>
+                    <% if Warehouse::ReapingCheck.current_games %>
+                      <li class="divider"></li>
+                      <li><a href="/checks/reaping/<%= Warehouse::ReapingCheck.current_games %>/tessera">Approve Tessera</a></li>
+                    <% end %>
+                    <li class="divider"></li>
+                    <li><a href="/characters/pending">Pending Characters</a></li>
+                    <li><a href="/characters/fcs/pending">Pending FCs</a></li>
+                    <li><a href="/characters/fcs/list">Formatted FC List</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/#">Ban List</a></li>
+                  </ul>
+                </li>
+              <% end %>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.display_name %> <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
