@@ -9612,10 +9612,10 @@
     "armor_area": ""
   },
   {
-    "attack_code": 9003,
-    "text": "knife in stomack",
-    "damage": 6.5,
-    "armor_area": ""
+    "attack_code":9003,
+    "text":"KNIFE IN STOMACH",
+    "damage":6.5,
+    "armor_area":"TORSO"
   },
   {
     "attack_code": 9004,
@@ -9738,10 +9738,10 @@
     "armor_area": ""
   },
   {
-    "attack_code": 9024,
-    "text": "knife deep in stomack",
-    "damage": 9,
-    "armor_area": ""
+    "attack_code":9024,
+    "text":"KNIFE DEEP IN STOMACH",
+    "damage":9,
+    "armor_area":"TORSO"
   },
   {
     "attack_code": 9025,
@@ -9810,10 +9810,10 @@
     "armor_area": ""
   },
   {
-    "attack_code": 9036,
-    "text": "knife in stomack",
-    "damage": 6.5,
-    "armor_area": ""
+    "attack_code":9036,
+    "text":"KNIFE IN STOMACH",
+    "damage":6.5,
+    "armor_area":"TORSO"
   },
   {
     "attack_code": 9037,
@@ -10062,10 +10062,10 @@
     "armor_area": "torso"
   },
   {
-    "attack_code": 9078,
-    "text": "knife deep in stomack",
-    "damage": 9,
-    "armor_area": ""
+    "attack_code":9078,
+    "text":"KNIFE DEEP IN STOMACH",
+    "damage":9,
+    "armor_area":"TORSO"
   },
   {
     "attack_code": 9079,
@@ -10434,10 +10434,10 @@
     "armor_area": "torso"
   },
   {
-    "attack_code": 9140,
-    "text": "knife in stomack",
-    "damage": 6.5,
-    "armor_area": ""
+    "attack_code":9140,
+    "text":"KNIFE IN STOMACH",
+    "damage":6.5,
+    "armor_area":"TORSO"
   },
   {
     "attack_code": 9141,

@@ -167,8 +167,10 @@ Rails.application.routes.draw do
   get '/api/reaping/list' => 'api#reaping_list'
   get '/api/reaping/quell70' => 'api#quell70_reaping_list'
 
-  get '/slack/attack' => 'api#slack_attack'
-  post '/slack/attack' => 'api#slack_attack'
+  # Slack API Routes
+  get '/slack/attack' => 'slack#slack_attack'
+  get '/slack/bio' => 'slack#slack_bio'
+  get '/slack/member' => 'slack#slack_member'
 
   get '/api/games/:games' => 'api#games'
   get '/api/games/:games/gms/' => 'api#gms'
