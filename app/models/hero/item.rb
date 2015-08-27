@@ -37,9 +37,8 @@ module Hero
 
     class << self
 
-      def make()
+      def make
         # delegate to subclass or make generic item
-
 
       end
 
