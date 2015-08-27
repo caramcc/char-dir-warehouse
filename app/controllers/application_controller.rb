@@ -18,8 +18,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_games
 
   def games_is_active
-    @games_is_active = Hero::Games.last.active
-    @games_is_active ||= false
+    @games_is_active = !!Hero::Games.last.active
   end
 
 

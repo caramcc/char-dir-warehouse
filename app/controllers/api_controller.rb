@@ -407,6 +407,22 @@ class ApiController < ApplicationController
     render json: Hero::Games.find_by_number(params[:games])
   end
 
+  def items_library
+    render json: Hero::ItemLibrary.all
+  end
+
+  def items
+    render json: Hero::Item.all
+  end
+
+  def games_items
+    render json: Hero::Item.where(games_number: params[:games])
+  end
+
+  def tribute_items
+    render json: Hero::Item.where(tribute_id: params[:id])
+  end
+
   def attack
     begin
       render json: Attack.find_by_attack_code(params[:code]).weaponize, status:200

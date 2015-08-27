@@ -30,9 +30,6 @@ module Hero
     # t.text    "description",     limit: 65535
 
 
-    def active_location
-      self.location
-    end
 
     def same_location?(combatant_or_item)
       self.active_location == combatant_or_item.active_location

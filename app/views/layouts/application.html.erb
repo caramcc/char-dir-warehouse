@@ -51,21 +51,19 @@
           <ul class="nav navbar-nav navbar-right">
 
             <% if current_user %>
-              <% if @games_is_active %>
-                <% if current_user.is_gm_for?(current_games.number) %>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">GM Panel <span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="/hero/games/<%= current_games.number %>">Dashboard</a></li>
-                    <li class="divider"></li>
-                    <li><a href="/hero/items/library">Item Library</a></li>
-                    <li><a href="/characters/fcs/pending">Pending FCs</a></li>
-                    <li><a href="/characters/fcs/list">Formatted FC List</a></li>
-                    <li class="divider"></li>
-                    <li><a href="/#">Ban List</a></li>
-                  </ul>
-                </li>
-                <% end %>
+              <% if current_user.is_gm_for?(current_games.number) %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">GM Panel <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="/hero/games/<%= current_games.number %>">Dashboard</a></li>
+                  <li class="divider"></li>
+                  <li><a href="/hero/items/library">Item Library</a></li>
+                  <li><a href="/characters/fcs/pending">Pending FCs</a></li>
+                  <li><a href="/characters/fcs/list">Formatted FC List</a></li>
+                  <li class="divider"></li>
+                  <li><a href="/#">Ban List</a></li>
+                </ul>
+              </li>
               <% end %>
 
               <% if current_user.admin_panel? %>

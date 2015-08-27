@@ -176,7 +176,12 @@ Rails.application.routes.draw do
   get '/api/games/:games/gms/' => 'api#gms'
   get '/api/games/:games/tributes' => 'api#games_tributes'
   get '/api/games/:games/combatants' => 'api#games_combatants'
+  get '/api/games/:games/items' => 'api#games_items'
 
+  get '/api/items' => 'api#items'
+  get '/api/tribute/:id/items' => 'api#tribute_items'
+
+  get '/api/libraries/items' => 'api#items_library'
 
   # typeahead
 
