@@ -93,4 +93,23 @@
     <% end %>
   </table>
   </div>
+
+  <% if current_user.id == @user.id %>
+    <% @user.characters.each do |char| %>
+      <% if char.char_flagged %>
+        <div class="alert alert-danger" role="alert">
+          <b><%= "#{char.first_name} #{char.last_name}" %></b> was marked unapproved. <b>Message:</b> <%= char.char_flag %>
+          <br> When you have corrected this, notify a librarian to get your character approved.
+        </div>
+      <% end %>
+
+      <% if char.fc_flagged %>
+        <div class="alert alert-warning" role="alert">
+          <b><%= "#{char.first_name} #{char.last_name}" %></b>'s Face Claim (<%= "#{char.fc_first} #{char.fc_last}" %>) was marked unapproved. <b>Message:</b> <%= char.fc_flag %>
+          <br> When you have corrected this, notify a librarian to get your character's FC approved.
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+
 </div>

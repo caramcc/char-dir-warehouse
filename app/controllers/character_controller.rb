@@ -268,21 +268,47 @@ class CharacterController < ApplicationController
 
   def approve
     if current_user.can_approve?
-      @approved = {}
-      puts params
-      params[:chr].each do |id|
-        char = Character.find_by_id(id)
+      @processed = {
+          :approved => {}
+      }
 
-        char.approve
+      unless params[:approved].nil?
+        params[:approved].each do |id|
+          char = Character.find_by_id(id)
 
-        user = User.find_by_id(char.user_id)
+          char.approve
 
-        if @approved[user.display_name].nil?
-          @approved[user.display_name] = [char]
-        else
-          @approved[user.display_name].push(char)
+          user = User.find_by_id(char.user_id)
+
+          if @processed[:approved][user.display_name].nil?
+            @processed[:approved][user.display_name] = [char]
+          else
+            @processed[:approved][user.display_name].push(char)
+          end
         end
       end
+
+      currently_flagged = Character.where(char_flagged: true)
+
+      currently_flagged.each do |cf|
+        unless params[:flagged].include? cf.id
+          cf.remove_flag
+        end
+      end
+
+      unless params[:flagged].nil?
+        params[:flagged].each do |id|
+
+          char = Character.find_by_id(id)
+          if char.char_flagged
+            char.update_flag(char.char_flag)
+            next
+          end
+
+          char.add_flag(params[:flag][id])
+        end
+      end
+
     else
       render :file => 'public/403.html', status: :unauthorized
     end
@@ -291,20 +317,44 @@ class CharacterController < ApplicationController
   def approve_fcs
     if current_user.can_approve?
       @approved = {}
-      puts params
-      params[:fcs].each do |id|
-        char = Character.find_by_id(id)
 
-        char.approve_fc
+      unless params[:fcs].nil?
+        params[:fcs].each do |id|
+          char = Character.find_by_id(id)
 
-        user = User.find_by_id(char.user_id)
+          char.approve_fc
 
-        if @approved[user.display_name].nil?
-          @approved[user.display_name] = [char]
-        else
-          @approved[user.display_name].push(char)
+          user = User.find_by_id(char.user_id)
+
+          if @approved[user.display_name].nil?
+            @approved[user.display_name] = [char]
+          else
+            @approved[user.display_name].push(char)
+          end
         end
       end
+
+      currently_flagged = Character.where(fc_flagged: true)
+
+      currently_flagged.each do |cf|
+        unless params[:flagged].include? cf.id
+          cf.remove_flag(true)
+        end
+      end
+
+      unless params[:flagged].nil?
+        params[:flagged].each do |id|
+
+          char = Character.find_by_id(id)
+          if char.fc_flagged
+            char.update_flag(char.fc_flag, true)
+            next
+          end
+
+          char.add_flag(params[:flag][id], true)
+        end
+      end
+
     else
       render :file => 'public/403.html', status: :unauthorized
     end

@@ -1,6 +1,7 @@
 class Character < ActiveRecord::Base
   # attr_accessor :id, :owner_id, :first_name, :last_name, :bio_thread, :age, :home_area, :special, :gender, :fc_first,
   #               :fc_last, :char_approved, :fc_approved
+  # flags: fc_flagged (fc_flag), char_flagged (char_flag), shared_fc_owner_id (is a user_id), is_dead, is_tribute, games_number
 
   belongs_to :user
   belongs_to :tessera
@@ -18,8 +19,43 @@ class Character < ActiveRecord::Base
 
   def approve
     self.char_approved = true
+    self.char_flagged = false
+    self.char_flag = nil
     self.save
   end
+
+  def add_flag(flag, fc = false)
+    if fc
+      self.fc_flagged = true
+      self.fc_flag = flag
+    else
+      self.char_flagged = true
+      self.char_flag = flag
+    end
+    self.save
+  end
+
+  def update_flag(flag, fc = false)
+    if fc
+      self.fc_flag = flag
+    else
+      self.char_flag = flag
+    end
+    self.save
+  end
+
+  def remove_flag(fc = false)
+    if fc
+      self.fc_flagged = false
+      self.fc_flag = nil
+    else
+      self.char_flagged = false
+      self.char_flag = nil
+    end
+
+    self.save
+  end
+
 
   def owner_name
     User.find_by_id(user_id).display_name
@@ -27,6 +63,8 @@ class Character < ActiveRecord::Base
 
   def approve_fc
     self.fc_approved = true
+    self.fc_flagged = false
+    self.fc_flag = nil
     self.save
   end
 
