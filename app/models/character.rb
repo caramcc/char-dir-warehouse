@@ -30,6 +30,17 @@ class Character < ActiveRecord::Base
     self.save
   end
 
+  def update_flag(flag)
+    self.char_flag = flag
+    self.save
+  end
+
+  def remove_flag
+    self.char_flagged = false
+    self.char_flag = nil
+    self.save
+  end
+
 
   def owner_name
     User.find_by_id(user_id).display_name

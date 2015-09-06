@@ -10,14 +10,5 @@
   <% end %>
   </ul>
 
-  <h1>The following characters were flagged:</h1>
-
-  <ul class="list-group">
-  <% @processed[:flagged].each do |user, chars| %>
-    <% chars.each do |char| %>
-      <li class="list-group-item"><%= char.first_name %> <%= char.last_name %> [<%= user %>]</li>
-    <% end %>
-  <% end %>
-  </ul>
 
 </div>

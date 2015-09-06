@@ -269,10 +269,9 @@ class CharacterController < ApplicationController
   def approve
     if current_user.can_approve?
       @processed = {
-          :approved => {},
-          :flagged => {}
+          :approved => {}
       }
-      puts params
+
       unless params[:approved].nil?
         params[:approved].each do |id|
           char = Character.find_by_id(id)
@@ -289,20 +288,24 @@ class CharacterController < ApplicationController
         end
       end
 
+      currently_flagged = Character.where(char_flagged: true)
+
+      currently_flagged.each do |cf|
+        unless params[:flagged].include? cf.id
+          cf.remove_flag
+        end
+      end
+
       unless params[:flagged].nil?
         params[:flagged].each do |id|
+
           char = Character.find_by_id(id)
-
-          char.add_flag(params[:flag][id])
-
-          user = User.find_by_id(char.user_id)
-
-          if @processed[:flagged][user.display_name].nil?
-            @processed[:flagged][user.display_name] = [char]
-          else
-            @processed[:flagged][user.display_name].push(char)
+          if char.char_flagged
+            char.update_flag(char.char_flag)
+            next
           end
 
+          char.add_flag(params[:flag][id])
         end
       end
 
