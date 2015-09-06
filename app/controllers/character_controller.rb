@@ -268,21 +268,44 @@ class CharacterController < ApplicationController
 
   def approve
     if current_user.can_approve?
-      @approved = {}
+      @processed = {
+          :approved => {},
+          :flagged => {}
+      }
       puts params
-      params[:chr].each do |id|
-        char = Character.find_by_id(id)
+      unless params[:approved].nil?
+        params[:approved].each do |id|
+          char = Character.find_by_id(id)
 
-        char.approve
+          char.approve
 
-        user = User.find_by_id(char.user_id)
+          user = User.find_by_id(char.user_id)
 
-        if @approved[user.display_name].nil?
-          @approved[user.display_name] = [char]
-        else
-          @approved[user.display_name].push(char)
+          if @processed[:approved][user.display_name].nil?
+            @processed[:approved][user.display_name] = [char]
+          else
+            @processed[:approved][user.display_name].push(char)
+          end
         end
       end
+
+      unless params[:flagged].nil?
+        params[:flagged].each do |id|
+          char = Character.find_by_id(id)
+
+          char.add_flag(params[:flag][id])
+
+          user = User.find_by_id(char.user_id)
+
+          if @processed[:flagged][user.display_name].nil?
+            @processed[:flagged][user.display_name] = [char]
+          else
+            @processed[:flagged][user.display_name].push(char)
+          end
+
+        end
+      end
+
     else
       render :file => 'public/403.html', status: :unauthorized
     end

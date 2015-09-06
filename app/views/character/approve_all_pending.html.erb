@@ -16,6 +16,8 @@
         <th>Gender</th>
         <th>View on HGRPG</th>
         <th>Approve?</th>
+        <th>Flagged?</th>
+        <th>Flag Reason</th>
 
         <% @pending.each do |user, chars| %>
           <% chars.each do |char| %>
@@ -29,7 +31,9 @@
               <td><%= char.gender %></td>
               <td><a href="<%= char.bio_thread %>" target="_blank">[link]</a></td>
 
-              <td><input type="checkbox" name="chr[]" id="<%= char.id %>" value="<%= char.id %>"></td>
+              <td><input type="checkbox" name="approved[]" id="<%= char.id %>" value="<%= char.id %>"></td>
+              <td><input type="checkbox" name="flagged[]" id="<%= char.id %>" value="<%= char.id %>" <%= char.char_flagged ? 'checked' : '' %>></td>
+              <td><input type="text" name="flag[<%= char.id %>]" id="<%= char.id %>" value="<%= char.char_flag%>"></td>
 
               </tr>
             <% end %>

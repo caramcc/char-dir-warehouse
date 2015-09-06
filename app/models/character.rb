@@ -19,8 +19,17 @@ class Character < ActiveRecord::Base
 
   def approve
     self.char_approved = true
+    self.char_flagged = false
+    self.char_flag = nil
     self.save
   end
+
+  def add_flag(flag)
+    self.char_flagged = true
+    self.char_flag = flag
+    self.save
+  end
+
 
   def owner_name
     User.find_by_id(user_id).display_name
