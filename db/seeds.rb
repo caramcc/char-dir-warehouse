@@ -35,11 +35,18 @@ devs.each do |dev|
   User.create(dev)
 end
 
-file = File.read(Rails.root.join('lib', 'assets', 'load_attacks.json'))
-attacks = JSON.parse(file)
+attack_file = File.read(Rails.root.join('lib', 'assets', 'load_attacks.json'))
+attacks = JSON.parse(attack_file)
+
+chars_file = File.read(Rails.root.join('lib', 'assets', 'load_characters.json'))
+characters = JSON.parse(chars_file)
 
 attacks.each do |attack|
-  puts "loading attack: #{attack['attack_code']} #{attack['text']}"
   a = Attack.new(attack)
   a.save
+end
+
+characters.each do |chr|
+  c = Character.new(chr)
+  c.save
 end

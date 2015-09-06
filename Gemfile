@@ -48,6 +48,9 @@ gem 'twitter-typeahead-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Use Pry instead of IRB
+gem 'pry-rails'
+
 group :development, :test do
   # fix timexone issue for windows machines
   gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
