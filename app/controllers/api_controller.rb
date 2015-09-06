@@ -336,6 +336,32 @@ class ApiController < ApplicationController
 
   end
 
+  def reaping
+    rc = ReapingCheck.last
+    eligible = rc.characters
+    by_district_gender = {}
+    output = ''
+    eligible.each do |p|
+      tessera = Tessera.where("character_id = #{p.id} AND reaping_check_id = #{rc.id} AND approved = true")
+      if tessera.last
+        t = tessera.last.number
+      else
+        t = 0
+      end
+      odds = t + p.age - 10
+
+      by_district_gender[p.home_area + p.gender[0]] ||= []
+      by_district_gender[p.home_area + p.gender[0]].fill(p, by_district_gender[p.home_area + p.gender[0]].size, odds)
+    end
+    
+    by_district_gender.sort.each do |dg, tributes|
+      tribute = tributes.sample(1).first
+      output << "<b>#{dg}</b> - #{tribute.first_name} #{tribute.last_name} [#{tribute.user.username} '#{tribute.user.display_name}']<br>"
+    end
+
+    render text: output
+  end
+
   def logs
     if current_user.group == 'ADMIN'
       log = ''
