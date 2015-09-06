@@ -70,6 +70,7 @@ Rails.application.routes.draw do
   # Characters (all/plural)
   get '/characters' => 'character#show'
   get '/characters/fcs' => 'character#fcs'
+  get '/characters/fcs/list' => 'character#fc_list'
   get '/characters/pending' => 'character#approve_all_pending'
   post '/characters/approve' => 'character#approve'
   get '/characters/approve' => 'character#approve'
@@ -116,6 +117,14 @@ Rails.application.routes.draw do
 
   get '/api/suggestions' => 'api#search_suggest'
   get '/api/tessera' => 'api#tessera'
+
+  get '/api/attacks' => 'api#attacks'
+  get '/api/attack/:code' => 'api#attack'
+
+  # Slack API Routes
+  get '/slack/attack' => 'slack#slack_attack'
+  get '/slack/bio' => 'slack#slack_bio'
+  get '/slack/member' => 'slack#slack_member'
 
   # Log Routes
   get '/logs' => 'api#logs'

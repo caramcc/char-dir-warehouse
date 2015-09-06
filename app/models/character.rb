@@ -22,6 +22,10 @@ class Character < ActiveRecord::Base
     self.save
   end
 
+  def owner_name
+    User.find_by_id(user_id).display_name
+  end
+
   def approve_fc
     self.fc_approved = true
     self.save
@@ -93,6 +97,12 @@ class Character < ActiveRecord::Base
     def pretty_area(area)
       ('1'..'13').include?(area) ? "District #{area}" : area.capitalize
     end
+
+    def find_by_full_name(full_name)
+      full_name = full_name.gsub("'", '%')
+      Character.where("LOWER(CONCAT(first_name, ' ', last_name)) LIKE '%#{full_name.downcase}%'")
+    end
+
   end
 
 end

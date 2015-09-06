@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150511152231) do
+ActiveRecord::Schema.define(version: 20150720220740) do
 
   create_table "actions", force: :cascade do |t|
     t.integer "recipient_starting_damage", limit: 4
@@ -40,9 +40,9 @@ ActiveRecord::Schema.define(version: 20150511152231) do
   end
 
   create_table "attacks", force: :cascade do |t|
-    t.integer "damage",      limit: 4
     t.string  "text",        limit: 255
     t.string  "armor_area",  limit: 255
+    t.float   "damage",      limit: 24
     t.integer "attack_code", limit: 4
   end
 
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20150511152231) do
     t.boolean  "is_dead",            limit: 1
     t.boolean  "is_tribute",         limit: 1
     t.integer  "games_number",       limit: 4
+    t.integer  "games_id",           limit: 4
   end
 
   add_index "characters", ["activity_check_id"], name: "index_characters_on_activity_check_id", using: :btree
@@ -93,10 +94,14 @@ ActiveRecord::Schema.define(version: 20150511152231) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.integer  "active_location", limit: 4
+    t.integer  "user_id",         limit: 4
+    t.integer  "games_id",        limit: 4
+    t.integer  "character_id",    limit: 4
   end
 
   create_table "games", force: :cascade do |t|
     t.integer "number", limit: 4
+    t.boolean "active", limit: 1
   end
 
   create_table "inventory_delta", force: :cascade do |t|
@@ -106,6 +111,24 @@ ActiveRecord::Schema.define(version: 20150511152231) do
     t.string  "change",       limit: 255
   end
 
+
+  create_table "item_libraries", force: :cascade do |t|
+    t.string  "kind",         limit: 255
+    t.string  "name",         limit: 255
+    t.integer "damage",       limit: 4
+    t.integer "hp",           limit: 4
+    t.string  "area",         limit: 255
+    t.boolean "full",         limit: 1
+    t.string  "weapon_class", limit: 255
+    t.text    "description",  limit: 65535
+    t.boolean "edible",       limit: 1
+    t.boolean "drinkable",    limit: 1
+    t.boolean "stackable",    limit: 1
+    t.boolean "flammable",    limit: 1
+    t.boolean "firestarter",  limit: 1
+    t.boolean "consumable",   limit: 1
+  end
+
   create_table "items", force: :cascade do |t|
     t.string  "type",            limit: 255
     t.string  "name",            limit: 255
@@ -113,12 +136,19 @@ ActiveRecord::Schema.define(version: 20150511152231) do
     t.integer "hp",              limit: 4
     t.integer "area",            limit: 4
     t.boolean "full",            limit: 1
-    t.integer "uses",            limit: 4
     t.integer "damage_healed",   limit: 4
     t.boolean "poisoned",        limit: 1
     t.boolean "purified",        limit: 1
     t.string  "weapon_class",    limit: 255
     t.integer "active_location", limit: 4
+    t.boolean "edible",          limit: 1
+    t.boolean "drinkable",       limit: 1
+    t.boolean "stackable",       limit: 1
+    t.boolean "flammable",       limit: 1
+    t.boolean "firestarter",     limit: 1
+    t.boolean "consumable",      limit: 1
+    t.boolean "flaming",         limit: 1
+    t.text    "description",     limit: 65535
   end
 
   create_table "locations", force: :cascade do |t|
@@ -170,6 +200,7 @@ ActiveRecord::Schema.define(version: 20150511152231) do
     t.string   "email_token",                 limit: 255
     t.string   "password_reset_token",        limit: 255
     t.datetime "password_reset_token_expiry"
+    t.integer  "games_id",                    limit: 4
   end
 
   add_foreign_key "characters", "activity_checks"

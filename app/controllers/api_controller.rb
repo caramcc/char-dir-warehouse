@@ -1,6 +1,6 @@
 class ApiController < ApplicationController
 
-  before_filter :authorize, :except => [:search_suggest, :all_active_characters]
+  before_filter :authorize, :except => [:search_suggest, :all_active_characters, :slack_attack]
 
   def character_get_all
     render json: Character.all, status: 200
@@ -263,6 +263,79 @@ class ApiController < ApplicationController
     render json: results, status: 200
   end
 
+  def reaping_list
+    output = ''
+    rc = ReapingCheck.last
+    possibles = rc.characters
+    rc_id = rc.id
+    possibles.each do |p|
+      tessera = Tessera.where("character_id = #{p.id} AND reaping_check_id = #{rc_id} AND approved = true")
+      if tessera.last
+        t = tessera.last.number
+      else
+        t = 0
+      end
+      u = User.find_by_id(p.user_id)
+      u.username.downcase == u.display_name.downcase ? un = u.display_name : un = "#{u.username} '#{u.display_name}'"
+      output << "D#{p.home_area}#{p.gender[0].downcase}\t#{p.first_name} #{p.last_name}\t[#{un}]\t#{p.age}\t#{t}<br>"
+    end
+    render text: output
+  end
+
+
+  def quell70_reaping_list
+    rc = ReapingCheck.last
+    all_eligible = rc.characters
+    rc_id = rc.id
+    all_eligible_with_odds = []
+    formatted_tributes = ''
+    all_eligible.each do |p|
+      tessera = Tessera.where("character_id = #{p.id} AND reaping_check_id = #{rc_id} AND approved = true")
+      if tessera.last
+        t = tessera.last.number
+      else
+        t = 0
+      end
+      u = User.find_by_id(p.user_id)
+      u.username.downcase == u.display_name.downcase ? un = u.display_name : un = "#{u.username} '#{u.display_name}'"
+
+      char = {
+          :name => "#{p.first_name} #{p.last_name}",
+          :owner => un,
+          :odds => t + p.age - 10,
+          :age => p.age,
+          :tessera => t,
+          :district => p.home_area,
+          :gender => p.gender[0].downcase
+      }
+
+      all_eligible_with_odds.fill(char, all_eligible_with_odds.size, char[:odds])
+    end
+
+
+    tributes = all_eligible_with_odds.sample(24)
+    tributes.uniq!
+
+    hax = 0
+    while tributes.size < 24 && hax < 10
+      tributes.push all_eligible_with_odds.sample(1)
+      tributes.uniq!
+      hax += 1
+    end
+
+    if params[:debug]
+      render json: all_eligible_with_odds
+    else
+      tributes.each do |tribute|
+        print tribute
+        formatted_tributes += "D#{tribute[:district]} #{tribute[:gender]} #{tribute[:name]} [#{tribute[:owner]}] - #{tribute[:age]}<br>"
+        # puts "D #{tribute['district']}" #" #{tribute[:gender]} #{tribute[:name]} [#{tribute[:owner]}] - #{tribute[:age]}<br>"
+      end
+      render text: formatted_tributes
+    end
+
+  end
+
   def logs
     if current_user.group == 'ADMIN'
       log = ''
@@ -292,6 +365,20 @@ class ApiController < ApplicationController
 
   def tessera
     render json: Tessera.all, status: 200
+  end
+
+
+  def attacks
+    attacks = []
+    Attack.all.each do |attack|
+      attacks.push attack.weaponize
+    end
+    render json: attacks, status:200
+  end
+
+
+  def attack
+    render json: Attack.find_by_attack_code(params[:code]).weaponize, status:200
   end
 
 end
