@@ -14,6 +14,8 @@
         <th>FC Unique?</th>
         <th>View on HGRPG</th>
         <th>Approve?</th>
+        <th>FC Flagged?</th>
+        <th>FC Flag Reason</th>
 
         <% @pending.each do |char| %>
           <tr>
@@ -33,6 +35,8 @@
             <td><a href="<%= char[:character].bio_thread %>" target="_blank">[link]</a></td>
 
             <td><input type="checkbox" name="fcs[]" id="<%= char[:character].id %>" value="<%= char[:character].id %>"></td>
+            <td><input type="checkbox" name="flagged[]" id="<%= char[:character].id %>" value="<%= char[:character].id %>" <%= char[:character].fc_flagged ? 'checked' : '' %>></td>
+            <td><input type="text" name="flag[<%= char[:character].id %>]" id="<%= char[:character].id %>" value="<%= char[:character].fc_flag %>"></td>
 
           </tr>
         <% end %>

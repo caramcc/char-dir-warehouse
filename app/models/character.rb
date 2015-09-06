@@ -24,20 +24,35 @@ class Character < ActiveRecord::Base
     self.save
   end
 
-  def add_flag(flag)
-    self.char_flagged = true
-    self.char_flag = flag
+  def add_flag(flag, fc = false)
+    if fc
+      self.fc_flagged = true
+      self.fc_flag = flag
+    else
+      self.char_flagged = true
+      self.char_flag = flag
+    end
     self.save
   end
 
-  def update_flag(flag)
-    self.char_flag = flag
+  def update_flag(flag, fc = false)
+    if fc
+      self.fc_flag = flag
+    else
+      self.char_flag = flag
+    end
     self.save
   end
 
-  def remove_flag
-    self.char_flagged = false
-    self.char_flag = nil
+  def remove_flag(fc = false)
+    if fc
+      self.fc_flagged = false
+      self.fc_flag = nil
+    else
+      self.char_flagged = false
+      self.char_flag = nil
+    end
+
     self.save
   end
 
@@ -48,6 +63,8 @@ class Character < ActiveRecord::Base
 
   def approve_fc
     self.fc_approved = true
+    self.fc_flagged = false
+    self.fc_flag = nil
     self.save
   end
 
