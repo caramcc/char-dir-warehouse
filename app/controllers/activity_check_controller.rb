@@ -64,6 +64,11 @@ class ActivityCheckController < ApplicationController
   def add
     @check = ActivityCheck.find_by_games(params[:games])
     user = User.find_by_id(params[:user_id])
+    
+    unless current_user.can_edit?(user)
+      render :status => :unauthorized
+    end
+
     if params[:chk]
       removed = []
       user.characters.each do |chr|

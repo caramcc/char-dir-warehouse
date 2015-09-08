@@ -53,6 +53,11 @@ class ReapingCheckController < ApplicationController
   def add
     @check = ReapingCheck.find_by_games(params[:games])
     user = User.find_by_id(params[:user_id])
+
+    unless current_user.can_edit?(user)
+      render :status => :unauthorized
+    end
+
     if params[:chk]
       if params[:chk].length <= user.reaping_tickets
 
