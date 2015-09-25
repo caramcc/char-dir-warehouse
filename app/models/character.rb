@@ -140,6 +140,44 @@ class Character < ActiveRecord::Base
       Character.where("LOWER(CONCAT(first_name, ' ', last_name)) LIKE '%#{full_name.downcase}%'")
     end
 
+    def render_fcs
+      fcs = {}
+      no_fcs = []
+      Character.order(:fc_last, :fc_first).each do |char|
+        if char.fc_approved && char.is_active?
+          char.fc_last.blank? ? fc_last = ' ' : fc_last = char.fc_last.upcase
+          char_data = {
+              fc_first: char.fc_first,
+              fc_last: fc_last,
+              first_name: char.first_name,
+              last_name: char.last_name,
+              gender: char.gender,
+              id: char.id,
+              user_id: char.user_id,
+              user_username: User.find_by_id(char.user_id).username
+          }
+
+          if char.gender.blank?
+            char_data[:gender] = '????'
+          end
+
+          if fc_last.blank? && char.fc_first.blank?
+            no_fcs.push char_data
+          else
+
+            if fcs.include? fc_last[0]
+              fcs[fc_last[0]].push char_data
+            else
+              fcs[fc_last[0]] = [char_data]
+            end
+
+          end
+        end
+
+      end
+      return fcs, no_fcs
+    end
+
   end
 
 end
