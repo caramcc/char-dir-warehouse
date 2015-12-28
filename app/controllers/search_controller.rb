@@ -53,7 +53,10 @@ class SearchController < ApplicationController
       unless filters.length == 0
         filters.each do |filter|
 
-          validated = validate_search(filter)
+          negate = (filter[0] == '!')
+          puts negate
+
+          validated = validate_search(filter, negate)
 
           if validated
             query_builder << validated
@@ -62,15 +65,11 @@ class SearchController < ApplicationController
       end
 
       if query_params.length == 2
-        puts "fn ln, filters: #{filters}"
-        character_query = Character.where("first_name ILIKE '%#{query.split(' ')[0]}%' AND last_name ILIKE '%#{query.split(' ')[2]}%' #{query_builder}")
+        character_query = Character.where("first_name ILIKE '%#{query_params[0]}%' AND last_name ILIKE '%#{query_params[1]}%' #{query_builder}")
       elsif query_params.length == 1
-        puts "q-split: #{query_params.split(' ')}"
-        puts "singlet, filters: #{filters}"
         character_query = Character.where("first_name ILIKE '%#{query}%' OR last_name ILIKE '%#{query}%' #{query_builder}")
       else
-        puts "nil, filters: #{filters}"
-        character_query = Character.where("#{query_builder[3..-1]}")
+        character_query = Character.where("#{query_builder[4..-1]}")
       end
 
       user_query = User.where("username LIKE '%#{query}%' OR display_name LIKE '%#{query}%' ")
@@ -89,7 +88,7 @@ class SearchController < ApplicationController
 
 
   private
-    def validate_search(filter)
+    def validate_search(filter, negate=false)
       search_pair = filter.split(':')
 
       if search_pair.length != 2
@@ -103,7 +102,7 @@ class SearchController < ApplicationController
       column = filter_field
 
       VALID_FILTERS.each do |vf|
-        if filter_field == vf[:field].downcase && (vf[:members].nil? || vf[:members].include?(filter_term.downcase))
+        if filter_field.gsub('!', '') == vf[:field].downcase && (vf[:members].nil? || vf[:members].include?(filter_term.downcase))
           valid = true
           column = vf[:column]
           if vf[:members].nil?
@@ -124,10 +123,10 @@ class SearchController < ApplicationController
           query = "AND #{column} < '#{filter_term.to_i}' "
 
         else
-          if filter_field == 'age'
-            query = "AND #{column} = '#{filter_term.to_i}' "
+          if filter_field.gsub('!', '') == 'age'
+            query = "AND #{column} #{negate ? '!' : ''}= '#{filter_term.to_i}' "
           else
-            query = "AND #{column} LIKE LOWER('#{filter_term}') "
+            query = "AND #{column} #{negate ? 'NOT' : ''} ILIKE '#{filter_term}' "
           end
       end
 
