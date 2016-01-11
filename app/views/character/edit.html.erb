@@ -6,7 +6,7 @@
 
   <%= form_for :character, url: '/character/update' do |f| %>
 
-      <div class="col-lg-6">
+      <div class="col-lg-7">
       <div class="input-group input-group">
         <span class="input-group-addon" id="sizing-addon1">First Name</span>
         <%= f.text_field :first_name, class: 'form-control', placeholder: 'First', value: @char.first_name, autofocus: true  %>
@@ -71,6 +71,9 @@
             </label>
             <label class="btn btn-primary <%= @char.special == 'Gamemaker' ? 'active' : '' %>">
               <%= f.radio_button :special, 'Gamemaker', class: 'form-control' %> Gamemaker
+            </label>
+            <label class="btn btn-primary <%= @char.special == 'Tribute' ? 'active' : '' %>">
+              <%= f.radio_button :special, 'Tribute', class: 'form-control' %> Tribute
             </label>
             <label class="btn btn-primary">
               <%= f.radio_button :special, '', class: 'form-control' %> N/A

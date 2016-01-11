@@ -69,7 +69,7 @@ class Character < ActiveRecord::Base
   end
 
   def is_reapable?
-    unreapable_specials = %w(Peacekeeper Victor Mayor)
+    unreapable_specials = %w(Peacekeeper Victor Mayor Tribute)
     ('1'..'12').include?(self.home_area) && !unreapable_specials.include?(self.special) && (12..18).include?(self.age) &&
         self.char_approved && self.gender != 'Other'
   end
@@ -83,12 +83,28 @@ class Character < ActiveRecord::Base
     end
   end
 
+  def old_tribute?
+    self.special == 'Tribute'
+  end
+
+  def games_number
+    if self.old_tribute?
+      self.reaping_checks.last.games
+    else
+      nil
+    end
+  end
+
   def is_active?
     if ActivityCheck.last.nil?
       false
     else
       self.activity_checks.exists?(ActivityCheck.last)
     end
+  end
+
+  def tribute_fc_active?
+    !self.old_tribute? || self.games_number - ActivityCheck.last.games < 3
   end
 
   def active_tessera
@@ -144,7 +160,7 @@ class Character < ActiveRecord::Base
       fcs = {}
       no_fcs = []
       Character.order(:fc_last, :fc_first).each do |char|
-        if char.fc_approved && char.is_active?
+        if char.fc_approved && char.is_active? && char.tribute_fc_active?
           char.fc_last.blank? ? fc_last = ' ' : fc_last = char.fc_last.upcase
           char_data = {
               fc_first: char.fc_first,

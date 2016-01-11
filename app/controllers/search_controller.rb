@@ -72,7 +72,7 @@ class SearchController < ApplicationController
         character_query = Character.where("#{query_builder[4..-1]}")
       end
 
-      user_query = User.where("username LIKE '%#{query}%' OR display_name LIKE '%#{query}%' ")
+      user_query = User.where("username ILIKE '%#{query}%' OR display_name ILIKE '%#{query}%' ")
 
       @results = {
           :characters => character_query.to_a,
