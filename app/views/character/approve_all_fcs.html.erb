@@ -40,9 +40,33 @@
 
           </tr>
         <% end %>
+
+        <% @flagged.each do |char| %>
+          <tr>
+            <td><a href="/user/<%= char[:user].id %>"><%= char[:user].display_name %></a></td>
+            <td><label for="<%= char[:character].id %>"><%= char[:character].first_name %> <%= char[:character].last_name %></label></td>
+            <td><span class="glyphicon glyphicon-<%= char[:character].char_approved ? 'ok' :'remove' %>"></span></td>
+            <td><%= char[:character].fc_first %> <%= char[:character].fc_last %></td>
+            <td>
+              <% if char[:fc_unique] == 'yes' %>
+                <span class="glyphicon glyphicon-ok"></span>
+              <% elsif char[:fc_unique] == 'no' %>
+                  <div class="danger"><span class="glyphicon glyphicon-remove"></span></div>
+              <% else %>
+                  <div class="warning"><span class="glyphicon glyphicon-warning-sign"></span></div>
+            <% end %>
+            </td>
+            <td><a href="<%= char[:character].bio_thread %>" target="_blank">[link]</a></td>
+
+            <td><input type="checkbox" name="fcs[]" id="<%= char[:character].id %>" value="<%= char[:character].id %>"></td>
+            <td><input type="checkbox" name="flagged[]" id="<%= char[:character].id %>" value="<%= char[:character].id %>" <%= char[:character].fc_flagged ? 'checked' : '' %>></td>
+            <td><input type="text" name="flag[<%= char[:character].id %>]" id="<%= char[:character].id %>" value="<%= char[:character].fc_flag %>"></td>
+
+          </tr>
+        <% end %>
       </table>
 
     </div>
-    <button type="submit" class="btn btn-primary">Approve</button>
+    <button type="submit" class="btn btn-primary">Save</button>
   </form>
 </div>
