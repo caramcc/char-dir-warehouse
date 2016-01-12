@@ -95,7 +95,7 @@
               <td><%= char.last_name %></td>
               <td><span class='<%= ('1'..'12').include?(char.home_area) ? '' : 'alert-danger' %>' ><%= char.home_area %></span></td>
               <td><span class='<%= (12..18).include?(char.age) ? '' : 'alert-danger' %>' ><%= char.age %></span></td>
-              <td><span class='<%= char.gender == 'Other' ? 'alert-danger' : '' %>' ><%= char.gender %></span></td>
+              <td><span class='<%= char.gender == 'Other' || char.gender.nil? ? 'alert-danger' : '' %>' ><%= char.gender || '<not specified>' %></span></td>
 
               <td>
                 <% if char.char_approved %>

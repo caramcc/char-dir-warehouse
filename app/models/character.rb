@@ -71,7 +71,7 @@ class Character < ActiveRecord::Base
   def is_reapable?
     unreapable_specials = %w(Peacekeeper Victor Mayor Tribute)
     ('1'..'12').include?(self.home_area) && !unreapable_specials.include?(self.special) && (12..18).include?(self.age) &&
-        self.char_approved && self.gender != 'Other'
+        self.char_approved && self.gender != 'Other' && !self.gender.nil?
   end
 
 
