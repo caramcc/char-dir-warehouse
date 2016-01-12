@@ -14,7 +14,7 @@ class SearchController < ApplicationController
       {
           field: 'special',
           column: 'special',
-          members: ['avox', 'gamemaker', 'victor', 'peacekeeper']
+          members: ['avox', 'gamemaker', 'victor', 'peacekeeper', 'tribute']
       },
       {
           field: 'age',
