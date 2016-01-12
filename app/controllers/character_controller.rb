@@ -168,6 +168,7 @@ class CharacterController < ApplicationController
       #
       #             }]
       @pending = []
+      @flagged = []
 
       chars.each do |char|
         user = User.find_by_id(char.user_id)
@@ -190,7 +191,11 @@ class CharacterController < ApplicationController
           fc_unique = 'yes'
         end
 
-        @pending.push({ character: char, user: user, fc_unique: fc_unique })
+        if char.fc_flagged
+          @flagged.push({ character: char, user: user, fc_unique: fc_unique })
+        else
+          @pending.push({ character: char, user: user, fc_unique: fc_unique })
+        end
 
       end
     else
@@ -266,10 +271,19 @@ class CharacterController < ApplicationController
         end
       end
 
+
+      #todo: gross, refactor
+
       currently_flagged = Character.where(fc_flagged: true)
 
-      currently_flagged.each do |cf|
-        unless params[:flagged].include? cf.id
+      if params[:flagged]
+        currently_flagged.each do |cf|
+          unless params[:flagged].include? cf.id
+            cf.remove_flag(true)
+          end
+        end
+      else
+        currently_flagged.each do |cf|
           cf.remove_flag(true)
         end
       end
