@@ -89,7 +89,12 @@ class Character < ActiveRecord::Base
 
   def games_number
     if self.old_tribute?
-      self.reaping_checks.last.games
+      # cases where tributes haven't been in RC (69th tributes)
+      if self.reaping_checks.last
+        self.reaping_checks.last.games
+      else
+        '69' #lol. also, oh god.
+      end
     else
       nil
     end
