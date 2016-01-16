@@ -25,20 +25,21 @@
         <th>Approve:</th>
 
 
-        <% @check.characters.each do |char| %>
+        <% @tessera.each do |char_id, tessera_attributes| %>
+          <% char = Character.find(char_id) %>
           <tr>
             <td><a href="/character/<%= char.id %>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></td>
             <td><%= char.home_area %></td>
             <td><%= char.gender %></td>
-            <td><label for="<%= @tessera[char.id]['id'] %>"><%= char.first_name %> <%= char.last_name %></label></td>
-            <td><a href="/user/<%= char.user_id%>"><%= User.find_by_id(char.user_id).display_name %></a></td>
+            <td><label for="<%= tessera_attributes['id'] %>"><%= char.first_name %> <%= char.last_name %></label></td>
+            <td><a href="/user/<%= char.user_id%>"><%= User.find(char.user_id).display_name %></a></td>
             <td><%= char.age %></td>
             <td><a href="<%= char.bio_thread %>" target="_blank">[link]</a></td>
-            <td><%= @tessera[char.id]['previous_number'] %></td>
-            <td><%= @tessera[char.id]['number'] %></td>
+            <td><%= tessera_attributes['previous_number'] %></td>
+            <td><%= tessera_attributes['number'] %></td>
 
             <td>
-              <% if @tessera[char.id]['approved'] %>
+              <% if tessera_attributes['approved'] %>
                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
               <% else %>
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -46,8 +47,8 @@
             </td>
 
             <td>
-              <input type="checkbox" name="tessera[]" id="<%= @tessera[char.id]['id'] %>"
-                     value="<%= @tessera[char.id]['id'] %>" <%= @tessera[char.id]['approved'] ? 'checked' : '' %> <%= current_user.can_approve? || true ? '' : 'disabled' %>>
+              <input type="checkbox" name="tessera[]" id="<%= tessera_attributes['id'] %>"
+                     value="<%= tessera_attributes['id'] %>" <%= tessera_attributes['approved'] ? 'checked' : '' %>>
             </td>
 
           </tr>
