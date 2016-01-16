@@ -118,15 +118,10 @@ class ReapingCheckController < ApplicationController
       @check = ReapingCheck.find_by_games(params[:games])
       @tessera = {}
       @check.characters.each do |char|
-        @tessera[char.id] = Tessera.where(reaping_check_id: @check.id, character_id: char.id).first
-        if @tessera[char.id].nil?
-          @tessera[char.id] = Tessera.new
-          @tessera[char.id].previous_number = 0
-          @tessera[char.id].number = 0
-          @tessera[char.id].approved = true
-          @tessera[char.id].save
+        t = Tessera.where(reaping_check_id: @check.id, character_id: char.id).first
+        unless t.nil?
+          @tessera[char.id] = t.attributes
         end
-        @tessera[char.id] = @tessera[char.id].attributes
       end
     else
       render status: :unauthorized
