@@ -93,7 +93,7 @@ class Character < ActiveRecord::Base
       if self.reaping_checks.last
         self.reaping_checks.last.games
       else
-        '69' #lol. also, oh god.
+        69 #lol. also, oh god.
       end
     else
       nil
