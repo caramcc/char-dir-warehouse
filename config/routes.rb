@@ -122,6 +122,7 @@ Rails.application.routes.draw do
   get '/api/attack/:code' => 'api#attack'
 
   get '/reaping' => 'api#reaping'
+  get '/reaping/list' => 'api#reaping_list'
 
   # Slack API Routes
   get '/slack/attack' => 'slack#slack_attack'
