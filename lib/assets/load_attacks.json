@@ -15832,5 +15832,2406 @@
     "text":"BRUISED BACK",
     "damage":2.5,
     "armor_area":"TORSO"
+  },
+  {
+    "attack_code": 15001,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15002,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15003,
+    "text": "SHALLOW CUT ON NECK",
+    "damage": 4,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15004,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15005,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15006,
+    "text": "SHALLOW CUT ON CHEEK",
+    "damage": 3.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15007,
+    "text": "SPEAR IN CHEST",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15008,
+    "text": "SHALLOW CUT ON FOREHEAD",
+    "damage": 4.5,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 15009,
+    "text": "DEEP GASH ON HAND",
+    "damage": 8,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 15010,
+    "text": "SHALLOW CUT ON HAND",
+    "damage": 3,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 15011,
+    "text": "SHALLOW CUT ON CHEST",
+    "damage": 4,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15012,
+    "text": "SPEAR IN BICEP",
+    "damage": 8.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15013,
+    "text": "DEEP GASH ON FOREHEAD",
+    "damage": 9,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 15014,
+    "text": "DEEP GASH ON RIGHT FOREARM",
+    "damage": 8,
+    "armor_area": "RARM"
+  },
+  {
+    "attack_code": 15015,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15016,
+    "text": "SHALLOW CUT ON LEFT BICEP",
+    "damage": 3.5,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 15017,
+    "text": "DEEP GASH ON CHEST",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15018,
+    "text": "SHALLOW CUT ON LEFT CALF",
+    "damage": 3.5,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15019,
+    "text": "SPEAR IN BACK",
+    "damage": 9,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15020,
+    "text": "SHALLOW CUT ON NECK",
+    "damage": 4,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15021,
+    "text": "SHALLOW CUT ON RIGHT BICEP",
+    "damage": 3.5,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15022,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15023,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15024,
+    "text": "SHALLOW CUT ON FOREHEAD",
+    "damage": 4.5,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 15025,
+    "text": "SPEAR IN STOMACH",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15026,
+    "text": "DEEP GASH ON CHEST",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15027,
+    "text": "SHALLOW CUT ON STOMACH",
+    "damage": 4,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15028,
+    "text": "SPEAR IN CHEST",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15029,
+    "text": "SHALLOW CUT ON HAND",
+    "damage": 3,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 15030,
+    "text": "DEEP GASH ON STOMACH",
+    "damage": 9,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15031,
+    "text": "SHALLOW CUT ON BACK",
+    "damage": 4,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15032,
+    "text": "SPEAR IN STOMACH",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15033,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15034,
+    "text": "SPEAR THROUGH NECK",
+    "damage": "x",
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15035,
+    "text": "DEEP GASH ON LEFT FOREARM",
+    "damage": 8,
+    "armor_area": "LARM"
+  },
+  {
+    "attack_code": 15036,
+    "text": "SPEAR IN EYE",
+    "damage": "x",
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 15037,
+    "text": "SHALLOW CUT ON CHEST",
+    "damage": 4,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15038,
+    "text": "SPEAR IN BACK",
+    "damage": 9,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15039,
+    "text": "SHALLOW CUT ON LEFT FOREARM",
+    "damage": 3.5,
+    "armor_area": "LARM"
+  },
+  {
+    "attack_code": 15040,
+    "text": "SPEAR IN CHEST",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15041,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "RARM"
+  },
+  {
+    "attack_code": 15042,
+    "text": "DEEP GASH ON LEFT BICEP",
+    "damage": 8,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15043,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15044,
+    "text": "SHALLOW CUT ON RIGHT FOREARM",
+    "damage": 3.5,
+    "armor_area": "RARM"
+  },
+  {
+    "attack_code": 15045,
+    "text": "SPEAR IN STOMACH",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15046,
+    "text": "DEEP GASH ON RIGHT THIGH",
+    "damage": 8,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15047,
+    "text": "SPEAR IN STOMACH",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15048,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": "LARM"
+  },
+  {
+    "attack_code": 15049,
+    "text": "SHALLOW CUT ON RIGHT FOREARM",
+    "damage": 3.5,
+    "armor_area": "RARM"
+  },
+  {
+    "attack_code": 15050,
+    "text": "SPEAR IN FOREARM",
+    "damage": 8.5,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 15051,
+    "text": "SPEAR IN CALF",
+    "damage": 8.5,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15052,
+    "text": "DEEP GASH ON BICEP",
+    "damage": 8,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15053,
+    "text": "SHALLOW CUT ON LEFT FOREARM",
+    "damage": 3.5,
+    "armor_area": "LARM"
+  },
+  {
+    "attack_code": 15054,
+    "text": "MISS (SPEAR LOST)",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15055,
+    "text": "SPEAR THROUGH HAND",
+    "damage": 8.5,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 15056,
+    "text": "SHALLOW CUT ON STOMACH",
+    "damage": 4,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15057,
+    "text": "SPEAR THROUGH NECK",
+    "damage": "x",
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15058,
+    "text": "SHALLOW CUT ON LEFT BICEP",
+    "damage": 3.5,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15059,
+    "text": "SHALLOW CUT ON BACK",
+    "damage": 4,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15060,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15061,
+    "text": "SHALLOW CUT ON BACK",
+    "damage": 4,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15062,
+    "text": "SHALLOW CUT ON RIGHT FOREARM",
+    "damage": 3.5,
+    "armor_area": "RARM"
+  },
+  {
+    "attack_code": 15063,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15064,
+    "text": "DEEP GASH ON RIGHT BICEP",
+    "damage": 8,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15065,
+    "text": "SHALLOW CUT ON FOREHEAD",
+    "damage": 4.5,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 15066,
+    "text": "SHALLOW CUT ON CHEST",
+    "damage": 4,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15067,
+    "text": "SHALLOW CUT ON FOREARM",
+    "damage": 3,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15068,
+    "text": "SPEAR IN CHEST",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15069,
+    "text": "SPEAR IN BICEP",
+    "damage": 8.5,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 15070,
+    "text": "SPEAR IN BACK",
+    "damage": 9,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15071,
+    "text": "SHALLOW CUT ON CALF",
+    "damage": 3.5,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15072,
+    "text": "SHALLOW CUT ON HAND",
+    "damage": 3,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 15073,
+    "text": "SHALLOW CUT ON RIGHT THIGH",
+    "damage": 3.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15074,
+    "text": "SHALLOW CUT ON RIGHT THIGH",
+    "damage": 3.5,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15075,
+    "text": "SPEAR IN CHEST",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15076,
+    "text": "DEEP GASH ON THIGH",
+    "damage": 8,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15077,
+    "text": "SHALLOW CUT ON RIGHT BICEP",
+    "damage": 3.5,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15078,
+    "text": "SPEAR IN CHEST",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15079,
+    "text": "DEEP GASH ON LEFT FOREARM",
+    "damage": 8,
+    "armor_area": "LARM"
+  },
+  {
+    "attack_code": 15080,
+    "text": "SHALLOW CUT ON FOREARM",
+    "damage": 3,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15081,
+    "text": "SPEAR THROUGH HEART",
+    "damage": "x",
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15082,
+    "text": "SHALLOW CUT ON BACK OF HEAD",
+    "damage": 4.5,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 15083,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15084,
+    "text": "SHALLOW CUT ON HAND",
+    "damage": 3,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 15085,
+    "text": "DEEP GASH ON RIGHT FOREARM",
+    "damage": 8,
+    "armor_area": "RARM"
+  },
+  {
+    "attack_code": 15086,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": "LARM"
+  },
+  {
+    "attack_code": 15087,
+    "text": "DEEP GASH ON LEFT THIGH",
+    "damage": 8,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15088,
+    "text": "DEEP GASH ON BACK",
+    "damage": 8.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15089,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 15090,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 15091,
+    "text": "SHALLOW CUT ON BACK OF HEAD",
+    "damage": 4.5,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 15092,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15093,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15094,
+    "text": "DEEP GASH ON CHEST",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15095,
+    "text": "SHALLOW CUT ON FOREHEAD",
+    "damage": 4.5,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 15096,
+    "text": "SHALLOW CUT ON LEFT BICEP",
+    "damage": 3.5,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15097,
+    "text": "SHALLOW CUT ON BACK OF HEAD",
+    "damage": 4.5,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 15098,
+    "text": "SPEAR IN THIGH",
+    "damage": 8.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15099,
+    "text": "DEEP GASH ON RIGHT CALF",
+    "damage": 8,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15100,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15101,
+    "text": "SHALLOW CUT ON BACK",
+    "damage": 4,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15102,
+    "text": "DEEP GASH ON LEFT CALF",
+    "damage": 8,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15103,
+    "text": "SHALLOW CUT ON FOREARM",
+    "damage": 3,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15104,
+    "text": "SHALLOW CUT ON RIGHT FOREARM",
+    "damage": 3.5,
+    "armor_area": "RARM"
+  },
+  {
+    "attack_code": 15105,
+    "text": "SPEAR THROUGH HAND",
+    "damage": 8.5,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 15106,
+    "text": "DEEP GASH ON BACK",
+    "damage": 8.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15107,
+    "text": "SHALLOW CUT ON CHEST",
+    "damage": 4,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15108,
+    "text": "SHALLOW CUT ON LEFT FOREARM",
+    "damage": 3.5,
+    "armor_area": "LARM"
+  },
+  {
+    "attack_code": 15109,
+    "text": "SPEAR IN BACK",
+    "damage": 9,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15110,
+    "text": "SHALLOW CUT ON BACK OF HEAD",
+    "damage": 4.5,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 15111,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15112,
+    "text": "SHALLOW CUT ON RIGHT THIGH",
+    "damage": 3.5,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15113,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15114,
+    "text": "SPEAR IN FOREARM",
+    "damage": 8.5,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15115,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15116,
+    "text": "SHALLOW CUT ON LEFT CALF",
+    "damage": 3.5,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15117,
+    "text": "DEEP GASH ON CHEST",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15118,
+    "text": "SHALLOW CUT ON BACK",
+    "damage": 4,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15119,
+    "text": "SHALLOW CUT ON BACK OF HEAD",
+    "damage": 4.5,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 15120,
+    "text": "DEEP GASH ON FOREHEAD",
+    "damage": 9,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 15121,
+    "text": "SHALLOW CUT ON STOMACH",
+    "damage": 4,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15122,
+    "text": "SHALLOW CUT ON RIGHT CALF",
+    "damage": 3.5,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15123,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15124,
+    "text": "DEEP GASH ON THIGH",
+    "damage": 8,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15125,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15126,
+    "text": "MISS (SPEAR LOST)",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15127,
+    "text": "DEEP GASH ON CHEEK",
+    "damage": 8.5,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 15128,
+    "text": "SPEAR IN STOMACH",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15129,
+    "text": "SHALLOW CUT ON CALF",
+    "damage": 3.5,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15130,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 15131,
+    "text": "DEEP GASH ON STOMACH",
+    "damage": 9,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15132,
+    "text": "SPEAR IN BACK",
+    "damage": 9,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15133,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15134,
+    "text": "SHALLOW CUT ON STOMACH",
+    "damage": 4,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15135,
+    "text": "DEEP GASH ON CALF",
+    "damage": 8,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15136,
+    "text": "SHALLOW CUT ON NECK",
+    "damage": 4,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 15137,
+    "text": "SHALLOW CUT ON LEFT CALF",
+    "damage": 3.5,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15138,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15139,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15140,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15141,
+    "text": "SHALLOW CUT ON RIGHT CALF",
+    "damage": 3.5,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15142,
+    "text": "SHALLOW CUT ON RIGHT CALF",
+    "damage": 3.5,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15143,
+    "text": "SHALLOW CUT ON RIGHT BICEP",
+    "damage": 3.5,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15144,
+    "text": "SHALLOW CUT ON LEFT CALF",
+    "damage": 3.5,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15145,
+    "text": "MISS (SPEAR LOST)",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15146,
+    "text": "DEEP GASH ON LEFT BICEP",
+    "damage": 8,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15147,
+    "text": "SHALLOW CUT ON CALF",
+    "damage": 3.5,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15148,
+    "text": "SHALLOW CUT ON BICEP",
+    "damage": 3.5,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15149,
+    "text": "DEEP GASH ON RIGHT FOREARM",
+    "damage": 8,
+    "armor_area": "RARM"
+  },
+  {
+    "attack_code": 15150,
+    "text": "DEEP GASH ON CALF",
+    "damage": 8,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15151,
+    "text": "SHALLOW CUT ON LEFT BICEP",
+    "damage": 3.5,
+    "armor_area": "LARM"
+  },
+  {
+    "attack_code": 15152,
+    "text": "DEEP GASH ON HAND",
+    "damage": 8,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 15153,
+    "text": "DEEP GASH ON CHEEK",
+    "damage": 8.5,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15154,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 15155,
+    "text": "SPEAR IN BACK",
+    "damage": 9,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15156,
+    "text": "SPEAR IN CHEST",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15157,
+    "text": "SPEAR IN THIGH",
+    "damage": 8.5,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15158,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15159,
+    "text": "SPEAR IN CHEST",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15160,
+    "text": "SPEAR IN CALF",
+    "damage": 8.5,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15161,
+    "text": "SHALLOW CUT ON THIGH",
+    "damage": 3.5,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15162,
+    "text": "SHALLOW CUT ON FOREHEAD",
+    "damage": 4.5,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 15163,
+    "text": "DEEP GASH ON LEFT FOREARM",
+    "damage": 8,
+    "armor_area": "LARM"
+  },
+  {
+    "attack_code": 15164,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15165,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15166,
+    "text": "MISS (SPEAR LOST)",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15167,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15168,
+    "text": "SHALLOW CUT ON CHEEK",
+    "damage": 3.5,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15169,
+    "text": "MISS (SPEAR LOST)",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15170,
+    "text": "DEEP GASH ON BICEP",
+    "damage": 8,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15171,
+    "text": "SPEAR IN STOMACH",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15172,
+    "text": "DEEP GASH ON RIGHT THIGH",
+    "damage": 8,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15173,
+    "text": "MISS (SPEAR LOST)",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15174,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15175,
+    "text": "DEEP GASH ON STOMACH",
+    "damage": 9,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15176,
+    "text": "SPEAR IN STOMACH",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15177,
+    "text": "DEEP GASH ON RIGHT BICEP",
+    "damage": 8,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15178,
+    "text": "DEEP GASH ON STOMACH",
+    "damage": 9,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15179,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15180,
+    "text": "DEEP GASH ON LEFT THIGH",
+    "damage": 8,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15181,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15182,
+    "text": "SHALLOW CUT ON FOREARM",
+    "damage": 3,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15183,
+    "text": "SPEAR IN STOMACH",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15184,
+    "text": "DEEP GASH ON LEFT CALF",
+    "damage": 8,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15185,
+    "text": "SHALLOW CUT ON CALF",
+    "damage": 3.5,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15186,
+    "text": "SHALLOW CUT ON NECK",
+    "damage": 4,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15187,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15188,
+    "text": "SHALLOW CUT ON RIGHT CALF",
+    "damage": 3.5,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15189,
+    "text": "SPEAR THROUGH HEART",
+    "damage": "x",
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15190,
+    "text": "SHALLOW CUT ON CHEST",
+    "damage": 4,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15191,
+    "text": "SHALLOW CUT ON NECK",
+    "damage": 4,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15192,
+    "text": "MISS (SPEAR LOST)",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15193,
+    "text": "SHALLOW CUT ON RIGHT THIGH",
+    "damage": 3.5,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15194,
+    "text": "SHALLOW CUT ON STOMACH",
+    "damage": 4,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15195,
+    "text": "DEEP GASH ON RIGHT CALF",
+    "damage": 8,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 15196,
+    "text": "MISS (SPEAR LOST)",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 15197,
+    "text": "SHALLOW CUT ON LEFT FOREARM",
+    "damage": 3.5,
+    "armor_area": "LARM"
+  },
+  {
+    "attack_code": 15198,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 15199,
+    "text": "SPEAR IN BACK",
+    "damage": 9,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 15200,
+    "text": "SHALLOW CUT ON LEFT THIGH",
+    "damage": 3.5,
+    "armor_area": "TORSO"
+  },
+
+  {
+    "attack_code": 14001,
+    "text": "BROKEN STERNUM",
+    "damage": 7.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14002,
+    "text": "BROKEN LEFT SHIN",
+    "damage": 7,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 14003,
+    "text": "BROKEN RIGHT FOOT",
+    "damage": 6.5,
+    "armor_area": "FEET"
+  },
+  {
+    "attack_code": 14004,
+    "text": "DEEP GASH ON STOMACH",
+    "damage": 9,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14005,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14006,
+    "text": "DEEP GASH ON RIGHT FOREARM",
+    "damage": 8,
+    "armor_area": "RARM"
+  },
+  {
+    "attack_code": 14007,
+    "text": "BROKEN LEFT WRIST",
+    "damage": 6.5,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 14008,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14009,
+    "text": "BROKEN TAILBONE",
+    "damage": 6,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14010,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14011,
+    "text": "BROKEN LEFT ARM",
+    "damage": 6.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14012,
+    "text": "BROKEN RIGHT SHIN",
+    "damage": 7,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 14013,
+    "text": "GASH/BRUISED LEFT COLLAR BONE",
+    "damage": 3,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14014,
+    "text": "BROKEN STERNUM",
+    "damage": 7.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14015,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 14016,
+    "text": "BROKEN LEFT KNEE",
+    "damage": 7,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 14017,
+    "text": "DEEP GASH ON LEFT FOREARM",
+    "damage": 8,
+    "armor_area": "LARM"
+  },
+  {
+    "attack_code": 14018,
+    "text": "DEEP GASH ON RIGHT BICEP",
+    "damage": 8,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14019,
+    "text": "STABBED IN BICEP",
+    "damage": 8.5,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 14020,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 14021,
+    "text": "BROKEN LEFT FOOT",
+    "damage": 6.5,
+    "armor_area": "FEET"
+  },
+  {
+    "attack_code": 14022,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14023,
+    "text": "GASH/BRUISED RIGHT COLLAR BONE",
+    "damage": 3,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14024,
+    "text": "BROKEN LEFT FEMUR",
+    "damage": 7.5,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14025,
+    "text": "DEEP GASH ON STOMACH",
+    "damage": 9,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14026,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14027,
+    "text": "GASH/BRUISED RIGHT HAND",
+    "damage": 3,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 14028,
+    "text": "GASH/BRUISED RIGHT WRIST",
+    "damage": 3,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 14029,
+    "text": "BROKEN RIGHT COLLAR BONE",
+    "damage": 6.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14030,
+    "text": "DEEP GASH ON FOREHEAD",
+    "damage": 9,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 14031,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14032,
+    "text": "DEEP GASH ON BACK",
+    "damage": 8.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14033,
+    "text": "GASH/BRUISED RIGHT FEMUR",
+    "damage": 4,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14034,
+    "text": "BROKEN RIGHT HAND",
+    "damage": 6,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 14035,
+    "text": "BROKEN LEFT HAND",
+    "damage": 6,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 14036,
+    "text": "BROKEN LEFT FEMUR",
+    "damage": 7.5,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14037,
+    "text": "DEEP GASH ON LEFT FOREARM",
+    "damage": 8,
+    "armor_area": "LARM"
+  },
+  {
+    "attack_code": 14038,
+    "text": "DEEP GASH ON RIGHT FOREARM",
+    "damage": 8,
+    "armor_area": "RARM"
+  },
+  {
+    "attack_code": 14039,
+    "text": "STABBED IN CHEST",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14040,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "RARM"
+  },
+  {
+    "attack_code": 14041,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "RARM"
+  },
+  {
+    "attack_code": 14042,
+    "text": "STABBED IN CHEST",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14043,
+    "text": "DEEP GASH ON CHEEK",
+    "damage": 8.5,
+    "armor_area": "LARM"
+  },
+  {
+    "attack_code": 14044,
+    "text": "BROKEN RIGHT FOOT",
+    "damage": 6.5,
+    "armor_area": "FEET"
+  },
+  {
+    "attack_code": 14045,
+    "text": "BROKEN JAW",
+    "damage": 7,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14046,
+    "text": "BROKEN RIGHT COLLAR BONE",
+    "damage": 6.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14047,
+    "text": "GASH/BRUISED LEFT ARM",
+    "damage": 3,
+    "armor_area": "LARM"
+  },
+  {
+    "attack_code": 14048,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "LARM"
+  },
+  {
+    "attack_code": 14049,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14050,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": "RARM"
+  },
+  {
+    "attack_code": 14051,
+    "text": "DEEP GASH ON LEFT THIGH",
+    "damage": 8,
+    "armor_area": "RARM"
+  },
+  {
+    "attack_code": 14052,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 14053,
+    "text": "BROKEN RIGHT ARM",
+    "damage": 6.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14054,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14055,
+    "text": "GASH/BRUISED LEFT FEMUR",
+    "damage": 4,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14056,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14057,
+    "text": "STABBED IN HAND",
+    "damage": 8,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 14058,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14059,
+    "text": "DEEP GASH ON BACK OF HEAD",
+    "damage": 9,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 14060,
+    "text": "GASH/BRUISED LEFT SHIN",
+    "damage": 3,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 14061,
+    "text": "STABBED IN STOMACH",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14062,
+    "text": "BROKEN JAW",
+    "damage": 7,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14063,
+    "text": "DEEP GASH ON LEFT FOREARM",
+    "damage": 8,
+    "armor_area": "LARM"
+  },
+  {
+    "attack_code": 14064,
+    "text": "BROKEN RIGHT FOOT",
+    "damage": 6.5,
+    "armor_area": "FEET"
+  },
+  {
+    "attack_code": 14065,
+    "text": "BROKEN JAW",
+    "damage": 7,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14066,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 14067,
+    "text": "BROKEN RIGHT SHIN",
+    "damage": 7,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 14068,
+    "text": "BROKEN RIGHT COLLAR BONE",
+    "damage": 6.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14069,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 14070,
+    "text": "STABBED IN FOREARM",
+    "damage": 8.5,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 14071,
+    "text": "TWO BROKEN RIBS",
+    "damage": 7.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14072,
+    "text": "BROKEN STERNUM",
+    "damage": 7.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14073,
+    "text": "TWO BROKEN RIBS",
+    "damage": 7.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14074,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14075,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 14076,
+    "text": "BROKEN LEFT SHIN",
+    "damage": 7,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 14077,
+    "text": "DEEP GASH ON RIGHT BICEP",
+    "damage": 8,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14078,
+    "text": "DEEP GASH ON RIGHT FOREARM",
+    "damage": 8,
+    "armor_area": "RARM"
+  },
+  {
+    "attack_code": 14079,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 14080,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14081,
+    "text": "BROKEN RIGHT HAND",
+    "damage": 6,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 14082,
+    "text": "BROKEN LEFT COLLAR BONE",
+    "damage": 6.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14083,
+    "text": "SPLIT SKULL",
+    "damage": "x",
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14084,
+    "text": "BROKEN RIGHT WRIST",
+    "damage": 6.5,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 14085,
+    "text": "BROKEN TAILBONE",
+    "damage": 6,
+    "armor_area": "FEET"
+  },
+  {
+    "attack_code": 14086,
+    "text": "DEEP GASH ON RIGHT FOREARM",
+    "damage": 8,
+    "armor_area": "RARM"
+  },
+  {
+    "attack_code": 14087,
+    "text": "DEEP GASH ON FOREHEAD",
+    "damage": 9,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 14088,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14089,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "FEET"
+  },
+  {
+    "attack_code": 14090,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14091,
+    "text": "BROKEN LEFT WRIST",
+    "damage": 6.5,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 14092,
+    "text": "TWO BROKEN RIBS",
+    "damage": 7.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14093,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": "FEET"
+  },
+  {
+    "attack_code": 14094,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 14095,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14096,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14097,
+    "text": "BROKEN RIGHT WRIST",
+    "damage": 6.5,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 14098,
+    "text": "STABBED IN CHEST",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14099,
+    "text": "GASH/BRUISED LEFT COLLAR BONE",
+    "damage": 3,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14100,
+    "text": "BROKEN LEFT COLLAR BONE",
+    "damage": 6.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14101,
+    "text": "BROKEN RIGHT ARM",
+    "damage": 6.5,
+    "armor_area": "FEET"
+  },
+  {
+    "attack_code": 14102,
+    "text": "GASH/BRUISED RIGHT COLLAR BONE",
+    "damage": 3,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14103,
+    "text": "BROKEN LEFT FEMUR",
+    "damage": 7.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14104,
+    "text": "BROKEN RIGHT KNEE",
+    "damage": 7,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 14105,
+    "text": "DEEP GASH ON RIGHT CALF",
+    "damage": 8,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 14106,
+    "text": "BROKEN LEFT HAND",
+    "damage": 6,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 14107,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14108,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 14109,
+    "text": "BROKEN RIGHT COLLAR BONE",
+    "damage": 6.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14110,
+    "text": "STABBED IN FOREARM",
+    "damage": 8.5,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 14111,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 14112,
+    "text": "BROKEN LEFT COLLAR BONE",
+    "damage": 6.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14113,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 14114,
+    "text": "BROKEN LEFT KNEE",
+    "damage": 7,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 14115,
+    "text": "DEEP GASH ON BACK OF HEAD",
+    "damage": 9,
+    "armor_area": "HEAD"
+  },
+  {
+    "attack_code": 14116,
+    "text": "STABBED IN STOMACH",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14117,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14118,
+    "text": "BROKEN RIGHT SHIN",
+    "damage": 7,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 14119,
+    "text": "BROKEN STERNUM",
+    "damage": 7.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14120,
+    "text": "BROKEN RIGHT FEMUR",
+    "damage": 7.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14121,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14122,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 14123,
+    "text": "BROKEN LEFT FOOT",
+    "damage": 6.5,
+    "armor_area": "FEET"
+  },
+  {
+    "attack_code": 14124,
+    "text": "GASH/BRUISED LEFT FOOT",
+    "damage": 3,
+    "armor_area": "FEET"
+  },
+  {
+    "attack_code": 14125,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14126,
+    "text": "DEEP GASH ON LEFT FOREARM",
+    "damage": 8,
+    "armor_area": "LARM"
+  },
+  {
+    "attack_code": 14127,
+    "text": "BROKEN TAILBONE",
+    "damage": 6,
+    "armor_area": "FEET"
+  },
+  {
+    "attack_code": 14128,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14129,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14130,
+    "text": "STABBED IN HAND",
+    "damage": 8,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 14131,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14132,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 14133,
+    "text": "BROKEN LEFT ARM",
+    "damage": 6.5,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 14134,
+    "text": "BROKEN RIB",
+    "damage": 7,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14135,
+    "text": "STABBED IN BICEP",
+    "damage": 8.5,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14136,
+    "text": "BROKEN STERNUM",
+    "damage": 7.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14137,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14138,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14139,
+    "text": "BROKEN RIB",
+    "damage": 7,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14140,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14141,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14142,
+    "text": "CRUSHED CHEST",
+    "damage": "x",
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14143,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14144,
+    "text": "DEEP GASH ON BACK",
+    "damage": 8.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14145,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14146,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14147,
+    "text": "GASH/BRUISED LEFT HAND",
+    "damage": 3,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 14148,
+    "text": "STABBED IN CHEST",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14149,
+    "text": "STABBED IN BACK",
+    "damage": 9,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14150,
+    "text": "BROKEN RIGHT KNEE",
+    "damage": 7,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 14151,
+    "text": "BROKEN LEFT WRIST",
+    "damage": 6.5,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 14152,
+    "text": "GASH/BRUISED RIGHT FOOT",
+    "damage": 3,
+    "armor_area": "FEET"
+  },
+  {
+    "attack_code": 14153,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14154,
+    "text": "GASH/BRUISED LEFT WRIST",
+    "damage": 3,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 14155,
+    "text": "STABBED IN CHEST",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14156,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14157,
+    "text": "DEEP GASH ON BACK",
+    "damage": 8.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14158,
+    "text": "DEEP GASH ON LEFT FOREARM",
+    "damage": 8,
+    "armor_area": "LARM"
+  },
+  {
+    "attack_code": 14159,
+    "text": "DEEP GASH ON CHEST",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14160,
+    "text": "BROKEN RIGHT FEMUR",
+    "damage": 7.5,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14161,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14162,
+    "text": "BROKEN RIB",
+    "damage": 7,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14163,
+    "text": "BROKEN LEFT KNEE",
+    "damage": 7,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 14164,
+    "text": "STABBED IN BACK",
+    "damage": 9,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14165,
+    "text": "DEEP GASH ON LEFT FOREARM",
+    "damage": 8,
+    "armor_area": "LARM"
+  },
+  {
+    "attack_code": 14166,
+    "text": "TWO BROKEN RIBS",
+    "damage": 7.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14167,
+    "text": "BROKEN STERNUM",
+    "damage": 7.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14168,
+    "text": "BROKEN RIGHT FEMUR",
+    "damage": 7.5,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14169,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14170,
+    "text": "BROKEN LEFT COLLAR BONE",
+    "damage": 6.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14171,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14172,
+    "text": "GASH/BRUISED RIGHT ARM",
+    "damage": 3,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14173,
+    "text": "BROKEN LEFT FOOT",
+    "damage": 6.5,
+    "armor_area": "FEET"
+  },
+  {
+    "attack_code": 14174,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14175,
+    "text": "BROKEN LEFT SHIN",
+    "damage": 7,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 14176,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14177,
+    "text": "CRUSHED SKULL",
+    "damage": "x",
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14178,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14179,
+    "text": "GASH/BRUISED RIGHT SHIN",
+    "damage": 3,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 14180,
+    "text": "BROKEN STERNUM",
+    "damage": 7.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14181,
+    "text": "BROKEN RIGHT COLLAR BONE",
+    "damage": 6.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14182,
+    "text": "BROKEN RIGHT KNEE",
+    "damage": 7,
+    "armor_area": "LEGS"
+  },
+  {
+    "attack_code": 14183,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14184,
+    "text": "DEEP GASH ON CHEST",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14185,
+    "text": "DEEP GASH ON LEFT BICEP",
+    "damage": 8,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14186,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14187,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14188,
+    "text": "BROKEN RIGHT WRIST",
+    "damage": 6.5,
+    "armor_area": "HANDS"
+  },
+  {
+    "attack_code": 14189,
+    "text": "CRUSHED SKULL",
+    "damage": "x",
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14190,
+    "text": "DEEP GASH ON CHEST",
+    "damage": 9.5,
+    "armor_area": "TORSO"
+  },
+  {
+    "attack_code": 14191,
+    "text": "CRUSHED CHEST",
+    "damage": "x",
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14192,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14193,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14194,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14195,
+    "text": "BLOCK",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14196,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14197,
+    "text": "BROKEN RIGHT ARM",
+    "damage": 6.5,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14198,
+    "text": "MISS",
+    "damage": 0,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14199,
+    "text": "DEEP GASH ON CHEEK",
+    "damage": 8.5,
+    "armor_area": 0
+  },
+  {
+    "attack_code": 14200,
+    "text": "BROKEN LEFT ARM",
+    "damage": 6.5,
+    "armor_area": "TORSO"
   }
 ]

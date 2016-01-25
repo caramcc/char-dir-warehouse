@@ -54,7 +54,9 @@ module Warehouse
         10 => 'Thrown Axe',
         11 => 'Axe',
         12 => 'Flail',
-        13 => 'Glaive'
+        13 => 'Glaive',
+        14 => 'Spiked Blunt',
+        15 => 'Javelin'
     }
   end
 end
