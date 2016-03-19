@@ -9,9 +9,9 @@ class SlackController < ApplicationController
       if text < 51
         if text < 21 && text > 0
           r << "Fire #{text} is *FIRE EXTINGUISHED*, +0 dmg"
-        elsif text < 35 && text > 20
+        elsif text <= 35 && text > 20
           r << "Fire #{text} is *MINOR BURN*, +2 dmg"
-        elsif text < 46 && text > 35
+        elsif text <= 45 && text > 35
           r << "Fire #{text} is *MODERATE BURN*, +4 dmg"
         elsif text < 50 && text > 45
           r << "Fire #{text} is *SEVERE BURN*, +8 dmg"
