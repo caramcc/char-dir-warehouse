@@ -60,6 +60,15 @@ class User < ActiveRecord::Base
     self.group = params[:email]
   end
 
+  def reaping_display_name
+    if self.username.downcase == self.display_name.downcase
+      uname_string = self.display_name
+    else
+      uname_string = "#{self.username} '#{self.display_name}'"
+    end
+    uname_string
+  end
+
   class << self
 
     def find_by_email_or_username(email_or_username)

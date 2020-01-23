@@ -266,18 +266,18 @@ class ApiController < ApplicationController
   def reaping_list
     output = ''
     rc = ReapingCheck.last
-    possibles = rc.characters
-    rc_id = rc.id
-    possibles.each do |p|
-      tessera = Tessera.where("character_id = #{p.id} AND reaping_check_id = #{rc_id} AND approved = true")
-      if tessera.last
-        t = tessera.last.number
+    possibles = rc.characters.preload(:user)
+    tessera_set = Tessera.where("reaping_check_id = #{rc.id} AND approved = true")
+    possibles.each do |possible|
+      tessera = tessera_set.find {|tess| tess[:character_id] == possible.id}
+      if tessera
+        t = tessera.number
       else
         t = 0
       end
-      u = User.find_by_id(p.user_id)
-      u.username.downcase == u.display_name.downcase ? un = u.display_name : un = "#{u.username} '#{u.display_name}'"
-      output << "D#{p.home_area}#{p.gender[0].downcase}\t#{p.first_name} #{p.last_name}\t[#{un}]\t#{p.age}\t#{t}<br>"
+      writer_name = possible.user.reaping_display_name
+      # output << "D#{possible.home_area}#{possible.gender[0].downcase}\t#{possible.first_name} #{possible.last_name}\t[#{writer_name}]\t#{possible.age}\t#{t}<br>"
+      output << "D#{possible.home_area}#{possible.gender[0].downcase},#{possible.first_name} #{possible.last_name},[#{writer_name}],#{possible.age},#{t}<br>"
     end
     render text: output
   end
@@ -337,29 +337,30 @@ class ApiController < ApplicationController
   end
 
   def reaping
-    # rc = ReapingCheck.last
-    # eligible = rc.characters
-    # by_district_gender = {}
-    # output = ''
-    # eligible.each do |p|
-    #   tessera = Tessera.where("character_id = #{p.id} AND reaping_check_id = #{rc.id} AND approved = true")
-    #   if tessera.last
-    #     t = tessera.last.number
-    #   else
-    #     t = 0
-    #   end
-    #   odds = t + p.age - 10
-    #
-    #   by_district_gender[p.home_area + p.gender[0]] ||= []
-    #   by_district_gender[p.home_area + p.gender[0]].fill(p, by_district_gender[p.home_area + p.gender[0]].size, odds)
-    # end
-    #
-    # by_district_gender.sort.each do |dg, tributes|
-    #   tribute = tributes.sample(1).first
-    #   output << "<b>#{dg}</b> - #{tribute.first_name} #{tribute.last_name} [#{tribute.user.username} '#{tribute.user.display_name}']<br>"
-    # end
+    output = ""
+    rc = ReapingCheck.last
+    possibles = rc.characters.preload(:user)
+    tessera_set = Tessera.where("reaping_check_id = #{rc.id} AND approved = true")
+    by_district_gender = {}
+    possibles.each do |possible|
+      tessera = tessera_set.find {|tess| tess[:character_id] == possible.id}
+      if tessera
+        t = tessera.number
+      else
+        t = 0
+      end
+      odds = t + possible.age - 10
 
-    output = 'Mock Reapings have been temporarily disabled. Please <a href="/reaping/list">generate a reaping list</a> for use with the <a href="http://ripred.net/multilinereap.php">multiline reaping tool</a>.'
+      dg_id = possible.home_area + possible.gender[0]
+      by_district_gender[dg_id] ||= []
+      by_district_gender[dg_id].fill(possible, by_district_gender[dg_id].length, odds)
+    end
+
+    by_district_gender.sort_by{|k,_| [k.to_i, k]}.each do |dg_id, tributes|
+      tribute = tributes.sample(1).first
+      writer_name = tribute.user.reaping_display_name
+      output << "<b>#{dg_id}</b> - #{tribute.first_name} #{tribute.last_name} [#{writer_name}]<br>"
+    end
 
     render text: output
   end
