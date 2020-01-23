@@ -13,13 +13,13 @@ class ActivityCheckController < ApplicationController
 
     ac.games ||= ActivityCheck.last.games + 1
 
-    if ac.opens_on.nil?
+    unless ac.opens_on.nil?
       ac.opens_on.to_time
     else
       ac.opens_on = Time.now
     end
 
-    if ac.closes_on.nil?
+    unless ac.closes_on.nil?
       ac.closes_on.to_time
     else
       ac.closes_on = 30.days.from_now

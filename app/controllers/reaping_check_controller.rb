@@ -14,13 +14,13 @@ class ReapingCheckController < ApplicationController
 
     rc.games ||= ReapingCheck.last.games + 1
 
-    if rc.opens_on.nil?
+    unless rc.opens_on.nil?
       rc.opens_on.to_time
     else
       rc.opens_on = Time.now
     end
 
-    if rc.closes_on.nil?
+    unless rc.closes_on.nil?
       rc.closes_on.to_time
     else
       rc.closes_on = 30.days.from_now
