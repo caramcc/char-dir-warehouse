@@ -100,11 +100,11 @@ class Character < ActiveRecord::Base
     end
   end
 
-  def is_active?
+  def is_active?(ac = ActivityCheck.last)
     if ActivityCheck.last.nil?
       false
     else
-      self.activity_checks.exists?(ActivityCheck.last)
+      self.activity_checks.exists?(ac)
     end
   end
 
@@ -164,8 +164,9 @@ class Character < ActiveRecord::Base
     def render_fcs
       fcs = {}
       no_fcs = []
+      ac = ActivityCheck.last
       Character.preload(:user, :activity_checks).where('fc_approved = true').order(:fc_last, :fc_first).each do |char|
-        if char.is_active? && char.tribute_fc_active?
+        if char.is_active?(ac) && char.tribute_fc_active?
           char.fc_last.blank? ? fc_last = ' ' : fc_last = char.fc_last.upcase
           char_data = {
               fc_first: char.fc_first,
