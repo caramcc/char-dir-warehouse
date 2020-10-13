@@ -164,7 +164,7 @@ class Character < ActiveRecord::Base
     def render_fcs
       fcs = {}
       no_fcs = []
-      Character.order(:fc_last, :fc_first).each do |char|
+      Character.order(:fc_last, :fc_first).preload(:user).each do |char|
         if char.fc_approved && char.is_active? && char.tribute_fc_active?
           char.fc_last.blank? ? fc_last = ' ' : fc_last = char.fc_last.upcase
           char_data = {
@@ -175,7 +175,7 @@ class Character < ActiveRecord::Base
               gender: char.gender,
               id: char.id,
               user_id: char.user_id,
-              user_username: User.find_by_id(char.user_id).username
+              user_username: char.user.username
           }
 
           if char.gender.blank?
