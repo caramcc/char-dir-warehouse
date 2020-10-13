@@ -164,9 +164,9 @@ class Character < ActiveRecord::Base
     def render_fcs
       fcs = {}
       no_fcs = []
-      ac = ActivityCheck.last
-      Character.preload(:user, :activity_checks).where('fc_approved = true').order(:fc_last, :fc_first).each do |char|
-        if char.is_active?(ac) && char.tribute_fc_active?
+      ac_id = ActivityCheck.last.id
+      Character.joins(:activity_checks).where("fc_approved = true AND activity_checks.id = #{ac_id}").preload(:user).order(:fc_last, :fc_first).each do |char|
+        if char.tribute_fc_active?
           char.fc_last.blank? ? fc_last = ' ' : fc_last = char.fc_last.upcase
           char_data = {
               fc_first: char.fc_first,
