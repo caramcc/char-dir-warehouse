@@ -72,7 +72,7 @@ class ActivityCheckController < ApplicationController
     if params[:chk]
       removed = []
       user.characters.each do |chr|
-        unless params[:chk].include?(chr) && chr.activity_checks.exists?(@check)
+        unless params[:chk].include?(chr) && chr.activity_checks.exists?(@check.id)
           removed.push chr
         end
       end
@@ -85,7 +85,7 @@ class ActivityCheckController < ApplicationController
       params[:chk].each do |id|
         char = Character.find_by_id(id)
 
-        unless char.activity_checks.exists?(@check)
+        unless char.activity_checks.exists?(@check.id)
           char.activity_checks << @check
         end
         char.save

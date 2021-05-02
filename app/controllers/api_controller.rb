@@ -1,6 +1,5 @@
 class ApiController < ApplicationController
-
-  before_filter :authorize, :except => [:search_suggest, :all_active_characters, :slack_attack]
+  before_action :authorize, :except => [:search_suggest, :all_active_characters, :slack_attack]
 
   def character_get_all
     render json: Character.all, status: 200
@@ -277,9 +276,9 @@ class ApiController < ApplicationController
       end
       writer_name = possible.user.reaping_display_name
       # output << "D#{possible.home_area}#{possible.gender[0].downcase}\t#{possible.first_name} #{possible.last_name}\t[#{writer_name}]\t#{possible.age}\t#{t}<br>"
-      output << "D#{possible.home_area}#{possible.gender[0].downcase},#{possible.first_name} #{possible.last_name},[#{writer_name}],#{possible.age},#{t}<br>"
+      output << "D#{possible.home_area}#{possible.gender[0].downcase},#{possible.first_name} #{possible.last_name},[#{writer_name}],#{possible.age},#{t}\n"
     end
-    render text: output
+    render plain: output
   end
 
 
@@ -328,10 +327,10 @@ class ApiController < ApplicationController
     else
       tributes.each do |tribute|
         print tribute
-        formatted_tributes += "D#{tribute[:district]} #{tribute[:gender]} #{tribute[:name]} [#{tribute[:owner]}] - #{tribute[:age]}<br>"
+        formatted_tributes += "D#{tribute[:district]} #{tribute[:gender]} #{tribute[:name]} [#{tribute[:owner]}] - #{tribute[:age]}\n"
         # puts "D #{tribute['district']}" #" #{tribute[:gender]} #{tribute[:name]} [#{tribute[:owner]}] - #{tribute[:age]}<br>"
       end
-      render text: formatted_tributes
+      render plain: formatted_tributes
     end
 
   end
@@ -359,20 +358,10 @@ class ApiController < ApplicationController
     by_district_gender.sort_by{|k,_| [k.to_i, k]}.each do |dg_id, tributes|
       tribute = tributes.sample(1).first
       writer_name = tribute.user.reaping_display_name
-      output << "<b>#{dg_id}</b> - #{tribute.first_name} #{tribute.last_name} [#{writer_name}]<br>"
+      output << "#{dg_id} - #{tribute.first_name} #{tribute.last_name} [#{writer_name}]\n"
     end
 
-    render text: output
-  end
-
-  def logs
-    if current_user.group == 'ADMIN'
-      log = ''
-      File.open(Rails.root.join("log/#{Rails.env}.log"), 'r').each_line { |line| log << line; log << "<br>\n"; }
-      render text: log
-    else
-      render status: :unauthorized
-    end
+    render plain: output
   end
 
   def search_suggest

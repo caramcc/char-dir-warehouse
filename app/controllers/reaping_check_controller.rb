@@ -63,7 +63,7 @@ class ReapingCheckController < ApplicationController
 
         removed = []
         user.characters.each do |chr|
-          unless params[:chk].include?(chr) && chr.reaping_checks.exists?(@check)
+          unless params[:chk].include?(chr) && chr.reaping_checks.exists?(@check.id)
             removed.push chr
           end
         end
@@ -76,7 +76,7 @@ class ReapingCheckController < ApplicationController
         params[:chk].each do |id|
           char = Character.find_by_id(id)
 
-          unless char.reaping_checks.exists?(@check)
+          unless char.reaping_checks.exists?(@check.id)
             char.reaping_checks << @check
           end
           char.save

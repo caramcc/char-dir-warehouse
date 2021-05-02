@@ -1,6 +1,5 @@
 class CharacterController < ApplicationController
-
-  before_filter :authorize
+  before_action :authorize
 
   def index
 
@@ -38,7 +37,7 @@ class CharacterController < ApplicationController
     if rc.is_active?
       @latest_checks[:reaping] = {
           active: true,
-          char_in: @char.reaping_checks.exists?(rc),
+          char_in: @char.reaping_checks.exists?(rc.id),
           games: rc.games
       }
     else
@@ -50,7 +49,7 @@ class CharacterController < ApplicationController
     if ac.is_active?
       @latest_checks[:activity] = {
           active: true,
-          char_in: @char.activity_checks.exists?(ac),
+          char_in: @char.activity_checks.exists?(ac.id),
           games: ac.games
       }
     else
@@ -135,7 +134,7 @@ class CharacterController < ApplicationController
       old_char.fc_approved = true
     end
 
-    old_char.save
+    old_char.save!
     redirect_to "/character/#{old_char.id}"
   end
 

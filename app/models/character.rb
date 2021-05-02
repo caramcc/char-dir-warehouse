@@ -4,7 +4,7 @@ class Character < ActiveRecord::Base
   # flags: fc_flagged (fc_flag), char_flagged (char_flag), shared_fc_owner_id (is a user_id), is_dead, is_tribute, games_number
 
   belongs_to :user
-  belongs_to :tessera
+  belongs_to :tessera, optional: true
   has_and_belongs_to_many :reaping_checks
   has_and_belongs_to_many :activity_checks
 
@@ -15,7 +15,7 @@ class Character < ActiveRecord::Base
   validates :age, :numericality => {:only_integer => true, less_than: 130}
   # validates :home_area, inclusion: @allowed_areas
   # validates :special, inclusion: @special_types
-  validates_url_format_of :bio_thread, allow_nil: false, message: 'invalid url format'
+  validates :bio_thread, url: true, allow_nil: false
 
   def approve
     self.char_approved = true
@@ -79,7 +79,7 @@ class Character < ActiveRecord::Base
     if ReapingCheck.last.nil?
       false
     else
-      ReapingCheck.last.is_active? && self.reaping_checks.exists?(ReapingCheck.last)
+      ReapingCheck.last.is_active? && self.reaping_checks.exists?(ReapingCheck.last.id)
     end
   end
 
@@ -104,7 +104,7 @@ class Character < ActiveRecord::Base
     if ActivityCheck.last.nil?
       false
     else
-      self.activity_checks.exists?(ac)
+      self.activity_checks.exists?(ac.id)
     end
   end
 

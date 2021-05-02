@@ -32,7 +32,7 @@ class SlackController < ApplicationController
       r << "\n\n"
     end
 
-    render text: r
+    render plain: r
   end
 
   def slack_bio
@@ -51,7 +51,7 @@ class SlackController < ApplicationController
       end
     end
 
-    render text: output
+    render plain: output
   end
 
 
@@ -70,7 +70,7 @@ class SlackController < ApplicationController
       end
     end
 
-    render text: output
+    render plain: output
   end
 
 end
