@@ -102,6 +102,16 @@ class ActivityCheckController < ApplicationController
 
   def show_by_games
     @check = ActivityCheck.find_by_games(params[:games])
+    @characters = @check.characters
+    active_user_ids = @characters.pluck('distinct user_id')
+    @users = User.find(active_user_ids)
+    prev_check_id = @check.id > 1 ? @check.id - 1 : 1
+
+    previous_check_user_ids = ActiveRecord::Base.connection.execute("SELECT distinct user_id FROM characters
+          INNER JOIN activity_checks_characters ON characters.id = activity_checks_characters.character_id
+          WHERE activity_checks_characters.activity_check_id = #{prev_check_id}").map {|r| r['user_id'].to_i}
+
+    @lapsed_users = User.find(previous_check_user_ids - active_user_ids)
     # render json: @check.characters
   end
 

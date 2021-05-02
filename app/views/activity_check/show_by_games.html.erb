@@ -1,7 +1,8 @@
 <div class="container">
 
-  <h1><%= @check.games.ordinalize %> Games Activity Check: Characters</h1>
+  <h1><%= @check.games.ordinalize %> Games Activity Check</h1>
 
+  <h2>Characters</h2>
   <div class="panel panel-default">
     <!-- Default panel contents -->
     <!--<div class="panel-heading">Approved Characters</div>-->
@@ -21,7 +22,7 @@
       <th>FC Valid?</th>
       <th>View on HGRPG</th>
 
-      <% @check.characters.each do |char| %>
+      <% @characters.each do |char| %>
         <tr>
           <td><a href="/character/<%= char.id %>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></td>
           <td><%= char.home_area %></td>
@@ -43,6 +44,39 @@
           </td>
 
           <td><a href="<%= char.bio_thread %>" target="_blank">[link]</a></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+
+  <h2>Members</h2>
+  <div class="panel panel-default">
+
+    <table class="table sortable-theme-bootstrap table-hover" data-sortable>
+      <th></th>
+      <th data-sorted="true" data-sorted-direction="descending">Username</th>
+
+      <% @users.each do |user| %>
+        <tr>
+          <td><a href="/user/<%= user.id %>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></td>
+          <td><%= user.display_name %> [<%= user.username %>]</td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <h2>Newly-inactive Members</h2>
+  <div class="panel panel-default">
+
+    <table class="table sortable-theme-bootstrap table-hover" data-sortable>
+      <th></th>
+      <th data-sorted="true" data-sorted-direction="descending">Username</th>
+
+      <% @lapsed_users.each do |user| %>
+        <tr>
+          <td><a href="/user/<%= user.id %>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></td>
+          <td><%= user.display_name %> [<%= user.username %>]</td>
         </tr>
       <% end %>
     </table>
