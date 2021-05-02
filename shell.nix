@@ -15,7 +15,6 @@ let
   }) {};
 
   bundler_1_17 = old_pkgs.bundler;
-  ruby_2_3 = old_ruby.ruby_2_3;
 
   requiredNixVersion = "2.3";
 
