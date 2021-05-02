@@ -14,12 +14,6 @@ let
       rev = "fcc8660d359d2c582b0b148739a72cec476cfef5";
   }) {};
 
-  old_ruby = import (builtins.fetchTarball {
-      name = "old-ruby-2019-09-02";
-      url = "https://github.com/NixOS/nixpkgs/archive/84f318e323989435d5dd54b4038b0af728f20c85.tar.gz";
-      sha256 = "08s1lbp0hy5cyga67bwcylvqp0y9s8wb23pxzrc6ir300r6nnng0";
-  }) {};
-
   bundler_1_17 = old_pkgs.bundler;
   ruby_2_3 = old_ruby.ruby_2_3;
 
@@ -40,7 +34,7 @@ else
       shared-mime-info
 
       # Ruby and Rails dependencies
-      ruby_2_3
+      ruby_2_7
       bundler_1_17
       openssl
       clang
