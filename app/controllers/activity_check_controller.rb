@@ -58,7 +58,17 @@ class ActivityCheckController < ApplicationController
     unless current_user.can_edit?(@user)
       render :status => :unauthorized
     end
-    @characters = @user.characters
+    @characters = @user.characters.preload(:activity_checks)
+
+    @previously_inactive_characters = []
+    @characters.each do |character|
+      last_check = character.activity_checks.last
+      next unless last_check
+      if @check.previous_check_id > last_check.id
+        @previously_inactive_characters << character
+        @characters -= [character]
+      end
+    end
   end
 
   def add
@@ -105,11 +115,10 @@ class ActivityCheckController < ApplicationController
     @characters = @check.characters.preload(:user)
     active_user_ids = @characters.pluck('distinct user_id')
     @users = User.find(active_user_ids)
-    prev_check_id = @check.id > 1 ? @check.id - 1 : 1
 
     previous_check_user_ids = ActiveRecord::Base.connection.execute("SELECT distinct user_id FROM characters
           INNER JOIN activity_checks_characters ON characters.id = activity_checks_characters.character_id
-          WHERE activity_checks_characters.activity_check_id = #{prev_check_id}").map {|r| r['user_id'].to_i}
+          WHERE activity_checks_characters.activity_check_id = #{@check.previous_check_id}").map {|r| r['user_id'].to_i}
 
     @lapsed_users = User.find(previous_check_user_ids - active_user_ids)
     # render json: @check.characters

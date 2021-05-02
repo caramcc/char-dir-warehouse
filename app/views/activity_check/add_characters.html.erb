@@ -4,7 +4,7 @@
     <script type="text/javascript">
       $(document).ready(function() {
         $("#checkAll").click(function () {
-          $('input:checkbox').not(this).prop('checked', this.checked);
+          $('.multicheck').not(this).prop('checked', this.checked);
         });
 
       });
@@ -32,7 +32,52 @@
           <th>View on HGRPG</th>
           <th><label for="checkAll">Add to Activity Check</label> <input type="checkbox" id="checkAll"></th>
 
-          <% @user.characters.each do |char| %>
+          <% @characters.each do |char| %>
+
+              <tr>
+                <td><a href="/character/<%= char.id %>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></td>
+                <td><%= char.first_name %></td>
+                <td><%= char.last_name %></td>
+                <td><%= char.home_area %></td>
+                <td><%= char.age %></td>
+                <td><%= char.gender %></td>
+
+                <td><%= char.fc_first %> <%= char.fc_last %></td>
+
+                <td>
+                  <% if char.char_approved %>
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                  <% else %>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                  <% end %>
+                </td>
+
+                <td><a href="<%= char.bio_thread %>" target="_blank">[link]</a></td>
+                <td><input type="checkbox" name="chk[]" class="multicheck" id="<%= char.id %>" <%= char.activity_checks.exists?(@check.id) ? 'checked' : '' %> value="<%= char.id %>"></td>
+              </tr>
+          <% end %>
+        </table>
+      </div>
+
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Previously Inactive Characters</div>
+
+        <!--TODO: Make the table actually sortable-->
+
+        <table class="table sortable-theme-bootstrap" data-sortable>
+          <th></th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th data-sorted="true" data-sorted-direction="descending">District/Area</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Face Claim</th>
+          <th>Approved?</th>
+          <th>View on HGRPG</th>
+          <th>Add to Activity Check</th>
+
+          <% @previously_inactive_characters.each do |char| %>
 
               <tr>
                 <td><a href="/character/<%= char.id %>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></td>
@@ -58,6 +103,8 @@
           <% end %>
         </table>
       </div>
+
+
       <button type="submit" class="btn btn-primary">Update</button>
     </form>
   <% else %>

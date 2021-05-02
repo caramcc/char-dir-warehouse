@@ -17,4 +17,11 @@ class ActivityCheck < ActiveRecord::Base
     true
   end
 
+  def previous_check_id
+    if id > 1
+      id - 1
+    else
+      1
+    end
+  end
 end
