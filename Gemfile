@@ -2,9 +2,11 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
-# Use mysql as the database for Active Record
-gem 'mysql2'
+gem 'rails', '4.2.11.3'
+# Use postgres as the database for Active Record
+gem 'pg', '~> 0.15'
+
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.3.3'
@@ -65,10 +67,5 @@ group :development, :test do
   gem 'spring'
 
   gem 'webrick'
-end
-
-group :production do
-  # nop use postgres
-  gem 'pg'
 end
 
