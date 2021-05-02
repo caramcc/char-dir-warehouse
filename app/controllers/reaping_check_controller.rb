@@ -97,12 +97,12 @@ class ReapingCheckController < ApplicationController
 
   def show_by_games
     @check = ReapingCheck.find_by_games(params[:games])
+    @characters = @check.characters.preload(:user)
     tessera = Tessera.where(reaping_check_id: @check.id)
     @tessera = {}
     tessera.each do |t|
       @tessera[t.character_id] = t.attributes
     end
-    puts @tessera
   end
 
   def update

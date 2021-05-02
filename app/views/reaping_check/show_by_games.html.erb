@@ -20,7 +20,7 @@
       <th>Tessera</th>
       <th>Tessera approved?</th>
 
-      <% @check.characters.each do |char| %>
+      <% @characters.each do |char| %>
         <% tessera = @tessera[char.id]
            tessera ||= Tessera.new.attributes %>
         <tr>
@@ -29,7 +29,7 @@
           <td><%= char.gender %></td>
           <td><%= char.first_name %></td>
           <td><%= char.last_name %></td>
-          <td><a href="/user/<%= char.user_id%>"><%= User.find_by_id(char.user_id).display_name %></a></td>
+          <td><a href="/user/<%= char.user_id%>"><%= char.user.display_name %></a></td>
           <td><%= char.age %></td>
           <td><a href="<%= char.bio_thread %>" target="_blank">[link]</a></td>
           <td><%= tessera['number'].nil? ? '0' : tessera['number'] %></td>

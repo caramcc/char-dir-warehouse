@@ -102,7 +102,7 @@ class ActivityCheckController < ApplicationController
 
   def show_by_games
     @check = ActivityCheck.find_by_games(params[:games])
-    @characters = @check.characters
+    @characters = @check.characters.preload(:user)
     active_user_ids = @characters.pluck('distinct user_id')
     @users = User.find(active_user_ids)
     prev_check_id = @check.id > 1 ? @check.id - 1 : 1
